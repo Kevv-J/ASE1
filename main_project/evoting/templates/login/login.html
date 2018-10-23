@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'login/css/css.css' %}">
+    <!-- =================================================================== -->
+    <script src="{% static 'login/js/js.js' %}"></script>
+    <!-- =================================================================== -->
+    <link rel="icon" href="{% static 'login/images/e-voting.png' %}">
+    <!--====================================================================== -->
+	<title>Evoting-Login</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+
+    <div class="home_btn_div">
+        <a href="#" class="home_btn_a">
+            <img src="{% static 'login/images/e-voting.png' %}" class="img" onmouseover="document.getElementById('evoting').style.display='block'" onmouseout="document.getElementById('evoting').style.display='none'">
+        </a>
+        <span style="display: none" class="evoting_txt" id="evoting">
+            E-Voting
+        </span>
+    </div>
+	<span class="heading">VOTER LOGIN</span><br>
+    <div class="box">
+        <div class="boxes">
+        <form method="post" action="{% static 'login/css/css.css' %}" autocomplete="off">
+            {% csrf_token %}
+                <input type="email" class="emailid" onfocus="this.placeholder=''" onblur="this.placeholder='Email Id(abc@gmail.com)'" name="emailid" placeholder="Email Id(abc@gmail.com)" oninvalid="this.setCustomValidity('Please fill in with valid Email Id')" oninput="this.setCustomValidity('')" required>
+                <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="pass" onfocus="this.placeholder=''" onblur="this.placeholder='Password'" name="pass" placeholder="Password" oninvalid="this.setCustomValidity('Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters')" oninput="this.setCustomValidity('')" required><br>
+                <button type="submit" class="login"><span class="login_text" id="login">LOG IN</span></button><br>
+                <a href="" class="forgot_pass">Forgot Password?</a><br>
+            <p class="reg_text">Haven't registered yet? Click the <a href="javascript:disp_reg()" class="reg_a">Register</a> button to register.</p><br>
+        </form>
+        <div style="display: none" id="reg_btn_id" class="animate-register">
+            <form action="{% url 'evoting-registerpage' %}" method="post">
+                {% csrf_token %}
+                    <button type="submit" class="reg_btn"><span class="register">REGISTER</span></button>
+            </form>
+        </div>
+        </div>
+    </div>
+
+</body>
+</html>
