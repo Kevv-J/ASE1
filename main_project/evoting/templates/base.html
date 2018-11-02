@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% block head %}{% endblock head %}
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'register/styles/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'login/styles/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'home/styles/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'home/styles/css.css' %}">
+
+    <!-- Java Script Funcions -->
+    <script src="{% static 'home/scripts/scripts.js' %}"></script>
+    <script src="{% static 'login/scripts/scripts.js' %}"></script>
+
+  </head>
+  <body style="background-color: aliceblue">
+  <!-- ====================Menu Bar======================= -->
+  <div style="border-bottom: 1px solid darkgray; height: 80px">
+      <div>
+            <div class="menu_bar_disp border-6" onclick="menu_bar_on()"></div>
+            <div style="display: none" class="menu_bar" id="menu_bar">
+                <img src="{% static 'home/imgs/close.png' %}" class="menu_bar_cancel" onclick="menu_bar_off()">
+            </div>
+            <div>
+                {% if user.is_authenticated %}
+                    <a class="logout_btn" href="{% url 'evoting-logout' %}">Log Out</a>
+                    <a href="{% url 'evoting-user-profile' %}">
+                        <img src="{% static 'home/imgs/user-profile.png' %}" class="user-profile-image" id="profile"
+                            onmouseover="user_profile_animation_in()" onmouseout="user_profile_animation_out()">
+                    </a>
+                {% else %}
+                    <a class="login_btn" href="{% url 'evoting-login' %}">LOG IN</a>
+                    <a class="register_btn" href="{% url 'evoting-register' %}">REGISTER</a>
+                {% endif %}
+            </div>
+      </div>
+  <!-- =================================================== -->
+
+  <!-- ======================Home Button================== -->
+      <div>
+        <a href="{% url 'evoting-home' %}">
+            <img src="{% static 'login/imgs/e-voting.png' %}" class="home_img"
+                 onmouseover="display_evoting_txt()"
+                 onmouseout="remove_evoting_txt()">
+        </a>
+        <span style="display: none" class="evoting_txt" id="evoting">
+            E-Voting
+        </span>
+      </div>
+  </div>
+  <!-- =================================================== -->
+
+  <!-- =====================Block Body==================== -->
+      <div class="container">
+        {% block body %}{% endblock body %}
+      </div>
+  <!-- =================================================== -->
+
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

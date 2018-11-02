@@ -1,0 +1,135 @@
+/* ---------------------CLASSES------------------------------ */
+.heading {position: relative; left: 40.5%; top: 120px;
+    color: gainsboro; font-family: "Segoe UI"; font-weight: bold; letter-spacing: 0.5px; font-size: 41px;
+    /*border-bottom: 0.05px solid ghostwhite;*/
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    mso-border-shadow: yes;
+}
+
+.heading:hover {
+    user-select: none;
+}
+
+.box {
+    position: relative; left: 32%; top: 170px; width: 604.5px;
+}
+
+.boxes {
+    position: absolute;
+}
+
+.emailid {
+    height: 65px; width: 200px; padding-left: 50px; font-size: 15px;
+    border-bottom: none; border-left: none; border-right: none; border-top: none;
+    background-color: mintcream;
+    border-top-left-radius: 8px;
+    outline: none;
+}
+
+.pass {
+    height: 65px; width: 200px; padding-left: 50px;
+    position: relative; left: -4px; font-size: 15px;
+    border-bottom: none; border-left: solid 0.4px black; border-right: none; border-top: none;
+    background-color: mintcream;
+    border-top-right-radius: 8px;
+    outline: none;
+    box-shadow: 3px 3px 4px 1px rgba(7, 7, 7, 0.5);
+}
+
+.login {
+    position: absolute; height: 60px; width: 500px;
+    background-color: navy;
+    border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
+    border-bottom: none; border-left: none; border-right: none; border-top: none;
+    outline: none;
+    box-shadow: 3px 3px 4px 1px rgba(7, 7, 7, 0.5);
+}
+
+.login_text {
+    font-size: 15px; color: white;
+    font-weight: bold;
+}
+
+
+
+.forgot_pass {
+    position: relative; left: 39%; top: 70px;
+    font-family: "Segoe UI"; font-size: 15px;
+    color: #e5e5e5e5; text-decoration: none;
+    letter-spacing: 0.5px;
+    word-spacing: 2px;
+    text-shadow: 2px 1px 2px rgba(7, 7, 7, 0.5);
+}
+
+.reg_text {
+    position: relative; left: 4%; top: 100px;
+    font-size: 18px; font-family: "Adobe Kaiti Std R"; font-weight: bold;
+    color: firebrick;
+}
+
+.animate-register {
+    -webkit-animation: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s;
+}
+
+/*--=======================IDs==================----*/
+
+
+/*-========================HOVERS=========-------*/
+
+.login:hover {
+    transition-duration: 0.25s;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    background-color: #0000dd;
+}
+
+.forgot_pass:hover{
+    transition-duration: 0.5s;
+    color: #ffffff;
+    text-shadow: none;
+}
+
+.evoting_txt:hover {
+    cursor: none;
+}
+
+/*--===============================================================================-- */
+
+body {
+    background-color: #005fff;
+}
+
+input:out-of-range{
+    border: solid 2px red;
+}
+
+::placeholder {
+    color: #888888;
+    font-size: 15px;
+    font-family: Corbel; font-weight: bold;
+    letter-spacing: -0.25px;
+    text-decoration: midnightblue;
+}
+
+:invalid {color: red}
+
+input:placeholder-shown{
+    color: black;
+    font-family: "Malgun Gothic"; font-weight: bold;
+}
+
+/*--=========================================================================--*/
+/* ---------------Webkit Keyframes------------ */
+
+@-webkit-keyframes animatebottom {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes animatebottom {
+    from {opacity: 0}
+    to {opacity: 1}
+}

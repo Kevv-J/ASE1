@@ -1,0 +1,126 @@
+body {
+    background-color: gainsboro;
+    /*background-image: url("../../../templates/home/images/bg-01.jpg");*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+.menu_bar {
+    position: relative;
+    top: 1px;
+    width: 100%; height: 300px;
+    -webkit-animation: animate-menu-bar;
+    -webkit-animation-duration: 1s;
+    animation-name: animate-menu-bar;
+    animation-duration: 1s;
+    opacity: 0.8;
+    background-color: black;
+}
+
+.rotate-90 {
+    -webkit-transform: rotateX(180deg);
+    transform: rotateZ(90deg);
+}
+
+.menu_bar_disp {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    margin-left: 30%; margin-top: 3px;
+    max-width: 40%;
+    height: 8px;
+    background-color: #888888;
+}
+
+.menu_bar_cancel {
+    position: absolute; right: 2%; margin-top: 1%;
+    width: 40px; height: 40px;
+}
+
+
+/*===================================IDs==========================*/
+
+#menu_bar {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 360px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 10;
+}
+
+
+/*==================================Hovers=========================*/
+
+.menu_bar_disp:hover {
+    background-color: dimgrey;
+    cursor: pointer;
+}
+
+.menu_bar_cancel:hover {
+    cursor: pointer;
+}
+
+/*=================================================================*/
+
+
+@-webkit-keyframes animate-menu-bar {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 1px;
+        opacity: 0.8;
+    }
+}
+
+@keyframes animate-menu-bar {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 0.8;
+    }
+}
+
+/*===============borders================*/
+
+.tlbr-8 {
+    border-top-left-radius: 8px;
+}
+
+.trbr-8 {
+    border-top-right-radius: 8px;
+}
+
+.blbr-8 {
+    border-bottom-left-radius: 8px;
+}
+
+.brbr-8 {
+    border-bottom-right-radius: 8px;
+}
+
+.border-6 {
+    border-radius: 6px;
+}
+
+/*=======================Background Colors==========*/
+
+.bc-dimgrey {
+    background-color: dimgrey;
+}
+
+.bc-dsb {
+    background-color: deepskyblue;
+}
