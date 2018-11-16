@@ -1,52 +1,67 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from .models import Voters_Profile
 
-class UserRegistrationForm(UserCreationForm):
-    fullname = forms.CharField(
-        required=True,
-        label='FullName',
-        max_length=32,
-        widget=forms.TextInput(
+class Registration_form1(forms.ModelForm):
+    password = forms.CharField(
+        label='',
+        widget=forms.PasswordInput(
             attrs={
-                'class': 'input_box'
+                'class': 'input_boxes',
+                'placeholder': 'Password'
             }
         )
     )
 
     username = forms.CharField(
-        required=True,
-        label='Username',
-        max_length=30,
+        label='',
         widget=forms.TextInput(
             attrs={
-                'class': 'input_box'
+                'class': 'input_boxes',
+                'placeholder': 'Username'
             }
         )
     )
 
-    id = forms.CharField(
-        required=True,
-        label='Voter Id',
-        max_length=32,
-        widget=forms.TextInput(
+    email = forms.EmailField(
+        label='',
+        widget=forms.EmailInput(
             attrs={
-                'class': 'input_box'
+                'class': 'input_boxes',
+                'placeholder': 'Email (abc@gmail.com)',
+                'pattern': '[a-z0-9._%+-]+@[g]+[m]+[a]+[i]+[l]+\.[c]+[o]+[m]$',
+                'oninvalid': 'this.setCustomValidity("Email must be in (example@gmail.com) format")'
             }
         )
     )
 
-    email = forms.CharField(
-        required=True,
-        label='Email',
-        max_length=32,
-        widget=forms.TextInput(
-            attrs={
-                'class': 'input_box'
-            }
-        )
-    )
-
-    class Meta:
+    class Meta():
         model = User
-        fields = ['username', 'fullname', 'id', 'email', 'password1', 'password2']
+        fields = ('username', 'email', 'password')
+
+class Registration_form2(forms.ModelForm):
+
+    fullname = forms.CharField(
+        label='',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'input_boxes',
+                'placeholder': 'Fullname'
+            }
+        )
+    )
+
+    voterId = forms.IntegerField(
+        label='',
+        widget=forms.TextInput(
+            attrs={
+                'class': 'input_boxes',
+                'placeholder': 'Voter Id',
+                'name': 'voterId'
+            }
+        )
+    )
+
+    class Meta():
+        model = Voters_Profile
+        fields = ('fullname', 'voterId')

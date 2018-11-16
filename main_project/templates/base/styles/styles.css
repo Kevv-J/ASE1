@@ -1,0 +1,275 @@
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 1400px 650px;
+    z-index: -2;
+}
+
+.page-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.85);
+    z-index: -1;
+}
+
+.home_img {
+    position: relative;
+    margin-left: 2%; margin-top: 0.3%;
+    top: 2.5%;
+    height: 30px;
+    background: transparent;
+}
+
+.evoting_txt {
+    position: absolute;
+    left: 5.5%; top: 2%;
+    font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+    font-weight: bold; font-size: 26px; color: white;
+    -webkit-animation: animate_evoting_text;
+    -webkit-animation-duration: 1s;
+    animation-name: animate_evoting_text;
+    animation-duration: 1s;
+}
+
+.menu_bar_disp {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    margin-left: 30%; margin-top: 3px;
+    max-width: 40%;
+    height: 8px;
+    background-color: lavender;
+    z-index: 20;
+}
+
+.menu_bar {
+    top: 0;
+    width: 100%; height: 260px;
+    -webkit-animation: animate-menu-bar;
+    -webkit-animation-duration: 1s;
+    animation-name: animate-menu-bar;
+    animation-duration: 1s;
+    opacity: 0.9;
+    background-color: black;
+}
+
+.menu_bar_cancel {
+    position: absolute; right: 2%; margin-top: 2%;
+    width: 50px; height: 50px;
+    background: transparent;
+}
+
+.user-profile-image {
+    position: relative;
+    max-width: 120px;
+    margin-left: 7%; margin-top: 6%;
+    border-radius: 50%;
+    padding: 15px;
+    border: 2px solid blueviolet;
+    background: transparent;
+    -webkit-animation: user-profile-image-animation;
+    -webkit-animation-duration: 1s;
+    animation: user-profile-image-animation;
+    animation-duration: 1s;
+    opacity: 0.8;
+}
+
+.register_btn {
+    position: absolute;
+    right: 1.7%; top: 4.45%;
+    border: none;
+    padding: 4px 15px 4px 15px;
+    font-family: "Microsoft JhengHei UI Light";
+    font-size: 19px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: white; text-decoration: none;
+}
+
+.login_btn {
+    position: absolute;
+    right:2.3%; top: 0.1%;
+    border: none;
+    padding: 4px 23px 4px 23px;
+    font-family: "Microsoft JhengHei UI Light";
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: whitesmoke; text-decoration: none;
+    border-bottom: 0.5px solid gainsboro;
+    padding-bottom: 0;
+}
+
+.logout_btn {
+    position: absolute;
+    right:3%; top: 1.7%;
+    border: none;
+    padding: 5px 15px 5px 15px;
+    font-family: "Microsoft JhengHei UI Light";
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: whitesmoke; text-decoration: none;
+}
+
+/*===================================IDs==========================*/
+
+#menu_bar {
+    position: fixed;
+    display: none;
+    z-index: 10;
+}
+
+#profile {
+    position: fixed;
+    display: none;
+    z-index: 30;
+}
+
+/*==================================Hovers=========================*/
+
+.menu_bar_disp:hover {
+    background-color: dimgrey;
+    cursor: pointer;
+}
+
+.menu_bar_cancel:hover {
+    cursor: pointer;
+}
+
+.user-profile-image:hover {
+    cursor: pointer;
+}
+
+.register_btn:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    text-shadow: 1px 1px 8px darkgray;
+}
+
+.login_btn:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    text-shadow: 1px 1px 8px darkgray;
+}
+
+.logout_btn:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    text-shadow: 1px 1px 8px darkgray;
+}
+
+/*=================================================================*/
+
+
+@-webkit-keyframes animate-menu-bar {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 0.9;
+    }
+}
+
+@keyframes animate-menu-bar {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 0.9;
+    }
+}
+
+@-webkit-keyframes user-profile-image-animation {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 11px;
+        opacity: 0.8;
+    }
+}
+
+@keyframes  user-profile-image-animation{
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 11px;
+        opacity: 0.8;
+    }
+}
+
+@-webkit-keyframes animate_evoting_text {
+    from {
+        left: 3%;
+        opacity: 0;
+    }
+    to {
+        left: 5.5%;
+        opacity: 1;
+    }
+}
+
+@keyframes animate_evoting_text {
+    from {
+        left: 3%;
+        opacity: 0;
+    }
+    to {
+        left: 5.5%;
+        opacity: 1;
+    }
+}
+
+/*===============borders================*/
+
+.tlbr-8 {
+    border-top-left-radius: 8px;
+}
+
+.trbr-8 {
+    border-top-right-radius: 8px;
+}
+
+.blbr-8 {
+    border-bottom-left-radius: 8px;
+}
+
+.brbr-8 {
+    border-bottom-right-radius: 8px;
+}
+
+.border-6 {
+    border-radius: 6px;
+}
+
+/*=======================Background Colors==========*/
+
+.bc-dimgrey {
+    background-color: dimgrey;
+}
+
+.bc-dsb {
+    background-color: deepskyblue;
+}
+
+
+:-moz-any-link:focus{
+    border: none;
+    outline: none;
+}

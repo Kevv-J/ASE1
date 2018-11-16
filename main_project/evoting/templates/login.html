@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <title>E-Voting Login</title>
+{% endblock head %}
+
+{% block body %}
+
+    {% if user.is_authenticated %}
+        <div style="text-align: center">
+            <h2 style="color: white">You are already logged in!!</h2><br><br>
+            <p style="color: white">Do you want to redirect you to <a href="{% url 'evoting-home' %}">Home</a> page?</p>
+        </div>
+    {% else %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="text-align: center; color: red;z-index: 20">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div  class="container box" style="max-width: 450px">
+            <div class="row">
+                <div class="col-md-12 login_heading">VOTER <img src="{% static 'login/imgs/profile.png' %}" class="heading_pic"> LOGIN</div>
+                <div class="">
+                        <form method="post" action="" autocomplete="off">
+                            {% csrf_token %}
+
+                                <div class="col-md-12 username_box_div">
+                                    <!--<label class="username_txt" style="display: block" id="username_txt">Username</label>-->
+                                    <input type="text" class="username_box" id="username" name="username" placeholder="Username"
+                                           onfocus="this.placeholder=''" onblur="this.placeholder='Username'"
+                                           oninvalid="this.setCustomValidity('Username is required')"
+                                           oninput="this.setCustomValidity('')"
+                                           required>
+                                </div>
+                                <div class="col-md-12 pass_box_div">
+                                    <!--<label class="pass_txt" style="display: block" id="password_txt">Password</label>-->
+                                    <input type="password" class="pass_box" id="password" name="password" placeholder="Password"
+                                            onfocus="this.placeholder=''" onblur="this.placeholder='Password'"
+                                           oninvalid="this.setCustomValidity('Password is required!')"
+                                           oninput="this.setCustomValidity('')"
+                                           required>
+                                </div>
+                                <button type="submit" class="login"><img src="{% static 'login/imgs/play-symbol.png' %}" class="login"></button>
+
+                            <div class="col-md-12 forgot_pass"><a href="{% url 'pass-reset' %}" class="forgot_pass">Forgot Password?</a></div>
+                            <div class="col-md-12"> <p class="reg_text">Haven't registered yet? Click the <a href="{% url 'evoting-register' %}" class="reg_a">Register</a> button to register.</p></div>
+                        </form>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock body %}
+
+
+<!--
+    Password Pattern.........
+    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+-->
