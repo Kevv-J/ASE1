@@ -22,10 +22,8 @@ class Voters_Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     fullname = models.CharField(max_length=20, blank=True)
     voterId = models.BigIntegerField(blank=True, primary_key=True)
-    activation = models.CharField(blank=True, max_length=5, default=False)
     voter_dob=models.DateField(null=False)
-    election=models.ForeignKey(Election,on_delete=models.CASCADE)
-    region=models.CharField(choices=region_options,null=False,max_length=1)
+    region=models.CharField(choices=region_options,null=False,max_length=10)
 
     def __str__(self):
         return self.user.username

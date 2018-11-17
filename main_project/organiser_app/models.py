@@ -41,16 +41,16 @@ party_options={
 
 region_options=(
 
- (0,'AndhraPradesh') ,
- (1,'Bihar') ,
- (2,'karnataka'),
- (3,'Tamilnadu' ),
- (4,'Kerela') ,
- (5,'UttarPradesh'),
- (6,'WestBengal') ,
- (7,'MadhyaPradesh') ,
- (8,'Haryana') ,
- (9,'Assam')
+ ('0','AndhraPradesh') ,
+ ('1','Bihar') ,
+ ('2','karnataka'),
+ ('3','Tamilnadu' ),
+ ('4','Kerela') ,
+ ('5','UttarPradesh'),
+ ('6','WestBengal') ,
+ ('7','MadhyaPradesh') ,
+ ('8','Haryana') ,
+ ('9','Assam')
 
 )
 
@@ -74,8 +74,8 @@ class Voter(models.Model):
     voter_aadhar=models.BigIntegerField(unique=True,null=False)
     voter_phone=models.BigIntegerField(unique=True,null=False)
     isalive=models.BooleanField(default=True,null=False)
-    voter_gender=models.CharField(choices=Gender_options,null=False,max_length=1)
-    voter_region=models.CharField(choices=region_options,null=False,max_length=1)
+    voter_gender=models.CharField(choices=Gender_options,null=False,max_length=10)
+    voter_region=models.CharField(choices=region_options,null=False,max_length=10)
 
 
 class Candidate(models.Model):

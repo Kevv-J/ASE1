@@ -47,3 +47,10 @@ def voter_page(request):
         voter_form = Voterform()
 
     return render(request, 'organiser_app/addvoter.html', {'voter_form':voter_form})
+
+def main_page(request):
+    return render(request,'organiser_app/index1.html')
+
+def election(request):
+    return render(request,'organiser_app/election.html')
+
