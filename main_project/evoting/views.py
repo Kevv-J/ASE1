@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
+from organiser_app.models import *
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
@@ -30,7 +31,7 @@ def register(request):
 
         if registration_form1.is_valid() and registration_form2.is_valid():
             voter_id = int(request.POST['voterId'])
-            voter_id_list = Pre_Registered_Database.objects.values_list('voterId', flat=True)
+            voter_id_list = Voter.objects.values_list('voter_id', flat=True)
 
             print(voter_id, voter_id_list)
 

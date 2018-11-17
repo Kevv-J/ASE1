@@ -1,7 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c186cef0-c6ec-49a9-8180-b5229908d3b1" name="Default Changelist" comment="" />
+    <list default="true" id="c186cef0-c6ec-49a9-8180-b5229908d3b1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/evoting/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/evoting/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0002_auto_20181019_0153.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0002_auto_20181111_2251.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0003_auto_20181019_0236.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0003_voters_profile_activation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0004_auto_20181019_0248.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0004_pre_registered_database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0005_auto_20181019_2325.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0005_auto_20181115_2218.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0006_pre_registered_database_email.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0006_voterslog.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0007_auto_20181030_0106.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0007_organizers_database.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0008_auto_20181116_1620.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0008_remove_voterslog_user.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0009_auto_20181116_1659.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0009_delete_voterslog.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/migrations/0010_voterslog.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/evoting/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/templates/home/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/templates/login/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/templates/logout/logout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/templates/register/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/evoting/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/evoting/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_project/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_project/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_project/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_project/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/organiser_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/organiser_app/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/organiser_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/organiser_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/organiser_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/organiser_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/imgs/bg-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/imgs/cancel-cross.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/imgs/close-menu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/imgs/close.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/imgs/evoting-bg-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/imgs/evoting-bg-02.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/imgs/user-profile-b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/imgs/user-profile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/scripts/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base/styles/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/css/css.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/images/bg-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/images/cancel-cross.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/images/close.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/images/close.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/imgs/bg-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/imgs/cancel-cross.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/imgs/close.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/imgs/close.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/imgs/user-profile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/js/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/scripts/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/styles/css.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/home/styles/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/login/css/css.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/login/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/login/images/bg-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/login/images/e-voting.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/login/images/online-voting-slider.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/login/imgs/bg-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/login/imgs/e-voting.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/login/imgs/online-voting-slider.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/login/js/js.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/login/js/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/login/scripts/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/login/styles/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/register/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/register/images/511382-how-to-register-to-vote-online.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/register/images/Online-Voting-Button-Follow-My-Vote.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/register/images/voting2-640x360.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/register/imgs/511382-how-to-register-to-vote-online.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/register/imgs/Online-Voting-Button-Follow-My-Vote.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/register/imgs/voting2-640x360.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/evoting/register/styles/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/imgs/bg-01.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/imgs/e-voting.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/imgs/error.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/imgs/mail-w.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/imgs/mail.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/imgs/online-voting-slider.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/imgs/play-symbol.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/imgs/play-symbol.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/imgs/profile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/script/jqury.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/script/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/stylesheet/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login/stylesheet/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/password_reset/stylesheet/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register/imgs/511382-how-to-register-to-vote-online.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register/imgs/Online-Voting-Button-Follow-My-Vote.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register/imgs/next.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register/imgs/voting2-640x360.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register/stylesheet/styles.css" beforeDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,14 +156,79 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1350013137">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="2" />
+          <entry key="py" value="17" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="2" />
+          <entry key="Python" value="17" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="405" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="405" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/evoting/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="10" column="67" lean-forward="true" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="67" />
+            <state relative-caret-position="272">
+              <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main_project/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+              <folding>
+                <element signature="e#636#668#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/organiser_app/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="70" column="57" selection-start-line="70" selection-start-column="56" selection-end-line="70" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/organiser_app/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="105" column="24" lean-forward="true" selection-start-line="105" selection-start-column="24" selection-end-line="105" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -73,25 +236,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/evoting/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="66" selection-start-line="6" selection-start-column="66" selection-end-line="6" selection-end-column="66" />
+            <state relative-caret-position="232">
+              <caret line="26" column="3" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
-                <marker date="1542367754190" expanded="true" signature="545:836" ph="..." />
-                <marker date="1542367754190" expanded="true" signature="878:1109" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/evoting/templates/base.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main_project/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="61" column="69" selection-start-line="61" selection-start-column="69" selection-end-line="61" selection-end-column="69" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="41" column="19" lean-forward="true" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -99,73 +257,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/evoting/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="232">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
-                <marker date="1542369471844" expanded="true" signature="3761:3900" ph="..." />
+                <marker date="1542446273050" expanded="true" signature="3779:3918" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/evoting/templates/register.html">
+        <entry file="file://$PROJECT_DIR$/organiser_app/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="43" column="31" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+            <state relative-caret-position="68">
+              <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/evoting/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Desktop/django/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="28" column="259" lean-forward="true" selection-start-line="28" selection-start-column="197" selection-end-line="28" selection-end-column="259" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/password_reset/stylesheet/styles.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/register/stylesheet/styles.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="521">
-              <caret line="216" column="20" lean-forward="true" selection-start-line="216" selection-start-column="20" selection-end-line="216" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/evoting/templates/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="759">
-              <caret line="48" column="90" selection-start-line="48" selection-start-column="90" selection-end-line="48" selection-end-column="90" />
             </state>
           </provider>
         </entry>
@@ -181,10 +290,12 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/main_project/urls.py" />
         <option value="$PROJECT_DIR$/evoting/templates/profile.html" />
         <option value="$PROJECT_DIR$/templates/login/scripts/query.js" />
         <option value="$PROJECT_DIR$/templates/login/scripts/scripts.js" />
@@ -195,7 +306,6 @@
         <option value="$PROJECT_DIR$/evoting/templates/home.html" />
         <option value="$PROJECT_DIR$/templates/login/styles/styles.css" />
         <option value="$PROJECT_DIR$/templates/password_reset/styles.css" />
-        <option value="$PROJECT_DIR$/main_project/settings.py" />
         <option value="$PROJECT_DIR$/evoting/templates/index.html" />
         <option value="$PROJECT_DIR$/evoting/tokens.py" />
         <option value="$PROJECT_DIR$/evoting/templates/acc_activate.html" />
@@ -207,15 +317,20 @@
         <option value="$PROJECT_DIR$/evoting/templates/password_reset.html" />
         <option value="$PROJECT_DIR$/templates/password_reset/styles/styles.css" />
         <option value="$PROJECT_DIR$/templates/password_reset/stylesheet/styles.css" />
-        <option value="$PROJECT_DIR$/evoting/admin.py" />
         <option value="$PROJECT_DIR$/templates/base/stylesheet/styles.css" />
         <option value="$PROJECT_DIR$/templates/base/styles/styles.css" />
-        <option value="$PROJECT_DIR$/evoting/models.py" />
         <option value="$PROJECT_DIR$/evoting/templates/register.html" />
-        <option value="$PROJECT_DIR$/evoting/forms.py" />
         <option value="$PROJECT_DIR$/evoting/urls.py" />
         <option value="$PROJECT_DIR$/evoting/templates/base.html" />
+        <option value="$PROJECT_DIR$/main_project/settings.py" />
+        <option value="$PROJECT_DIR$/evoting/forms.py" />
         <option value="$PROJECT_DIR$/evoting/views.py" />
+        <option value="$PROJECT_DIR$/evoting/admin.py" />
+        <option value="$PROJECT_DIR$/organiser_app/admin.py" />
+        <option value="$PROJECT_DIR$/organiser_app/urls.py" />
+        <option value="$PROJECT_DIR$/main_project/urls.py" />
+        <option value="$PROJECT_DIR$/organiser_app/models.py" />
+        <option value="$PROJECT_DIR$/evoting/models.py" />
       </list>
     </option>
   </component>
@@ -225,12 +340,13 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1346" />
     <option name="height" value="698" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -253,7 +369,34 @@
               <item name="main_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="main_project" type="462c0819:PsiDirectoryNode" />
               <item name="evoting" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="main_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main_project" type="462c0819:PsiDirectoryNode" />
+              <item name="main_project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="main_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main_project" type="462c0819:PsiDirectoryNode" />
+              <item name="organiser_app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="main_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main_project" type="462c0819:PsiDirectoryNode" />
+              <item name="organiser_app" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="main_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main_project" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="main_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main_project" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="organiser_app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="main_project" type="b2602c69:ProjectViewProjectNode" />
@@ -264,27 +407,7 @@
               <item name="main_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="main_project" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="main_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="main_project" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="main_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="main_project" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="password_reset" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="main_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="main_project" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="password_reset" type="462c0819:PsiDirectoryNode" />
-              <item name="stylesheet" type="462c0819:PsiDirectoryNode" />
+              <item name="organiser_app" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -366,10 +489,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2246596" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2246596" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -383,7 +506,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32903227" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32903227" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -399,16 +522,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main_project/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
-          <folding>
-            <element signature="e#636#668#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/pycharm.jar!/resources/html5-schema/html5/block.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -416,13 +529,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login/script/scripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login/script/scripts.js" />
     <entry file="file://$PROJECT_DIR$/evoting/templates/profile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -439,13 +546,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/evoting/templates/index.html" />
     <entry file="file://$USER_HOME$/Desktop/pass-reset/account_activation_email_sent.html" />
-    <entry file="file://$PROJECT_DIR$/templates/login/script/jqury.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="7" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login/script/jqury.js" />
     <entry file="file://$PROJECT_DIR$/evoting/templates/test.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -470,107 +571,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#66#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main_project/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="137" column="29" selection-start-line="137" selection-start-column="29" selection-end-line="137" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/login/stylesheet/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="190" column="49" selection-start-line="190" selection-start-column="49" selection-end-line="190" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/login/stylesheet/styles.css" />
     <entry file="file://$PROJECT_DIR$/evoting/templates/password_reset.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">
           <caret line="26" column="86" lean-forward="true" selection-start-line="26" selection-start-column="86" selection-end-line="26" selection-end-column="86" />
-          <folding>
-            <element signature="n#style#0;n#form#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/password_reset/stylesheet/styles.css">
+    <entry file="file://$PROJECT_DIR$/templates/password_reset/stylesheet/styles.css" />
+    <entry file="file://$PROJECT_DIR$/templates/register/stylesheet/styles.css" />
+    <entry file="file://$PROJECT_DIR$/templates/base/styles/styles.css" />
+    <entry file="file://$PROJECT_DIR$/evoting/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/evoting/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="48" column="90" selection-start-line="48" selection-start-column="90" selection-end-line="48" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/register/stylesheet/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="216" column="20" lean-forward="true" selection-start-line="216" selection-start-column="20" selection-end-line="216" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base/styles/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="103" column="41" lean-forward="true" selection-start-line="103" selection-start-column="41" selection-end-line="103" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/evoting/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/evoting/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="66" selection-start-line="6" selection-start-column="66" selection-end-line="6" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-            <marker date="1542367754190" expanded="true" signature="545:836" ph="..." />
-            <marker date="1542367754190" expanded="true" signature="878:1109" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/django/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="28" column="259" lean-forward="true" selection-start-line="28" selection-start-column="197" selection-end-line="28" selection-end-column="259" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/evoting/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/evoting/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="67" lean-forward="true" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="67" />
+        <state relative-caret-position="918">
+          <caret line="54" column="18" selection-start-line="54" selection-start-column="18" selection-end-line="54" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -578,31 +596,149 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="43" column="31" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/django/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="259" selection-start-line="28" selection-start-column="197" selection-end-line="28" selection-end-column="259" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evoting/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="90" selection-start-line="48" selection-start-column="90" selection-end-line="48" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evoting/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="55" column="31" lean-forward="true" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/PycharmProjects/feedback/venv/Lib/site-packages/pip-10.0.1-py3.6.egg/pip/_vendor/cachecontrol/_cmd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evoting/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="41" selection-start-line="4" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/organiser_app/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evoting/migrations/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/organiser_app/migrations/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/organiser_app/region_candidate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/organiser_app/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evoting/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="6" lean-forward="true" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_project/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+          <folding>
+            <element signature="e#636#668#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/organiser_app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="105" column="24" lean-forward="true" selection-start-line="105" selection-start-column="24" selection-end-line="105" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/evoting/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="26" column="3" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_project/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="41" column="19" lean-forward="true" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/evoting/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="232">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
-            <marker date="1542369471844" expanded="true" signature="3761:3900" ph="..." />
+            <marker date="1542446273050" expanded="true" signature="3779:3918" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/evoting/templates/base.html">
+    <entry file="file://$PROJECT_DIR$/organiser_app/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="61" column="69" selection-start-line="61" selection-start-column="69" selection-end-line="61" selection-end-column="69" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="198">
+          <caret line="70" column="57" selection-start-line="70" selection-start-column="56" selection-end-line="70" selection-end-column="57" />
         </state>
       </provider>
     </entry>

@@ -64,4 +64,4 @@ class Registration_form2(forms.ModelForm):
 
     class Meta():
         model = Voters_Profile
-        fields = ('fullname', 'voterId')
+        fields = ('fullname', 'voterId','voter_dob')
