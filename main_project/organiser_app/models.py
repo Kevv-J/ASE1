@@ -76,3 +76,29 @@ class Voter(models.Model):
     isalive=models.BooleanField(default=True,null=False)
     voter_gender=models.CharField(choices=Gender_options,null=False,max_length=1)
     voter_region=models.CharField(choices=region_options,null=False,max_length=1)
+
+
+class Candidate(models.Model):
+    candidate_id=models.CharField(max_length=10,unique=True,primary_key=True,null=False)
+    candidate_name=models.CharField(max_length=50,null=False)
+    candidate_fname=models.CharField(max_length=50,null=False)
+    candidate_party=models.CharField(choices=party_options,null=False,max_length=10)
+    candidate_region=models.CharField(choices=region_options,null=False,max_length=10)
+    candidate_gender=models.CharField(choices=Gender_options,null=False,max_length=1)
+    candidate_email=models.EmailField(unique=True,null=False)
+    candidate_dob=models.DateField(null=False)
+    candidate_aadhar=models.BigIntegerField(unique=True,null=False)
+
+class Candidate_election(models.Model):
+    candidate=models.ForeignKey(Candidate,on_delete=models.CASCADE)
+    election=models.ForeignKey(Election,on_delete=models.CASCADE)
+
+class Election_region(models.Model):
+    election=models.ForeignKey(Election,on_delete=models.CASCADE)
+    region=models.CharField(choices=region_options,null=False,max_length=10)
+
+
+class Vote_count(models.Model):
+    voter=models.ForeignKey(Voter,on_delete=models.CASCADE)
+    candidate=models.ForeignKey(Candidate,on_delete=models.CASCADE)
+    election=models.ForeignKey(Election,on_delete=models.CASCADE)

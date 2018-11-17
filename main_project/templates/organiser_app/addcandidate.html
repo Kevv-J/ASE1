@@ -1,3 +1,5 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,7 +23,7 @@
     <title>organiser_region</title>
   </head>
 
-  <body style="position:relative; padding-top: 20px;border-radius:100px;background-image: url('user.png');background-repeat: no-repeat;background-position-y:90px; background-size: 450px;background-attachment: fixed;">
+  <body style="position:relative; padding-top: 20px;border-radius:100px;background-image:url({% static 'images/user.png' %});background-repeat: no-repeat;background-position-y:90px; background-size: 450px;background-attachment: fixed;">
 
 
 
@@ -85,7 +87,7 @@
                 </div>
                 <div class="form-group row" style="margin-top:-20px">
                 <div class="col-sm-12">
-                <input type="text" class="form-control" id="inputEmail3" placeholder="Enter Candidate Name" >
+                  {{ candidate_form.candidate_name|attr:"placeholder:Enter Candidate Name"|add_class:"input100" }}
                 </div>
                  </div>
 
@@ -94,9 +96,21 @@
                     </div>
                        <div class="form-group row" style="margin-top:-20px">
                        <div class="col-sm-12">
-                       <input type="text" class="form-control" id="inputEmail3" placeholder="Enter Candidate Father's Name" >
+                        {{ candidate_form.candidate_fname|attr:"placeholder:Enter Candidate Father's Name"|add_class:"input100" }}
                        </div>
                         </div>
+
+                        <div class="form-group row" style="margin-top:-10px">
+                               <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:25px ">Aadhar number</label>
+                           </div>
+
+
+                        <div class="form-group row" style="margin-top:-20px">
+                        <div class="col-sm-12">
+                         {{ candidate_form.candidate_aadhar|attr:"placeholder:Enter Candidate aadhar number"|add_class:"input100" }}
+                        </div>
+                         </div>
+
 
 
                         <div class="form-group row" style="margin-top:-10px">
@@ -104,7 +118,7 @@
                             </div>
                                <div class="form-group row" style="margin-top:-20px">
                                <div class="col-sm-12">
-                               <input type="email" class="form-control" id="inputEmail3" placeholder="Enter Candidate Email ID" >
+                                {{ candidate_form.candidate_email|attr:"placeholder:Enter Candidate Email Id" }}
                                </div>
                                 </div>
 
@@ -114,34 +128,10 @@
                   <div class="row">
                     <legend class="col-form-label col-sm-12 pt-0" style="font-size:26px" >Gender</legend>
                   </div>
-                    <div class="form-group col-6">
-                    <div class="col-sm-2">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                        <label class="form-check-label" for="gridRadios1" style="font-size:18px">
-                          Male
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-sm-2">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                        <label class="form-check-label" for="gridRadios2" style="font-size:18px">
-                          Female
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-sm-2">
-                      <div class="form-check ">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" >
-                        <label class="form-check-label" for="gridRadios3" style="font-size:18px">
-                          Others
-                        </label>
-                      </div>
-                    </div>
-                  </div>
+                  {{candidate_form.candidate_gender}}
+
                 </fieldset>
-                <div class="form-group row" style="margin-top:-30px">
+                <div class="form-group row" style="margin-top:-20px">
                         <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:26px">Date of Birth</label>
                 </div>
 
@@ -149,7 +139,7 @@
 
                     <div class="form-group row" style="margin-top:-15px">
                        <div class="col-sm-12">
-                       <input type="date" class="form-control" id="inputEmail3" placeholder="DOB" >
+                        {{ candidate_form.candidate_dob }}
                        </div>
                      </div>
 
@@ -159,7 +149,8 @@
 
 
                      <div class="form-group" style="margin-top:-15px">
-                            <select class="form-control" >
+                      {{candidate_form.candidate_party}}
+                           <!-- <select class="form-control" >
                                       <option>Bhartiya Janta Party</option>
                                       <option>Communist Party of India</option>
                                       <option>Indian National Congress</option>
@@ -171,7 +162,12 @@
                                       <option>Samajwadi Party</option>
                                       <option>Rashtriya Janata Dal</option>
                                     </select>
+                                  -->
                           </div>
+
+
+
+
 
                 <div class="form-group row">
                   <div class="col-sm-12">
