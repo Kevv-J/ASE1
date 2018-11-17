@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout/', user_views.user_logout, name='evoting-logout'),
     #path('logout/', auth_views.LogoutView.as_view(template_name=''), name='evoting-logout'),
     path('profile/', user_views.profile, name='evoting-user-profile'),
+    path('activate/<uidb64>/<token>', user_views.activate, name='activate'),
     path('password_reset/', auth_views.PasswordResetView.as_view(
         template_name='password_reset.html'),
          name='pass-reset'
