@@ -10,9 +10,9 @@ election_options=(
 
 statuses=(
 
-    (0,'not started'),
-    (1,'on going'),
-    (2,'end')
+    ('0','not started'),
+    ('1','on going'),
+    ('2','end')
 
 )
 
@@ -56,14 +56,6 @@ region_options=(
 
 
 
-class Election(models.Model):
-    election_type=models.CharField(choices=election_options,null=False,max_length=1)
-    election_id=models.CharField(unique=True,max_length=10,primary_key=True,null=False)
-    election_year=models.IntegerField(null=False)
-    date_of_start=models.DateField(null=False)
-    date_of_end=models.DateField(null=False)
-    status=models.CharField(choices=statuses,max_length=1)
-
 
 class Voter(models.Model):
     voter_id=models.CharField(max_length=10,unique=True,primary_key=True,null=False)
@@ -89,9 +81,20 @@ class Candidate(models.Model):
     candidate_dob=models.DateField(null=False)
     candidate_aadhar=models.BigIntegerField(unique=True,null=False)
 
+
+class Election(models.Model):
+    election_type=models.CharField(choices=election_options,null=False,max_length=1)
+    election_id=models.AutoField(primary_key=True)
+    election_year=models.IntegerField(null=False)
+    date_of_start=models.DateField(null=False)
+    date_of_end=models.DateField(null=False)
+    status=models.CharField(choices=statuses,max_length=2,default='0')
+    candidates = models.ManyToManyField(to=Candidate)
+
 class Candidate_election(models.Model):
     candidate=models.ForeignKey(Candidate,on_delete=models.CASCADE)
     election=models.ForeignKey(Election,on_delete=models.CASCADE)
+
 
 class Election_region(models.Model):
     election=models.ForeignKey(Election,on_delete=models.CASCADE)
