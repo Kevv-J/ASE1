@@ -18,6 +18,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 def home(request):
     return render(request, 'home.html')
 
+
 def profile(request):
     return render(request, 'profile.html', {'username': request.user.username})
 
@@ -30,7 +31,7 @@ def register(request):
         registration_form2 = Registration_form2(request.POST)
 
         if registration_form1.is_valid() and registration_form2.is_valid():
-            voter_id = int(request.POST['voterId'])
+            voter_id = request.POST['voterId']
             voter_id_list = Voter.objects.values_list('voter_id', flat=True)
 
             print(voter_id, voter_id_list)
@@ -110,9 +111,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    url = request.GET.get('next', '/')
-    print(url)
-    return HttpResponseRedirect(request.GET.get('next', '/'))
+    return redirect('evoting-home')
 
 
 def send_email(request):
