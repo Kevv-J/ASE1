@@ -9,7 +9,8 @@ class Candidateform(forms.ModelForm):
         fields=('candidate_id','candidate_name','candidate_fname','candidate_party','candidate_region','candidate_gender','candidate_email','candidate_dob','candidate_aadhar')
 
 class Electionform(forms.ModelForm):
-
+    date_of_start = forms.DateField(widget=forms.SelectDateWidget())
+    date_of_end = forms.DateField(widget=forms.SelectDateWidget())
     class Meta():
         model=Election
-        fields=('election_type','election_id','election_year','date_of_start','date_of_end','status')
+        fields=('election_type','election_year','date_of_start','date_of_end', 'candidates')
