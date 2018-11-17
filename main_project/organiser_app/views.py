@@ -54,7 +54,6 @@ def main_page(request):
 def election(request):
     return render(request,'organiser_app/election.html')
 
-<<<<<<< HEAD
 
 def addelection(request):
     if request.method=="POST":
@@ -74,5 +73,3 @@ def addelection(request):
 
 
     return render(request,'organiser_app/election_form.html',{'addelection_form':addelection_form })
-=======
->>>>>>> 98bbeb73bbeba6dc911f91b0fb4723606462537d
