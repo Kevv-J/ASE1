@@ -29,3 +29,9 @@ def candidate_page(request):
 
 
     return render(request,'organiser_app/addcandidate.html',{'candidate_form':candidate_form })
+
+def main_page(request):
+    return render(request,'organiser_app/index1.html')
+
+def election(request):
+    return render(request,'organiser_app/election.html')
