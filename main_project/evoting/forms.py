@@ -40,7 +40,7 @@ class Registration_form1(forms.ModelForm):
         fields = ('username', 'email', 'password')
 
 class Registration_form2(forms.ModelForm):
-
+    voter_dob = forms.DateField(widget=forms.SelectDateWidget(years=range(1900, 2002)))
     fullname = forms.CharField(
         label='',
         widget=forms.TextInput(
