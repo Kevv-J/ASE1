@@ -9,6 +9,15 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'johns69mith69@gmail.com'
+EMAIL_HOST_PASSWORD = 'ilovedicks99'
+
+#DEFAULT_FROM_EMAIL = 'johns69mith69@gmail.com'
 
 import os
 
@@ -39,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'organiser_app'
+    'organiser_app',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -133,11 +143,3 @@ LOGIN_REDIRECT_URL = 'evoting-home'
 
 LOGOUT_REDIRECT_URL = 'evoting-login'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'sriram.nandala@gmail.com'
-EMAIL_HOST_PASSWORD = 'SRIRAMsaN12'
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'E-Voting <noreply@example.com>'

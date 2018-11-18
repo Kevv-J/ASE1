@@ -37,10 +37,6 @@
               </li>
 
 
-              <li class="nav-item active">
-                <a class="nav-link text-white" href="#" style="font-size:22px">VoterPage <span class="sr-only">(current)</span></a>
-              </li>
-
 
 
               <li class="nav-item active">
@@ -54,90 +50,23 @@
               </li>
 
             </ul>
-            <form class="form-inline " name="myform1" onsubmit="return ValidateForm1()" method="post">
-              <input class="form-control mr-sm-2" type="search" placeholder="Enter Candidate Id" aria-label="Search" name="Candidateid" >
-              <button class=" btn btn-danger my-2 my-sm-0 text-white" type="submit" style="font-size:17px;background-color: #006064;border:none;">Search</button>
-            </form>
-          </div>
+            <a class="nav-link text-white" href="{% url 'organiser_app:election' %}" style="font-size:22px">Election <span class="sr-only">(current)</span></a>
+            </div>
         </nav>
 
         <div class="container-fluid h-100 text-dark" style="margin-top:120px">
 
             <div class="row justify-content-center align-items-center h-100">
               <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                <form action="" onsubmit="return ValidateForm2()" name="myform2">
 
-                  
-                  <div class="row  align-items-center" style="font-size:34px">
-                      Select Region
-                    </div>
-
-                  <div class="form-group" style="margin-top:15px">
-                    <select class="form-control">
-                              <option>AndhraPradesh</option>
-                              <option>Bihar</option>
-                              <option>karnataka</option>
-                              <option>Tamilnadu</option>
-                              <option>Kerela</option>
-                              <option>UttarPradesh</option>
-                              <option>WestBengal</option>
-                              <option>MadhyaPradesh</option>
-                              <option>Haryana</option>
-                              <option>Assam</option>
-                            </select>
-                  </div>
-
-                  <div class="form-group" style="margin-top:30px">
-
-                      <div class="row ">
-                          <div class="col-8"><button class="col-6 btn btn-danger btn-sm float:left" >Submit</button></div>
-                          <div class="col-4"></div>
-
-
-
-
-
-                    </div>
-                  </div>
-
-                </form>
-              </div>
+                <a  href="#" style="font-size:35px">Voter <span class="sr-only">(current)</span></a>
+                <a  href="{% url 'organiser_app:index' %}" style="font-size:35px">Candidate <span class="sr-only">(current)</span></a>
+                </div>
             </div>
           </div>
 
            <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script>
-
-    function ValidateForm1(){
-
-          var x = document.forms["myform1"]["Candidateid"].value;
-          if ((x == "" )||( x.length !=10)) {
-          alert("Please enter valid Candidate Id");
-          return false;
-    }
-}
-
-
-    function ValidateForm2(){
-
-        var gender = document.getElementsByName('yesno');
-        var genValue = false;
-
-        for(var i=0; i<gender.length;i++){
-            if(gender[i].checked == true){
-                genValue = true;
-            }
-        }
-        if(!genValue){
-            alert("Please Choose the election type");
-            return false;
-        }
-
-    }
-
-
-</script>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

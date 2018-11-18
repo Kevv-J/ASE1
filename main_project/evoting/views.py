@@ -18,6 +18,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 def home(request):
     return render(request, 'home.html')
 
+
 def profile(request):
     return render(request, 'profile.html', {'username': request.user.username})
 
@@ -30,25 +31,48 @@ def register(request):
         registration_form2 = Registration_form2(request.POST)
 
         if registration_form1.is_valid() and registration_form2.is_valid():
-            voter_id = int(request.POST['voterId'])
+            voter_id = request.POST['voterId']
             voter_id_list = Voter.objects.values_list('voter_id', flat=True)
 
             print(voter_id, voter_id_list)
 
             if voter_id in voter_id_list:
+
+
                 reg_form1 = registration_form1.save()
+                reg_form1.is_active = False
                 reg_form1.set_password(reg_form1.password)
                 reg_form1.save()
 
                 reg_form2 = registration_form2.save(commit=False)
+
                 reg_form2.user = reg_form1
+                reg_form2.user.is_active = False
                 reg_form2.activation = 'False'
+
 
                 reg_form2.save()
 
+
+                current_site = get_current_site(request)
+                mail_subject = 'Verify your email.'
+                message = render_to_string('acc_active_email.html', {
+                    'user': reg_form2.user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(reg_form2.user.pk)).decode(),
+                    'token': account_activation_token.make_token(reg_form2.user),
+                })
+                print(message)
+                to_email = reg_form1.email
+                email = EmailMessage(
+                    mail_subject, message, to=[to_email]
+                )
+                email.send()
+
+
                 registered = True
 
-                reg_form1.is_active = False
+
                 print('form saved successfully!!')
             else:
                 messages.error(request, f'Invalid details given!!')
@@ -110,9 +134,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    url = request.GET.get('next', '/')
-    print(url)
-    return HttpResponseRedirect(request.GET.get('next', '/'))
+    return redirect('evoting-home')
 
 
 def send_email(request):

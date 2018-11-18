@@ -23,7 +23,7 @@
     <title>organiser_region</title>
   </head>
 
-  <body style="position:relative; padding-top: 20px;border-radius:100px;background-image:url({% static 'images/user.png' %});background-repeat: no-repeat;background-position-y:90px; background-size: 450px;background-attachment: fixed;">
+  <body style=" padding-top: 20px;">
 
 
 
@@ -42,9 +42,6 @@
               </li>
 
 
-              <li class="nav-item active">
-                <a class="nav-link text-white" href="#" style="font-size:22px">VoterPage<span class="sr-only">(current)</span></a>
-              </li>
 
 
 
@@ -60,11 +57,8 @@
 
             </ul>
 
-            <form class="form-inline " name="myform1" onsubmit="return ValidateForm1()" method="post">
-              <input class="form-control mr-sm-2 " type="search" placeholder="Enter Candidate Id" aria-label="Search" name="Candidateid" style="border-radius:40px;">
-              <button class=" btn btn-danger my-2 my-sm-0 text-white" type="submit" style="font-size:17px;background-color: #006064;border:none;">Search</button>
 
-            </form>
+
 
 
 
@@ -83,42 +77,34 @@
 
                 <form>
                 <div class="form-group row">
-                 <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:28px ">Candidate Name</label>
+                 <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:28px ">Election Type</label>
                 </div>
                 <div class="form-group row" style="margin-top:-20px">
                 <div class="col-sm-12">
-                  {{ candidate_form.candidate_name|attr:"placeholder:Enter Candidate Name"|add_class:"input100" }}
+                  {{ addelection_form.election_type }}
                 </div>
                  </div>
 
-                 <div class="form-group row" style="margin-top:-10px">
-                        <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:25px ">Father's Name</label>
-                    </div>
-                       <div class="form-group row" style="margin-top:-20px">
-                       <div class="col-sm-12">
-                        {{ candidate_form.candidate_fname|attr:"placeholder:Enter Candidate Father's Name"|add_class:"input100" }}
-                       </div>
-                        </div>
 
                         <div class="form-group row" style="margin-top:-10px">
-                               <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:25px ">Aadhar number</label>
+                               <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:25px ">Election Year</label>
                            </div>
 
 
                         <div class="form-group row" style="margin-top:-20px">
                         <div class="col-sm-12">
-                         {{ candidate_form.candidate_aadhar|attr:"placeholder:Enter Candidate aadhar number"|add_class:"input100" }}
+                         {{ addelection_form.election_year}}
                         </div>
                          </div>
 
 
 
                         <div class="form-group row" style="margin-top:-10px">
-                                <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:25px ">Email</label>
+                                <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:25px ">Date of Start</label>
                             </div>
                                <div class="form-group row" style="margin-top:-20px">
                                <div class="col-sm-12">
-                                {{ candidate_form.candidate_email|attr:"placeholder:Enter Candidate Email Id" }}
+                                {{ addelection_form.date_of_start }}
                                </div>
                                 </div>
 
@@ -126,47 +112,20 @@
 
                     <fieldset class="form-group" style="margin-top:-10px">
                   <div class="row">
-                    <legend class="col-form-label col-sm-12 pt-0" style="font-size:26px" >Gender</legend>
+                    <legend class="col-form-label col-sm-12 pt-0" style="font-size:26px" >Date of End</legend>
                   </div>
-                  {{candidate_form.candidate_gender}}
+                  {{addelection_form.date_of_end}}
 
                 </fieldset>
-                <div class="form-group row" style="margin-top:-20px">
-                        <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:26px">Date of Birth</label>
-                </div>
 
-
-
-                    <div class="form-group row" style="margin-top:-15px">
-                       <div class="col-sm-12">
-                        {{ candidate_form.candidate_dob }}
-                       </div>
-                     </div>
-
-                     <div class="form-group row" style="margin-top:-15px">
-                            <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:26px">Select Party</label>
+                <div class="form-group row" style="margin-top:-10px">
+                        <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:25px ">Date of Start</label>
                     </div>
-
-
-                     <div class="form-group" style="margin-top:-15px">
-                      {{candidate_form.candidate_party}}
-                           <!-- <select class="form-control" >
-                                      <option>Bhartiya Janta Party</option>
-                                      <option>Communist Party of India</option>
-                                      <option>Indian National Congress</option>
-                                      <option>Aam Aadmi Party</option>
-                                      <option>Telugu Desam Party</option>
-                                      <option>Shiv Sena</option>
-                                      <option>Telangana Rashtra Samithi</option>
-                                      <option>Janata Dal</option>
-                                      <option>Samajwadi Party</option>
-                                      <option>Rashtriya Janata Dal</option>
-                                    </select>
-                                  -->
-                          </div>
-
-
-
+                       <div class="form-group row" style="margin-top:-20px">
+                       <div class="col-sm-12">
+                        {{ addelection_form.candidates }}
+                       </div>
+                        </div>
 
 
                 <div class="form-group row">
@@ -182,20 +141,6 @@
 
            <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script>
-
-    function ValidateForm1(){
-
-          var x = document.forms["myform1"]["Candidateid"].value;
-          if ((x == "" )||( x.length !=10)) {
-          alert(" Please enter valid Candidate Id");
-          return false;
-    }
-}
-
-
-</script>
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
