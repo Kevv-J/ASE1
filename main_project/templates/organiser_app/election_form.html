@@ -1,0 +1,156 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+      a:hover {
+        background: #006064;
+
+      }
+
+
+    </style>
+
+    <title>organiser_region</title>
+  </head>
+
+  <body style=" padding-top: 20px;">
+
+
+
+      <nav class="navbar fixed-top container navbar-expand-lg navbar-light  rounded " style="background-color:#008B8B" >
+
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link text-white" href="#" style="font-size:22px">Home <span class="sr-only">(current)</span></a>
+              </li>
+
+
+
+
+
+              <li class="nav-item active">
+                <a class="nav-link text-white" href="#" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
+              </li>
+
+
+
+              <li class="nav-item active">
+                <a class="nav-link text-white" href="#" style="font-size:22px">Logout <span class="sr-only">(current)</span></a>
+              </li>
+
+            </ul>
+
+
+
+
+
+
+
+
+          </div>
+
+
+
+        </nav>
+
+
+        <div class="container-fluid h-100 text-dark " style="margin-top:100px">
+                <div class="row justify-content-center align-items-center h-100">
+                        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+
+                <form action={% url 'organiser_app:addelection'%} method="post">
+                  {% csrf_token %}
+                <div class="form-group row">
+                 <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:28px ">Election Type</label>
+                </div>
+                <div class="form-group row" style="margin-top:-20px">
+                <div class="col-sm-12">
+                  {{ addelection_form.election_type }}
+                </div>
+                 </div>
+
+
+                        <div class="form-group row" style="margin-top:-10px">
+                               <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:25px ">Election Year</label>
+                           </div>
+
+
+                        <div class="form-group row" style="margin-top:-20px">
+                        <div class="col-sm-12">
+                         {{ addelection_form.election_year}}
+                        </div>
+                         </div>
+
+
+
+                        <div class="form-group row" style="margin-top:-10px">
+                                <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:25px ">Date of Start</label>
+                            </div>
+                               <div class="form-group row" style="margin-top:-20px">
+                               <div class="col-sm-12">
+                                {{ addelection_form.date_of_start }}
+                               </div>
+                                </div>
+
+
+
+                    <fieldset class="form-group" style="margin-top:-10px">
+                  <div class="row">
+                    <legend class="col-form-label col-sm-12 pt-0" style="font-size:26px" >Date of End</legend>
+                  </div>
+                  {{addelection_form.date_of_end}}
+
+                </fieldset>
+
+                <div class="form-group row" style="margin-top:-10px">
+                        <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:25px ">Date of Start</label>
+                    </div>
+                       <div class="form-group row" style="margin-top:-20px">
+                       <div class="col-sm-12">
+                        {{ addelection_form.candidates }}
+                       </div>
+                        </div>
+
+
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                <button type="submit" class="btn btn-danger">Submit</button>
+                </div>
+                </div>
+              </form>
+        </div>
+        </div>
+        </div>
+
+
+           <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+
+
+  </body>
+</html>

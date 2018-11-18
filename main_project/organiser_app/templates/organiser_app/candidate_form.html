@@ -43,12 +43,6 @@
 
 
               <li class="nav-item active">
-                <a class="nav-link text-white" href="#" style="font-size:22px">VoterPage<span class="sr-only">(current)</span></a>
-              </li>
-
-
-
-              <li class="nav-item active">
                 <a class="nav-link text-white" href="#" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
               </li>
 
@@ -81,14 +75,14 @@
                 <div class="row justify-content-center align-items-center h-100">
                         <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
 
-                <form method="post" action={% url 'organiser_app:candidate' %}>
+                <form >
                   {% csrf_token %}
                 <div class="form-group row">
                  <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:28px ">Candidate Name</label>
                 </div>
                 <div class="form-group row" style="margin-top:-20px">
                 <div class="col-sm-12">
-                  {{ candidate_form.candidate_name|attr:"placeholder:Enter Candidate Name"|add_class:"input100" }}
+                  {{ form.candidate_name|attr:"placeholder:Enter Candidate Name"|add_class:"input100" }}
                 </div>
                  </div>
 
@@ -97,7 +91,7 @@
                     </div>
                        <div class="form-group row" style="margin-top:-20px">
                        <div class="col-sm-12">
-                        {{ candidate_form.candidate_fname|attr:"placeholder:Enter Candidate Father's Name"|add_class:"input100" }}
+                        {{ form.candidate_fname|attr:"placeholder:Enter Candidate Father's Name"|add_class:"input100" }}
                        </div>
                         </div>
 
@@ -108,7 +102,7 @@
 
                         <div class="form-group row" style="margin-top:-20px">
                         <div class="col-sm-12">
-                         {{ candidate_form.candidate_aadhar|attr:"placeholder:Enter Candidate aadhar number"|add_class:"input100" }}
+                         {{ form.candidate_aadhar|attr:"placeholder:Enter Candidate aadhar number"|add_class:"input100" }}
                         </div>
                          </div>
 
@@ -119,7 +113,7 @@
                             </div>
                                <div class="form-group row" style="margin-top:-20px">
                                <div class="col-sm-12">
-                                {{ candidate_form.candidate_email|attr:"placeholder:Enter Candidate Email Id" }}
+                                {{ form.candidate_email|attr:"placeholder:Enter Candidate Email Id" }}
                                </div>
                                 </div>
 
@@ -129,7 +123,7 @@
                   <div class="row">
                     <legend class="col-form-label col-sm-12 pt-0" style="font-size:26px" >Gender</legend>
                   </div>
-                  {{candidate_form.candidate_gender}}
+                  {{form.candidate_gender}}
 
                 </fieldset>
                 <div class="form-group row" style="margin-top:-20px">
@@ -140,7 +134,7 @@
 
                     <div class="form-group row" style="margin-top:-15px">
                        <div class="col-sm-12">
-                        {{ candidate_form.candidate_dob }}
+                        {{ form.candidate_dob }}
                        </div>
                      </div>
 
@@ -153,7 +147,7 @@
 
 
                      <div class="form-group" style="margin-top:-15px">
-                      {{candidate_form.candidate_party}}
+                      {{form.candidate_party}}
                            <!-- <select class="form-control" >
                                       <option>Bhartiya Janta Party</option>
                                       <option>Communist Party of India</option>
@@ -174,7 +168,7 @@
                           </div>
                           <div class="form-group row" style="margin-top:-20px">
                           <div class="col-sm-12">
-                          {{ candidate_form.candidate_region }}
+                          {{ form.candidate_region }}
                           </div>
                           </div>
 
