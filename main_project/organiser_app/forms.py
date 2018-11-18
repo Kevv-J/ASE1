@@ -16,9 +16,25 @@ region_options=(
 
 )
 
+region_options=(
+
+ ('0','AndhraPradesh') ,
+ ('1','Bihar') ,
+ ('2','karnataka'),
+ ('3','Tamilnadu' ),
+ ('4','Kerela') ,
+ ('5','UttarPradesh'),
+ ('6','WestBengal') ,
+ ('7','MadhyaPradesh') ,
+ ('8','Haryana') ,
+ ('9','Assam')
+
+)
+
+
 
 class Candidateform(forms.ModelForm):
-    candidate_dob = forms.DateField(widget=forms.SelectDateWidget())
+    candidate_dob = forms.DateField(widget=forms.SelectDateWidget(years=range(1900, 2002)))
 
     class Meta:
         model = Candidate
@@ -26,9 +42,8 @@ class Candidateform(forms.ModelForm):
 
 
 class Electionform(forms.ModelForm):
-
-    date_of_start = forms.DateField(widget=forms.SelectDateWidget())
-    date_of_end = forms.DateField(widget=forms.SelectDateWidget())
+    date_of_start = forms.DateField(widget=forms.SelectDateWidget(years=range(1900, 2002)))
+    date_of_end = forms.DateField(widget=forms.SelectDateWidget(years=range(1900, 2002)))
     class Meta():
         model=Election
         fields=('election_type','election_year','date_of_start','date_of_end', 'candidates')
@@ -42,5 +57,3 @@ class Voterform(forms.ModelForm):
 
 class RegionForm(forms.Form):
     select_region = forms.ChoiceField(choices=region_options)
-
-

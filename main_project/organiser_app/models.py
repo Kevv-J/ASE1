@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -24,7 +25,7 @@ Gender_options = (
     ('O','Others')
 )
 
-party_options={
+party_options=(
 
     ('BJP','Bhartiya Janta Party'),
     ('CPI','Communist Party of India'),
@@ -37,7 +38,7 @@ party_options={
     ('SP','Samajwadi Party') ,
    ('RJD', 'Rashtriya Janata Dal')
 
-}
+)
 
 region_options=(
 
@@ -57,7 +58,7 @@ region_options=(
 
 
 class Voter(models.Model):
-    voter_id=models.AutoField(max_length=10,unique=True,primary_key=True,null=False)
+    voter_id=models.CharField(max_length=10,unique=True,primary_key=True,null=False)
     voter_name=models.CharField(max_length=50,null=False)
     voter_email=models.EmailField(unique=True,null=False)
     voter_dob=models.DateField(null=False)
@@ -69,8 +70,12 @@ class Voter(models.Model):
     voter_region=models.CharField(choices=region_options,null=False,max_length=10)
 
 
+    def __str__(self):
+        return (str(self.voter_id) +"."+" "+ self.voter_name)
+
+
 class Candidate(models.Model):
-    candidate_id=models.CharField(max_length=10,unique=True,primary_key=True,null=False)
+    candidate_id=models.AutoField(primary_key=True)
     candidate_name=models.CharField(max_length=50,null=False)
     candidate_fname=models.CharField(max_length=50,null=False)
     candidate_party=models.CharField(choices=party_options,null=False,max_length=10)
@@ -80,6 +85,11 @@ class Candidate(models.Model):
     candidate_dob=models.DateField(null=False)
     candidate_aadhar=models.BigIntegerField(unique=True,null=False)
 
+    def __str__(self):
+        return (str(self.candidate_id) +"."+" "+ self.candidate_name)
+
+    def get_absolute_url(self):
+        return reverse('book_edit',kwargs={'pk':self.pk})
 
 class Election(models.Model):
     election_type=models.CharField(choices=election_options,null=False,max_length=1)
@@ -89,6 +99,9 @@ class Election(models.Model):
     date_of_end=models.DateField(null=False)
     status=models.CharField(choices=statuses,max_length=2,default='0')
     candidates = models.ManyToManyField(to=Candidate)
+
+    def __str__(self):
+        return str(self.election_id)
 
 class Candidate_election(models.Model):
     candidate=models.ForeignKey(Candidate,on_delete=models.CASCADE)
