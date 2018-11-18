@@ -9,5 +9,62 @@
 
 {% block body %}
     <div class="container">
+
+        {%  if user.is_authenticated  %}
+            <table class="container">
+                <tr>
+                    <th rowspan="3">Ongoing Election</th>
+                </tr>
+                <tr>
+                    <td>Election ID</td>
+                    <td>Election Year</td>
+                    <td>Link</td>
+                </tr>
+                {%  for election in elections  %}
+                    {%  if election.status == 1  %}
+                <tr>
+                    <td>{{ election.election_id }}</td>
+                    <td>{{ election.election_year }}</td>
+                    <td><a>Link</a></td>
+                </tr>
+                    {%  endif  %}
+            </table>
+            <table class="container">
+                <tr>
+                    <th rowspan="3">Upcoming Election</th>
+                </tr>
+                <tr>
+                    <td>Election ID</td>
+                    <td>Election Year</td>
+                    <td>Link</td>
+                </tr>
+                {%  for election in elections  %}
+                    {%  if election.status == 0  %}
+                <tr>
+                    <td>{{ election.election_id }}</td>
+                    <td>{{ election.election_year }}</td>
+                    <td><a>Link</a></td>
+                </tr>
+                    {%  endif  %}
+            </table>
+            <table class="container">
+                <tr>
+                    <th rowspan="3">Past Election</th>
+                </tr>
+                <tr>
+                    <td>Election ID</td>
+                    <td>Election Year</td>
+                    <td>Link</td>
+                </tr>
+                {%  for election in elections  %}
+                    {%  if election.status == 2  %}
+                <tr>
+                    <td>{{ election.election_id }}</td>
+                    <td>{{ election.election_year }}</td>
+                    <td><a>Link</a></td>
+                </tr>
+                    {%  endif  %}
+            </table>
+        {%  endif  %}
     </div>
 {% endblock body %}
