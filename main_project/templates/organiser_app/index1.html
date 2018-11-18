@@ -1,4 +1,7 @@
-<!doctype html>
+{% load staticfiles %}
+<!Doctype html>
+
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -57,13 +60,29 @@
         <div class="container-fluid h-100 text-dark" style="margin-top:120px">
 
             <div class="row justify-content-center align-items-center h-100">
-              <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
 
-                <a  href="#" style="font-size:35px">Voter <span class="sr-only">(current)</span></a>
-                <a  href="{% url 'organiser_app:index' %}" style="font-size:35px">Candidate <span class="sr-only">(current)</span></a>
+
+                <div class ="row">
+                <div class="card sm-6" style="width: 18rem;">
+                  <img class="card-img-top" src="{% static "images/candidate.jpeg"%}" alt="Card image cap" width="50" height="200">
+                  <div class="card-body">
+
+                    <a href="{% url 'organiser_app:index' %}" class="btn btn-primary" style="background-color:#006064">Candidates</a>
+                  </div>
                 </div>
+
+                <div class="card sm-6" style="width: 18rem;margin-left:20px">
+                  <img class="card-img-top" src="{% static "images/voters.jpeg"%}" alt="Card image cap" width="50" height="200">
+                  <div class="card-body">
+
+                    <a href="#" class="btn btn-primary" style="background-color:#006064">Voters</a>
+                  </div>
+                </div>
+              
             </div>
-          </div>
+
+        </div>
+      </div>
 
            <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

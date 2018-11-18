@@ -36,7 +36,7 @@
 
 
               <li class="nav-item active">
-                <a class="nav-link text-white" href="#" style="font-size:22px">AddCandidates <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="{% url 'organiser_app:candidate' %}" style="font-size:22px">AddCandidates <span class="sr-only">(current)</span></a>
               </li>
 
 
@@ -62,7 +62,24 @@
           </div>
         </nav>
 
+<div style="margin-top:100px">
+        {% if candidates %}
+        <ol>
+          {% for candidate in candidates %}
+          <li>Candidate Info</li>
+          <ul>
+          <a href="{% url "organiser_app:candidate_view" candidate.candidate_id %}" <li>Name:{{candidate.candidate_name}}</li>
+            <li>Father Name:{{candidate.candidate_fname}}</li>
+            <li>Party:{{candidate.candidate_party}}</li>
+            <li>Region:{{candidate.candidate_region}}</li>
+            <li>Email:{{candidate.candidate_email}}</li>
+            <li>Aadhar:{{candidate.candidate_aadhar}}</li>
+          </ul>
+          {% endfor %}
+        </ol>
 
+            {% endif %}
+</div>
            <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script>
