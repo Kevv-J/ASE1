@@ -68,7 +68,7 @@
           {% for candidate in candidates %}
           <li>Candidate Info</li>
           <ul>
-          <a href="{% url "organiser_app:candidate_view" candidate.candidate_id %}" <li>Name:{{candidate.candidate_name}}</li>
+              <a href="{% url "organiser_app:candidate_view" candidate.candidate_id %}"> <li>Name:{{candidate.candidate_name}}</li></a>
             <li>Father Name:{{candidate.candidate_fname}}</li>
             <li>Party:{{candidate.candidate_party}}</li>
             <li>Region:{{candidate.candidate_region}}</li>

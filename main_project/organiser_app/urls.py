@@ -15,5 +15,7 @@ urlpatterns=[
         path('voter_region_page/search_voter', views.search_voter, name='search_voter'),
         path('view/<int:pk>',views.candidate_view,name='candidate_view'),
         path('edit/<int:pk>',views.candidate_update,name='candidate_edit'),
+        path('view1/<int:pk>',views.voter_view,name='voter_view'),
+        path('edit1/<int:pk>',views.voter_update,name='voter_update'),
 
 ]
