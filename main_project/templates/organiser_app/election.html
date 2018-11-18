@@ -40,7 +40,7 @@
               </li>
 
               <li class="nav-item active">
-                <a class="nav-link text-white" href="#" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="{% url "organiser_app:mainpage" %}" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
                 </li>
 
 
@@ -55,6 +55,39 @@
             </form>
           </div>
         </nav>
+
+
+        <div style="margin-top:100px">
+                {% if election_instance %}
+
+                <table class="table table-dark" style="margin: 20px auto">
+                    <thead class="thead thead-light">
+                        <th> Election Id</th>
+                        <th> Election Type</th>
+                        <th> Election Year</th>
+                        <th> Election DoS</th>
+                        <th> Election DoE</th>
+                        <th> Election Status</th>
+
+                    </thead>
+
+                  {% for election in election_instance %}
+
+                  <tr>
+                      <td>{{ election.election_id}}</td>
+                      <td>{{ election.election_type}}</td>
+                      <td>{{ election.election_year}}</td>
+                      <td>{{ election.date_of_start}}</td>
+                      <td>{{ election.date_of_end}}</td>
+                      <td>{{ election.status}}</td>
+
+                  </tr>
+
+                    {% endfor %}
+
+        </table>
+                    {% endif %}
+        </div>
 
 
            <!-- Optional JavaScript -->

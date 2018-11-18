@@ -21,9 +21,9 @@
 
     <title>Region Page.</title>
   </head>
-<body style="position:relative; padding-top: 20px;">
+<body style="position:relative; padding-top: 20px">
 
-    <nav class="navbar fixed-top container navbar-expand-lg navbar-light  rounded " style="background-color:#008B8B; margin:10px auto" >
+    <nav class="navbar fixed-top container navbar-expand-lg navbar-light  rounded " style="background-color:#008B8B; " >
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -32,10 +32,10 @@
                  <a class="nav-link text-white" href="#" style="font-size:22px">Home <span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item active">
-                 <a class="nav-link text-white" href="#" style="font-size:22px">VoterPage<span class="sr-only">(current)</span></a>
+                 <a class="nav-link text-white" href="{% url "organiser_app:voter_region_page" %}" style="font-size:22px">VoterPage<span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item active">
-                 <a class="nav-link text-white" href="#" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
+                 <a class="nav-link text-white" href="{% url "organiser_app:mainpage" %}" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item active">
                  <a class="nav-link text-white" href="#" style="font-size:22px">Logout <span class="sr-only">(current)</span></a>
