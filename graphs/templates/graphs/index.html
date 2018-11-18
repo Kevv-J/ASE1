@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset ="utf-8">
+    <title>
+      Django 2
+    </title>
+    <link rel="stylesheet" href="{% static "css1\style.css" %}"/>
+  </head>
+  <body>
+    <h1>Check out this Django2</h1>
+    <h2>Here are your access records</h2>
+    <!--<p>{{ response }}</p>-->
+    <!--<p>{{ graph }}</p>-->
+    <!--<img src ="{{ graph }}" alt="Uh!Oh,no image"-->
+      <div class="djangotwo">
+      {% if user %}
+        <table>
+          <thead>
+            <th>Party</th>
+            <th>No of Votes</th>
+          </thead>
+
+          {% for acc in grp %}
+          <tr>
+            <td>{{ acc.party }}</td>
+            <td>{{ acc.total }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>No acces records found!!!</p>
+      {% endif %}
+    <br>
+    </div>
+    <img src="http://127.0.0.1:8000/graphs/">
+  </body>
+</html>
