@@ -13,6 +13,8 @@ urlpatterns=[
         path('addelection/',views.addelection,name="addelection"),
 
         path('voter/', views.voter_page, name='voter'),
+        path('view/<int:pk>',views.candidate_view,name='candidate_view'),
+        path('edit/<int:pk>',views.candidate_update,name='candidate_edit')
 
 
 ]
