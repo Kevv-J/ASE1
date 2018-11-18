@@ -89,7 +89,7 @@ class Candidate(models.Model):
         return (str(self.candidate_id) +"."+" "+ self.candidate_name)
 
     def get_absolute_url(self):
-        return reverse('book_edit',kwargs={'pk':self.pk})
+        return reverse('organiser_app:view',kwargs={'pk':self.pk})
 
 class Election(models.Model):
     election_type=models.CharField(choices=election_options,null=False,max_length=1)

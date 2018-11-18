@@ -38,13 +38,13 @@
 
 
               <li class="nav-item active">
-                <a class="nav-link text-white" href="#" style="font-size:22px">VoterPage <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="{% url "organiser_app:voter_region_page" %}" style="font-size:22px">VoterPage <span class="sr-only">(current)</span></a>
               </li>
 
 
 
               <li class="nav-item active">
-                <a class="nav-link text-white" href="#" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="{% url "organiser_app:mainpage" %}" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
               </li>
 
 
@@ -68,14 +68,17 @@
                 <form action="{% url 'organiser_app:index' %}"  method="post">
                   {% csrf_token %}
 
+                  <div class="form-group row" style="margin-top:-10px">
+                  <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:35px ">Candidate Region</label>
+                  </div>
 
-                  <div class="form-group" style="margin-top:15px">
-                    {{ select_region }}
+                  <div class="form-group" style="margin-top:5px;margin-left:30px">
+                    {{ region_form.select_region }}
                   </div>
 
                   <div class="form-group" style="margin-top:30px">
 
-                      <div class="row ">
+                      <div class="row " style="margin-left:30px">
                           <div class="col-8"><button class="col-6 btn btn-danger btn-sm float:left" >Submit</button></div>
                           <div class="col-4"></div>
 

@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 
 def index(request):
-    select_region = RegionForm()
+    region_form = RegionForm()
 
     if request.method=="POST":
         form=RegionForm(request.POST)
@@ -20,7 +20,7 @@ def index(request):
         return render(request,'organiser_app/region_candidate.html',context)
         # print(form['select_region'])
 
-    context = {'select_region':select_region}
+    context = {'region_form':region_form}
     return render(request, 'organiser_app/index.html',context)
 
 
@@ -47,7 +47,9 @@ def main_page(request):
 
 
 def election(request):
-    return render(request,'organiser_app/election.html')
+    election_instance=Election.objects.all()
+    context={'election_instance':election_instance}
+    return render(request,'organiser_app/election.html',context)
 
 # ------------------------------------Voter Code--------------------------------------------
 
@@ -142,9 +144,9 @@ def addelection(request):
                 candidate_election_instance.save()
 
 
-
-
-            return render(request,'organiser_app/election.html')
+            election_instance=Election.objects.all()
+            context={'election_instance':election_instance}
+            return render(request,'organiser_app/election.html',context)
 
 
         else:
@@ -167,8 +169,12 @@ def candidate_update(request,pk):
     template_name='organiser_app/candidate_form.html'
     candidate=get_object_or_404(Candidate,pk=pk)
     form=Candidateform(request.POST or None,instance=candidate)
-    if form.is_valid():
-        form.save()
+    if request.method=="POST":
+
+        if form.is_valid():
+            form.save()
+
+
 
     return render(request,template_name,{'form':form})
 

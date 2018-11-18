@@ -31,7 +31,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link text-white" href="#" style="font-size:22px">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="{% url "organiser_app:mainpage" %}" style="font-size:22px">Mainpage <span class="sr-only">(current)</span></a>
               </li>
 
 
@@ -42,11 +42,11 @@
 
 
               <li class="nav-item active">
-                <a class="nav-link text-white" href="#" style="font-size:22px">Voter Page <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="{% url "organiser_app:voter_region_page" %}" style="font-size:22px">Voter Page <span class="sr-only">(current)</span></a>
               </li>
 
               <li class="nav-item active">
-                <a class="nav-link text-white" href="#" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="{% url "organiser_app:index" %}" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
                 </li>
 
 
@@ -64,8 +64,22 @@
 
 <div style="margin-top:100px">
         {% if candidates %}
-        <ol>
+
+        <table class="table table-dark" style="margin: 20px auto">
+            <thead class="thead thead-light">
+                <th> Candidate Id</th>
+                <th> Candidate Name</th>
+                <th> Candidate Father</th>
+                <th> Candidate email</th>
+                <th> Candidate DOB</th>
+                <th> Candidate Region</th>
+                <th> Candidate Aadhar</th>
+                <th> Candidate gender</th>
+                <th> Candidate Party</th>
+            </thead>
+
           {% for candidate in candidates %}
+
           <li>Candidate Info</li>
           <ul>
               <a href="{% url "organiser_app:candidate_view" candidate.candidate_id %}"> <li>Name:{{candidate.candidate_name}}</li></a>
@@ -78,6 +92,21 @@
           {% endfor %}
         </ol>
 
+          <tr>
+              <td>{{ candidate.candidate_id}}</td>
+              <td><a href="{% url "organiser_app:candidate_view" candidate.candidate_id %}" >{{ candidate.candidate_name}}</a></td>
+              <td>{{ candidate.candidate_fname}}</td>
+              <td>{{ candidate.candidate_email}}</td>
+              <td>{{ candidate.candidate_dob}}</td>
+              <td>{{ candidate.candidate_region}}</td>
+              <td>{{ candidate.candidate_aadhar}}</td>
+              <td>{{ candidate.candidate_gender}}</td>
+              <td>{{ candidate.candidate_party}}</td>
+          </tr>
+
+            {% endfor %}
+
+</table>
             {% endif %}
 </div>
            <!-- Optional JavaScript -->

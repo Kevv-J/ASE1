@@ -35,15 +35,12 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+
+
+
+
               <li class="nav-item active">
                 <a class="nav-link text-white" href="#" style="font-size:22px">Home <span class="sr-only">(current)</span></a>
-              </li>
-
-
-
-
-              <li class="nav-item active">
-                <a class="nav-link text-white" href="#" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
               </li>
 
 
@@ -51,9 +48,11 @@
 
                 <a class="nav-link text-white " href="#" style="font-size:22px">Logout <span class="sr-only">(current)</span></a>
               </li>
-
+              <li class="nav-item active">
+                <a class="nav-link text-white" href="{% url 'organiser_app:election' %}" style="font-size:22px">Election <span class="sr-only">(current)</span></a>
+              </li>
             </ul>
-            <a class="nav-link text-white" href="{% url 'organiser_app:election' %}" style="font-size:22px">Election <span class="sr-only">(current)</span></a>
+
             </div>
         </nav>
 
@@ -78,7 +77,7 @@
                     <a href="#" class="btn btn-primary" style="background-color:#006064">Voters</a>
                   </div>
                 </div>
-              
+
             </div>
 
         </div>

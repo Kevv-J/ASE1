@@ -16,7 +16,9 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    elections = Election.objects.all()
+    context = {'elections':elections}
+    return render(request, 'home.html', context=context)
 
 
 def profile(request):
