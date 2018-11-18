@@ -35,6 +35,8 @@ class Registration_form1(forms.ModelForm):
         )
     )
 
+
+
     class Meta():
         model = User
         fields = ('username', 'email', 'password')
