@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mypage</title>
+</head>
+<body>
+    <form action="{% url 'my_part/result' %}" method="post">
+        {% csrf_token %}
+        fullname:
+       <input type="text" name="fullname">
+
+        <br>region:
+        <input type="text" name="region">
+        <br>email:
+        <input type="email" name="email">
+        <input type="submit">
+    </form>
+</body>
+</html>
