@@ -37,6 +37,25 @@ def main_page(request):
 def election(request):
     return render(request,'organiser_app/election.html')
 
+def addelection(request):
+    if request.method=="POST":
+        addelection_form=Electionform(data=request.POST)
+
+
+        if addelection_form.is_valid():
+
+            addelection_form.save(commit=True)
+
+
+        else:
+            print(user_form.errors,profile_form.errors)
+
+    else:
+        addelection_form=Electionform()
+
+
+    return render(request,'organiser_app/election_form.html',{'addelection_form':addelection_form })
+
 # ---------------------------------------------------------------------------------
 
 
@@ -76,7 +95,7 @@ def search_voter(request):
         voterid = request.POST.get('voterid')
         print(voterid)
         try:
-            voter = Voter.objects.get(voter_id = voterid)
+            voter = Voter.objects.get(voter_id = voterid )
             print(voter.voter_name)
             context = {'voter':voter}
             return render(request,'organiser_app/update_voter.html',context=context)
@@ -89,21 +108,3 @@ def search_voter(request):
 
 
 
-def addelection(request):
-    if request.method=="POST":
-        addelection_form=Electionform(data=request.POST)
-
-
-        if addelection_form.is_valid():
-
-            addelection_form.save(commit=True)
-
-
-        else:
-            print(user_form.errors,profile_form.errors)
-
-    else:
-        addelection_form=Electionform()
-
-
-    return render(request,'organiser_app/election_form.html',{'addelection_form':addelection_form })
