@@ -19,7 +19,7 @@
       }
     </style>
 
-    <title>Search Results</title>
+    <title>Voter Details.</title>
   </head>
 <body style="position:relative; padding-top: 20px;">
 
@@ -45,7 +45,8 @@
         </div>
     </nav>
 
-    <form class="container-fluid h-100 text-dark " style="margin-top:80px;" action="search_voter" method="POST">
+    <form class="container-fluid h-100 text-dark " style="margin-top:80px;" action="{% url 'organiser_app:voter_update' voter.voter_id %}" method="POST">
+        {% csrf_token%}
         <center>
         <button class="btn btn-primary " type="submit" >Update Voter</button>
         </center>
@@ -74,11 +75,7 @@
                 <td>{{ voter.voter_gender}}</td>
                 <td>{{ voter.voter_phone}}</td>
             </tr>
-            {% else %}
-                <script>
-                    alert('{{ message }}')
-                </script>
-            {% endif %}
+            {% endif%}
         </table>
     </div>
 

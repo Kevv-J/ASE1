@@ -80,6 +80,18 @@
 
           {% for candidate in candidates %}
 
+          <li>Candidate Info</li>
+          <ul>
+              <a href="{% url "organiser_app:candidate_view" candidate.candidate_id %}"> <li>Name:{{candidate.candidate_name}}</li></a>
+            <li>Father Name:{{candidate.candidate_fname}}</li>
+            <li>Party:{{candidate.candidate_party}}</li>
+            <li>Region:{{candidate.candidate_region}}</li>
+            <li>Email:{{candidate.candidate_email}}</li>
+            <li>Aadhar:{{candidate.candidate_aadhar}}</li>
+          </ul>
+          {% endfor %}
+        </ol>
+
           <tr>
               <td>{{ candidate.candidate_id}}</td>
               <td><a href="{% url "organiser_app:candidate_view" candidate.candidate_id %}" >{{ candidate.candidate_name}}</a></td>

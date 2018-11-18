@@ -51,7 +51,7 @@ def election(request):
     context={'election_instance':election_instance}
     return render(request,'organiser_app/election.html',context)
 
-# ---------------------------------------------------------------------------------
+# ------------------------------------Voter Code--------------------------------------------
 
 
 def add_voter(request):
@@ -63,8 +63,8 @@ def add_voter(request):
         if voter_form.is_valid():
 
                 voter_form.save(commit=True)
-                message = 'You are registered successfully!'
-                return render(request, 'organiser_app/add_voter.html', {'message':message})
+
+                return render(request, 'organiser_app/add_voter.html', {'voter_form':voter_form})
 
         else:
             print(voter_form.errors)
@@ -102,6 +102,26 @@ def search_voter(request):
             return render(request, 'organiser_app/update_voter.html', context=context)
 
     return render(request,'organiser_app/update_voter.html')
+
+
+def voter_view(request,pk):
+    template_name='organiser_app/voter_detail.html'
+    voter=get_object_or_404(Voter,pk=pk)
+    return render(request,template_name,{'voter':voter})
+
+
+def voter_update(request,pk):
+    template_name='organiser_app/voter_form.html'
+    voter=get_object_or_404(Voter,pk=pk)
+    voter_form=Voterform(request.POST or None,instance=voter)
+    if request.method == 'POST':
+        if voter_form.is_valid():
+            voter_form.save()
+
+    return render(request,template_name,{'voter_form':voter_form})
+
+#-------------------------------------------End Voter Code--------------------------------------------------
+
 
 
 
