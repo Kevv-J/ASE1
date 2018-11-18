@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from . forms import *
-from organiser_app.models import *
+from . models import *
 from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -10,17 +10,17 @@ from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 
 def index(request):
-    region_select = RegionForm()
+    select_region = RegionForm()
 
     if request.method=="POST":
         form=RegionForm(request.POST)
-        region=request.POST.get('region_select')
+        region=request.POST.get('select_region')
         candidates=Candidate.objects.filter(candidate_region=region)
         context={'candidates':candidates}
         return render(request,'organiser_app/region_candidate.html',context)
-        # print(form['region_select'])
+        # print(form['select_region'])
 
-    context = {'region_select':region_select}
+    context = {'select_region':select_region}
     return render(request, 'organiser_app/index.html',context)
 
 
@@ -42,8 +42,17 @@ def candidate_page(request):
 
     return render(request, 'organiser_app/addcandidate.html', {'candidate_form':candidate_form })
 
+def main_page(request):
+    return render(request,'organiser_app/index1.html')
 
-def voter_page(request):
+
+def election(request):
+    return render(request,'organiser_app/election.html')
+
+# ---------------------------------------------------------------------------------
+
+
+def add_voter(request):
 
     if request.method == 'POST':
 
@@ -55,17 +64,41 @@ def voter_page(request):
 
         else:
             print(voter_form.errors)
-
     else:
         voter_form = Voterform()
 
-    return render(request, 'organiser_app/addvoter.html', {'voter_form':voter_form})
+    return render(request, 'organiser_app/add_voter.html', {'voter_form':voter_form})
 
-def main_page(request):
-    return render(request,'organiser_app/index1.html')
 
-def election(request):
-    return render(request,'organiser_app/election.html')
+def voter_region_page(request):
+
+    region_form = RegionForm()
+    context = {'region_form':region_form}
+    if request.method == 'POST':
+        region = request.POST.get('select_region')
+        voters = Voter.objects.filter(voter_region=region)
+        return render(request, 'organiser_app/voters_list.html',{'voters':voters})
+
+    return render(request, 'organiser_app/region_page.html',context=context)
+
+
+def search_voter(request):
+
+    if request.method == 'POST':
+        voterid = request.POST.get('voterid')
+        print(voterid)
+        try:
+            voter = Voter.objects.get(voter_id = voterid)
+            print(voter.voter_name)
+            context = {'voter':voter}
+            return render(request,'organiser_app/update_voter.html',context=context)
+        except:
+            message = 'Voter Id '+ str(voterid) + " does not exist."
+            context = {'message' : message}
+            return render(request, 'organiser_app/update_voter.html', context=context)
+
+    return render(request,'organiser_app/update_voter.html')
+
 
 
 def addelection(request):
