@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from . forms import *
+from . models import *
 from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -29,8 +30,17 @@ def candidate_page(request):
 
     return render(request, 'organiser_app/addcandidate.html', {'candidate_form':candidate_form })
 
+def main_page(request):
+    return render(request,'organiser_app/index1.html')
 
-def voter_page(request):
+
+def election(request):
+    return render(request,'organiser_app/election.html')
+
+# ---------------------------------------------------------------------------------
+
+
+def add_voter(request):
 
     if request.method == 'POST':
 
@@ -42,15 +52,39 @@ def voter_page(request):
 
         else:
             print(voter_form.errors)
-
     else:
         voter_form = Voterform()
 
-    return render(request, 'organiser_app/addvoter.html', {'voter_form':voter_form})
+    return render(request, 'organiser_app/add_voter.html', {'voter_form':voter_form})
 
-def main_page(request):
-    return render(request,'organiser_app/index1.html')
 
-def election(request):
-    return render(request,'organiser_app/election.html')
+def voter_region_page(request):
+
+    region_form = RegionForm()
+    context = {'region_form':region_form}
+    if request.method == 'POST':
+        region = request.POST.get('select_region')
+        voters = Voter.objects.filter(voter_region=region)
+        return render(request, 'organiser_app/voters_list.html',{'voters':voters})
+
+    return render(request, 'organiser_app/region_page.html',context=context)
+
+
+def search_voter(request):
+
+    if request.method == 'POST':
+        voterid = request.POST.get('voterid')
+        print(voterid)
+        try:
+            voter = Voter.objects.get(voter_id = voterid)
+            print(voter.voter_name)
+            context = {'voter':voter}
+            return render(request,'organiser_app/update_voter.html',context=context)
+        except:
+            message = 'Voter Id '+ str(voterid) + " does not exist."
+            context = {'message' : message}
+            return render(request, 'organiser_app/update_voter.html', context=context)
+
+    return render(request,'organiser_app/update_voter.html')
+
 

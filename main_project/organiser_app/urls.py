@@ -9,6 +9,7 @@ urlpatterns=[
         path('candidate/',views.candidate_page,name='candidate'),
         path('index1/',views.main_page,name='mainpage'),
         path('election/',views.election,name="election"),
-        path('voter/', views.voter_page, name='voter'),
-
+        path('voter_region_page/add_voter/', views.add_voter, name='add_voter'),
+        path('voter_region_page/', views.voter_region_page, name='voter_region_page'),
+        path('voter_region_page/search_voter', views.search_voter, name='search_voter'),
 ]

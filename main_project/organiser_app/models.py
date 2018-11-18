@@ -55,7 +55,6 @@ region_options=(
 )
 
 
-
 class Election(models.Model):
     election_type=models.CharField(choices=election_options,null=False,max_length=1)
     election_id=models.CharField(unique=True,max_length=10,primary_key=True,null=False)
@@ -66,7 +65,7 @@ class Election(models.Model):
 
 
 class Voter(models.Model):
-    voter_id=models.CharField(max_length=10,unique=True,primary_key=True,null=False)
+    voter_id=models.AutoField(max_length=10,unique=True,primary_key=True,null=False)
     voter_name=models.CharField(max_length=50,null=False)
     voter_email=models.EmailField(unique=True,null=False)
     voter_dob=models.DateField(null=False)
