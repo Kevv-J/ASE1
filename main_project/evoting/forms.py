@@ -35,6 +35,8 @@ class Registration_form1(forms.ModelForm):
         )
     )
 
+
+
     class Meta():
         model = User
         fields = ('username', 'email', 'password')
@@ -64,4 +66,4 @@ class Registration_form2(forms.ModelForm):
 
     class Meta():
         model = Voters_Profile
-        fields = ('fullname', 'voterId','voter_dob')
+        fields = ('fullname', 'voterId', 'voter_dob')

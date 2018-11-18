@@ -50,7 +50,7 @@
               </li>
 
             </ul>
-            <a class="nav-link text-white" href="#" style="font-size:22px">Election <span class="sr-only">(current)</span></a>
+            <a class="nav-link text-white" href="{% url 'organiser_app:election' %}" style="font-size:22px">Election <span class="sr-only">(current)</span></a>
             </div>
         </nav>
 
@@ -59,8 +59,8 @@
             <div class="row justify-content-center align-items-center h-100">
               <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
 
-                <a  href="#" style="font-size:35px">voter <span class="sr-only">(current)</span></a>
-                <a  href="#" style="font-size:35px">candidate <span class="sr-only">(current)</span></a>
+                <a  href="#" style="font-size:35px">Voter <span class="sr-only">(current)</span></a>
+                <a  href="{% url 'organiser_app:index' %}" style="font-size:35px">Candidate <span class="sr-only">(current)</span></a>
                 </div>
             </div>
           </div>

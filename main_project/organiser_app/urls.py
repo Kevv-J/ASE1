@@ -12,4 +12,6 @@ urlpatterns=[
         path('voter_region_page/add_voter/', views.add_voter, name='add_voter'),
         path('voter_region_page/', views.voter_region_page, name='voter_region_page'),
         path('voter_region_page/search_voter', views.search_voter, name='search_voter'),
+        path('addelection/',views.addelection,name="addelection"),
+
 ]

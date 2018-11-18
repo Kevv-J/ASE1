@@ -27,10 +27,11 @@ class Candidateform(forms.ModelForm):
 
 class Electionform(forms.ModelForm):
 
-    class Meta:
-        model = Election
-        fields=('election_type','election_id','election_year','date_of_start','date_of_end','status')
-
+    date_of_start = forms.DateField(widget=forms.SelectDateWidget())
+    date_of_end = forms.DateField(widget=forms.SelectDateWidget())
+    class Meta():
+        model=Election
+        fields=('election_type','election_year','date_of_start','date_of_end', 'candidates')
 
 class Voterform(forms.ModelForm):
     voter_dob = forms.DateField(widget=forms.SelectDateWidget())
@@ -41,4 +42,5 @@ class Voterform(forms.ModelForm):
 
 class RegionForm(forms.Form):
     select_region = forms.ChoiceField(choices=region_options)
+
 
