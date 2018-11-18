@@ -58,7 +58,7 @@ region_options=(
 
 
 class Voter(models.Model):
-    voter_id=models.AutoField(max_length=10,unique=True,primary_key=True,null=False)
+    voter_id=models.CharField(max_length=10,unique=True,primary_key=True,null=False)
     voter_name=models.CharField(max_length=50,null=False)
     voter_email=models.EmailField(unique=True,null=False)
     voter_dob=models.DateField(null=False)

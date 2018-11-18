@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset ="utf-8">
+    <title>
+      Django 2
+    </title>
+    <link rel="stylesheet" href="{% static "css1\style.css" %}"/>
+  </head>
+  <body>
+    <div id="s1">
+			<div class="c2"><h1>ONLINE VOTING SYSTEM</h1></div><br><br><br>
+			</div><br><br><br>
+			<table class="t1">
+			<tr>
+			<th class="t1"><button class="button button1">MENU</button></th>
+			</tr>
+			<tr>
+			<td class="t1"><button class="button button2">My Profile</button></td>
+			</tr>
+			<tr>
+			<td class="t1"><button class="button button3">Candidates Profile</button></td>
+			</tr>
+			<tr>
+			<td class="t1"><button class="button button4">Party Profile</button></a></td>
+			</tr>
+			<tr>
+			<td class="t1"><button class="button button5">Go Back</button></a></td>
+			</tr>
+                <div id="f1"><h1>Welcome,Check out the generated voting results</h1><h2>Here are your access records</h2></div>
+            </table>
+     </div>
+    <div class="info">
+      {% if user %}
+        <table class="djangotwo">
+          <thead>
+            <th class="djangotwo">Party</th>
+            <th class="djangotwo">No of Votes</th>
+          </thead>
+
+          {% for acc in grp %}
+          <tr>
+            <td class="djangotwo">{{ acc.party }}</td>
+            <td class="djangotwo">{{ acc.total }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <p>No acces records found!!!</p>
+      {% endif %}
+
+    </div>
+    <img src="http://127.0.0.1:8000/graphs/">
+  </body>
+</html>

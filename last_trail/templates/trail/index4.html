@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mypage</title>
+   <link rel="stylesheet" type="text/css" href="{% static "trail/base.css" %}"/>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+
+</head>
+<body>
+
+   <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+
+         <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">logout</a></li>
+            <li><a href="#">about</a></li>
+            <li><a href="#">contact</a></li>
+         </ul>
+      </div>
+   </nav>
+        <div class="display-text">
+          <img src="{% static "trail/back1.jpg"%}" style="width:100%;height:500px">
+            <div class="centered animated lightSpeedIn" style="font-family: 'Britannic Bold'">i am a good gal<br> i am a good gal</div>
+
+        </div>
+
+    <div class="container">
+        <h1>WELCOME TO THE REGION <b style="color:red">{{ region }}</b></h1>
+    </div><br>
+
+        <div class="container3">
+        <div class="timeline">
+              {% for i in candidates_new %}
+                {% if  i in evenlist %}
+
+                  <div class="container2 left">
+                    <div class="content">
+                        <b><h2 style="color:red;font-family: 'Britannic Bold'">{{ i }}</h2></b>
+                      <p> Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+                    </div>
+                  </div>
+
+                {% endif %}
+                  {% if i in oddlist %}
+
+                  <div class="container2 right">
+                    <div class="content">
+                        <b><h2 style="color:red;font-family: 'Britannic Bold'">{{ i }}</h2></b>
+                      <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+                    </div>
+                  </div>
+
+                  {% endif %}
+
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+       <div id="myModal" class="modal">
+
+
+          <div class="modal-content">
+            <span class="close">&times</span>
+              <span class="rounded-table"><img src="{% static "trail/student-loan.jpg" %}" style="width:50px;height:50px">i am a good gal.i am a good gali am a good gali am a good gal</span>
+              <br><br><span class="rounded-table"><img src="{% static "trail/student-loan.jpg" %}" style="width:50px;height:50px">i am a good gal.i am a good gali am a good gali am a good gal</span>
+             <br><br> <span class="rounded-table"><img src="{% static "trail/student-loan.jpg" %}" style="width:50px;height:50px">i am a good gal.i am a good gali am a good gali am a good gal</span>
+              <br><br> <span class="rounded-table"><img src="{% static "trail/student-loan.jpg" %}" style="width:50px;height:50px">i am a good gal.i am a good gali am a good gali am a good gal</span>
+          </div>
+       </div>
+<br>
+   <div>
+       <table>
+        <tr>
+           <td>
+               <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="{% static "trail/voting_back.jpg"%}"  class="img-thumbnail" style="width:300px;height:300px;">
+                        </div>
+                        <div class="flip-card-back">
+                            <h1>John Doe</h1>
+                            <p>region</p>
+                            <p>i am a wait fellow</p>
+                            <button class="button1" id="myBtn1">read more</button>
+                        </div>
+                    </div>
+               </div>
+           </td>
+       <td>
+           <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="{% static "trail/voting_back.jpg"%}" alt="Avatar"  class="img-thumbnail"style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                    <h1>John Doe</h1>
+                    <p>Region</p>
+                    <p >no no speciality about me</p>
+                    <button class="button1" onmouseover="mouseover()">read more</button>
+
+                        </div>
+                </div>
+            </div>
+
+       </td>
+           <td> <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="{% static "trail/voting_back.jpg"%}" alt="Avatar"  class="img-thumbnail"style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                    <h1>John Doe</h1>
+                    <p>Region</p>
+                    <p >no no speciality about me</p>
+                    <button class="button1" id="myBtn3">read more</button>
+
+                        </div>
+                </div>
+            </div>
+
+       </td>
+           <td> <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="{% static "trail/voting_back.jpg"%}" alt="Avatar"  class="img-thumbnail"style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                    <h1>John Doe</h1>
+                    <p>Region</p>
+                    <p >no no speciality about me</p>
+                    <button class="button1" id="myBtn4">read more</button>
+
+                        </div>
+                </div>
+            </div>
+
+       </td>
+       </tr>
+   </table>
+        </div>
+       <br><br>
+       <div class="contact">
+           <center>
+               <br><div style="color:white;font-size:20px;font-family: 'Britannic Bold'">For any queries You can contact us to the number<br>+321654987,91201054548</div>
+           </center>
+           <center><a href="#"><img src="{% static "trail/twitter-logo-sketch.jpg" %}" style="height:50px;width:50px"></a>
+           <a href="#"> <img src="{% static "trail/fb.jpg" %}" style="height:50px;width:50px"></a>
+           <a href="#"><img src="{% static "trail/insta.jpg" %}" style="height:50px;width:50px"></a>
+           <br><br><p><a href="#"><img src="{% static "trail/locatio.png" %}" style="height:50px;width:50px"></a>
+           <div style="font-family: 'Britannic Bold';font-size:15px;color:red">Adress:</div><span style="color:white">2town road,sricity</span></p>
+           </center>
+       </div>
+
+  <script>
+var modal=document.getElementById('myModal');
+// Get the button that opens the modal
+function mouseover() {
+     modal.style.display = "block";
+}
+var btn1 = document.getElementById("myBtn1");
+var btn3 = document.getElementById("myBtn3");
+var btn4 = document.getElementById("myBtn4");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn1.onclick = function() {
+    modal.style.display = "block";
+}
+
+btn3.onclick = function() {
+    modal.style.display = "block";
+}
+btn4.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+  </script>
+
+
+
+ </body>
+</html>

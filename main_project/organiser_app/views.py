@@ -62,7 +62,9 @@ def add_voter(request):
 
         if voter_form.is_valid():
 
-            voter_form.save(commit=True)
+                voter_form.save(commit=True)
+                message = 'You are registered successfully!'
+                return render(request, 'organiser_app/add_voter.html', {'message':message})
 
         else:
             print(voter_form.errors)
@@ -90,7 +92,7 @@ def search_voter(request):
         voterid = request.POST.get('voterid')
         print(voterid)
         try:
-            voter = Voter.objects.get(voter_id = voterid)
+            voter = Voter.objects.get(voter_id = voterid )
             print(voter.voter_name)
             context = {'voter':voter}
             return render(request,'organiser_app/update_voter.html',context=context)
@@ -155,3 +157,4 @@ def candidate_update(request,pk):
 
 
     return render(request,template_name,{'form':form})
+
