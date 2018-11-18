@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from  django.http import HttpResponse
-from .models import Gen
+from .models import Gen,Feedback
 # Create your views here.
 from django.template import RequestContext
 #from django.shortcuts import render_to_response
@@ -10,13 +10,28 @@ import matplotlib.pyplot
 import matplotlib.pyplot as plt
 import numpy as np
 import random
+def feedback(request):
+    return render(request,"graphs/feedback.html")
+def form(request):
+    return render(request,"graphs/index3.html")
+def get_feedback(request):
+    print("Request Object: {}".format(request.POST))
+    name = request.POST['name1']
+    feedback = request.POST['feedback']
+    FeedbackData = Feedback.objects.create(name=name, feedback=feedback)
+    FeedbackData.save()
+    return HttpResponse("Thanks for your feedback")
+def index1(request):
+    print("Request Object: {}".format(request.POST))
+    party = request.POST['party']
+    total = request.POST['total']
+    Userlog = Gen.objects.create(party=party, total=total)
+    Userlog.save()
+    return HttpResponse("Your data is stored")
 
 def GraphsViewBar(request):
     f=plt.figure()
     x=np.arange(10)
-    #h=[100,200,300,500,600,400,200,100]
-    #x=[0,1,2,3,4,5,6,7,8,9]
-    #x=['BJP','Congress','TRS','DMK','WTF']
     c=['Blue','Red','mediumseagreen','goldenrod','deeppink','navy','maroon']
     partyname=Gen.objects.all()
     bar=[]
@@ -43,37 +58,10 @@ def GraphsViewBar(request):
     buf=io.BytesIO()
     plt.savefig(buf,format='png')
     plt.close(f)
-    #dict1={'response':HttpResponse(buf.getvalue(),content_type='image/png')}
     response=HttpResponse(buf.getvalue(),content_type='image/png')
-    #return render(request,'graphs/index.html',context=dict1)
-    #return render_to_response('graphs/index.html',{'graph':HttpResponse(buf.getvalue(),content_type='image/png')})
     return response
 
 def index(request):
     List1=Gen.objects.order_by('party')
     dict1={'grp':List1}
     return render(request,'graphs/index2.html',context=dict1)
-
-
-"""
-    partyname = Gen.objects.all()
-    votes1=partyname.total
-    freq_series = pd.Series.from_array(votes1)
-    plt.figure(figsize=(12, 8))
-    ax = freq_series.plot(kind='bar')
-    ax.set_title('Voting Results')
-    ax.set_xlabel('Parties')
-    ax.set_ylabel('No: of Votes')
-    parties=partyname.party
-    ax.set_xticklabels(parties)
-
-    rects = ax.patches
-
-    # Make some labels.
-    labels = partyname.total
-
-    for rect, label in zip(rects, labels):
-        height = rect.get_height()
-        ax.text(rect.get_x() + rect.get_width() / 2, height + 5, label,
-                ha='center', va='bottom')
-    """
