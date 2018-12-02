@@ -48,9 +48,10 @@
     <form class="container-fluid h-100 text-dark " style="margin-top:80px;" action="{% url 'organiser_app:voter_update' voter.voter_id %}" method="POST">
         {% csrf_token%}
         <center>
-        <button class="btn btn-primary " type="submit" >Update Voter</button>
+        <button class="btn btn-primary" type="submit" >Update Voter</button>
         </center>
     </form>
+
         <table class="table" style="margin: 20px auto">
             <thead class="thead thead-light">
                 <th> Voter Id</th>
@@ -66,7 +67,7 @@
             {% if voter %}
             <tr>
                 <td>{{ voter.voter_id}}</td>
-                <td>{{ voter.voter_name}}</td>
+                <td><a href="{% url 'organiser_app:voter_update' voter.voter_id %}">{{ voter.voter_name}}</a></td>
                 <td>{{ voter.voter_email}}</td>
                 <td>{{ voter.voter_dob}}</td>
                 <td>{{ voter.voter_region}}</td>
@@ -75,7 +76,9 @@
                 <td>{{ voter.voter_gender}}</td>
                 <td>{{ voter.voter_phone}}</td>
             </tr>
-            {% endif%}
+
+            {% endif %}
+
         </table>
     </div>
 

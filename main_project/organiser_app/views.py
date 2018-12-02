@@ -64,7 +64,7 @@ def add_voter(request):
 
                 voter_form.save(commit=True)
 
-                return render(request, 'organiser_app/add_voter.html', {'voter_form':voter_form})
+                return render(request, 'organiser_app/add_voter.html', {'voter_form':voter_form })
 
         else:
             print(voter_form.errors)
@@ -117,23 +117,19 @@ def voter_update(request,pk):
     if request.method == 'POST':
         if voter_form.is_valid():
             voter_form.save()
-
+            message = 'Voter Id ' + str(voter.voter_id) + ' is updated successfully!'
+            return render(request, template_name, {'voter_form': voter_form, 'message': message})
     return render(request,template_name,{'voter_form':voter_form})
 
+
 #-------------------------------------------End Voter Code--------------------------------------------------
-
-
 
 
 def addelection(request):
     if request.method=="POST":
         addelection_form=Electionform(data=request.POST)
 
-
-
         if addelection_form.is_valid():
-
-
             election_instance = addelection_form.save()
 
             for candidate in election_instance.candidates.all():
@@ -143,18 +139,14 @@ def addelection(request):
                 candidate_election_instance.election = election_instance
                 candidate_election_instance.save()
 
-
             election_instance=Election.objects.all()
             context={'election_instance':election_instance}
             return render(request,'organiser_app/election.html',context)
 
-
         else:
             print(user_form.errors,profile_form.errors)
-
     else:
         addelection_form=Electionform()
-
 
     return render(request,'organiser_app/election_form.html',{'addelection_form':addelection_form })
 
@@ -173,8 +165,6 @@ def candidate_update(request,pk):
 
         if form.is_valid():
             form.save()
-
-
 
     return render(request,template_name,{'form':form})
 
