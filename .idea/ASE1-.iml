@@ -8,7 +8,7 @@
   <component name="TemplatesService">
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/main_project/venv/Lib/site-packages/django/forms/templates" />
+        <option value="$MODULE_DIR$/graphs/templates" />
       </list>
     </option>
   </component>
