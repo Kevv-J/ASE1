@@ -83,7 +83,7 @@ def voter_region_page(request):
         voters = Voter.objects.filter(voter_region=region)
         return render(request, 'organiser_app/voters_list.html',{'voters':voters})
 
-    return render(request, 'organiser_app/region_page.html',context=context)
+    return render(request, 'organiser_app/select_region.html',context=context)
 
 
 def search_voter(request):
@@ -95,23 +95,23 @@ def search_voter(request):
             voter = Voter.objects.get(voter_id = voterid )
             print(voter.voter_name)
             context = {'voter':voter}
-            return render(request,'organiser_app/update_voter.html',context=context)
+            return render(request,'organiser_app/search_results.html',context=context)
         except:
             message = 'Voter Id '+ str(voterid) + " does not exist."
             context = {'message' : message}
-            return render(request, 'organiser_app/update_voter.html', context=context)
+            return render(request, 'organiser_app/search_results.html', context=context)
 
-    return render(request,'organiser_app/update_voter.html')
+    return render(request,'organiser_app/search_results.html')
 
 
 def voter_view(request,pk):
-    template_name='organiser_app/voter_detail.html'
+    template_name='organiser_app/voter_details.html'
     voter=get_object_or_404(Voter,pk=pk)
     return render(request,template_name,{'voter':voter})
 
 
 def voter_update(request,pk):
-    template_name='organiser_app/voter_form.html'
+    template_name='organiser_app/update_voter_form.html'
     voter=get_object_or_404(Voter,pk=pk)
     voter_form=Voterform(request.POST or None,instance=voter)
     if request.method == 'POST':

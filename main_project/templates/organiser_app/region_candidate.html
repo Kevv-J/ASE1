@@ -31,7 +31,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link text-white" href="{% url "organiser_app:mainpage" %}" style="font-size:22px">Mainpage <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="{% url 'organiser_app:mainpage' %}" style="font-size:22px">Mainpage <span class="sr-only">(current)</span></a>
               </li>
 
 
@@ -80,20 +80,8 @@
 
           {% for candidate in candidates %}
 
-<<<<<<< HEAD
-          <li>Candidate Info</li>
-          <ul>
-              <a href="{% url "organiser_app:candidate_view" candidate.candidate_id %}"> <li>Name:{{candidate.candidate_name}}</li></a>
-            <li>Father Name:{{candidate.candidate_fname}}</li>
-            <li>Party:{{candidate.candidate_party}}</li>
-            <li>Region:{{candidate.candidate_region}}</li>
-            <li>Email:{{candidate.candidate_email}}</li>
-            <li>Aadhar:{{candidate.candidate_aadhar}}</li>
-          </ul>
 
-        </ol>
-=======
->>>>>>> 2830f4f0cb2bbc1b94ef840d23a6b86e6407f782
+
 
           <tr>
               <td>{{ candidate.candidate_id}}</td>

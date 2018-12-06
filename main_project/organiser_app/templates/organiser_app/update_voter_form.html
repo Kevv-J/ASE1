@@ -33,10 +33,7 @@
 
             <ul class="navbar-nav mr-auto">
                <li class="nav-item active">
-                 <a class="nav-link text-white" href="#" style="font-size:22px">Home <span class="sr-only">(current)</span></a>
-               </li>
-               <li class="nav-item active">
-                 <a class="nav-link text-white" href="#" style="font-size:22px">VoterPage<span class="sr-only">(current)</span></a>
+                 <a class="nav-link text-white" href="{% url 'organiser_app:mainpage' %}" style="font-size:22px">Home <span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item active">
                  <a class="nav-link text-white" href="#" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
@@ -149,7 +146,7 @@
 
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <button type="submit" class="btn btn-danger">Submit</button>
+                            <button type="submit" class="btn btn-danger">Update</button>
                         </div>
                     </div>
                 </form>
