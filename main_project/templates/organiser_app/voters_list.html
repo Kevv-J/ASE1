@@ -32,11 +32,11 @@
                </li>
             </ul>
 
-            <form class="form-inline " name="myform1" action="search_voter" method="POST">
+            <form class="form-inline " action="search_voter" method="POST">
                 {% csrf_token %}
-                <input class="form-control mr-sm-2 " type="search" placeholder="Enter Voter Id" aria-label="Search"  name="voterid" style="border-radius:40px;">
-                <button class=" btn btn-danger my-2 my-sm-0 text-white" type="submit" style="font-size:17px;background-color: #006064;">Search</button>
 
+                <input class="form-control mr-sm-2 " type="search" placeholder="Enter Voter Id" aria-label="Search" name="voterid" style="border-radius:40px;">
+                <button class=" btn btn-danger my-2 my-sm-0 text-white" type="submit" style="font-size:17px;background-color: #006064;">Search</button>
             </form>
 
         </div>
@@ -74,17 +74,6 @@
             {% endfor %}
         </table>
     </div>
-
-    <script>
-        function ValidateForm1(){
-
-              var x = document.forms["myform1"]["Voterid"].value;
-              if ((x == "" )||( x.length !=10)) {
-                alert(" Please enter valid Voter Id");
-                return false;
-              }
-        }
-    </script>
 
 </body>
 </html>

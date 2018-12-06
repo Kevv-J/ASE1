@@ -60,7 +60,7 @@ class Voter(models.Model):
     voter_region=models.CharField(choices=region_options,null=False,max_length=10)
 
     def __str__(self):
-        return (str(self.voter_id) +"."+" "+ self.voter_name)
+        return str(self.voter_id) +"."+" "+ self.voter_name
 
 
 class Candidate(models.Model):
@@ -75,7 +75,7 @@ class Candidate(models.Model):
     candidate_aadhar=models.BigIntegerField(unique=True,null=False)
 
     def __str__(self):
-        return (str(self.candidate_id) +"."+" "+ self.candidate_name)
+        return str(self.candidate_id) +"."+" "+ self.candidate_name
 
     def get_absolute_url(self):
         return reverse('organiser_app:view',kwargs={'pk':self.pk})

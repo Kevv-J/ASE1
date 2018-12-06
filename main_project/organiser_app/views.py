@@ -63,8 +63,8 @@ def add_voter(request):
         if voter_form.is_valid():
 
                 voter_form.save(commit=True)
-
-                return render(request, 'organiser_app/add_voter.html', {'voter_form':voter_form })
+                message = 'Voter is added successfully!'
+                return render(request, 'organiser_app/add_voter.html', {'voter_form': voter_form, 'message': message})
 
         else:
             print(voter_form.errors)
@@ -90,36 +90,34 @@ def search_voter(request):
 
     if request.method == 'POST':
         voterid = request.POST.get('voterid')
-        print(voterid)
         try:
-            voter = Voter.objects.get(voter_id = voterid )
-            print(voter.voter_name)
-            context = {'voter':voter}
-            return render(request,'organiser_app/search_results.html',context=context)
+            voter = Voter.objects.get(voter_id=voterid)
+            context = {'voter': voter}
+            return render(request, 'organiser_app/search_results.html', context=context)
         except:
-            message = 'Voter Id '+ str(voterid) + " does not exist."
-            context = {'message' : message}
+            message = 'Voter Id "' + str(voterid) + '" does not exist.'
+            context = {'message': message}
             return render(request, 'organiser_app/search_results.html', context=context)
 
-    return render(request,'organiser_app/search_results.html')
+    return render(request, 'organiser_app/search_results.html')
 
 
-def voter_view(request,pk):
-    template_name='organiser_app/voter_details.html'
-    voter=get_object_or_404(Voter,pk=pk)
-    return render(request,template_name,{'voter':voter})
+def voter_view(request, pk):
+    template_name = 'organiser_app/voter_details.html'
+    voter=get_object_or_404(Voter, pk=pk)
+    return render(request, template_name, {'voter': voter})
 
 
-def voter_update(request,pk):
-    template_name='organiser_app/update_voter_form.html'
-    voter=get_object_or_404(Voter,pk=pk)
-    voter_form=Voterform(request.POST or None,instance=voter)
+def voter_update(request, pk):
+    template_name = 'organiser_app/update_voter_form.html'
+    voter = get_object_or_404(Voter, pk=pk)
+    voter_form = Voterform(request.POST or None, instance=voter)
     if request.method == 'POST':
         if voter_form.is_valid():
             voter_form.save()
-            message = 'Voter Id ' + str(voter.voter_id) + ' is updated successfully!'
+            message = 'Voter Id "' + str(voter.voter_id) + '" is updated successfully!'
             return render(request, template_name, {'voter_form': voter_form, 'message': message})
-    return render(request,template_name,{'voter_form':voter_form})
+    return render(request, template_name, {'voter_form': voter_form})
 
 
 #-------------------------------------------End Voter Code--------------------------------------------------
