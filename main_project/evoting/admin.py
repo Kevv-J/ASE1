@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import *
-from organiser_app.models import *
+from evoting.models import *
 
 admin.site.register(Voters_Profile)
+admin.site.register(organiser_profile)
 
