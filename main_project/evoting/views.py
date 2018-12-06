@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .forms import *
-from .models import *
+from evoting.forms import *
+from evoting.models import *
 from organiser_app.models import *
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
@@ -9,25 +9,33 @@ from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.template.loader import render_to_string
-from .tokens import account_activation_token
+from evoting.tokens import account_activation_token
 from django.core.mail import EmailMessage, send_mail
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
 # Create your views here.
 
+
+def base(request):
+    return render(request, 'voters/base.html')
+
+
 def home(request):
     elections = Election.objects.all()
-    context = {'elections':elections}
-    return render(request, 'home.html', context=context)
+    if str(request.user) != 'AnonymousUser':
+        user_type = User.objects.get(username=request.user).first_name
+    else:
+        user_type = 'null'
+    return render(request, 'voters/home.html', {'elections': elections, 'username': request.user, 'user_type': user_type})
 
 
 def profile(request):
-    return render(request, 'profile.html', {'username': request.user.username})
+    return render(request, 'voters/profile.html', {'username': request.user.username})
+
 
 def register(request):
 
     registered = False
-
     if request.method == "POST":
         registration_form1 = Registration_form1(request.POST)
         registration_form2 = Registration_form2(request.POST)
@@ -36,64 +44,68 @@ def register(request):
             voter_id = request.POST['voterId']
             voter_id_list = Voter.objects.values_list('voter_id', flat=True)
 
-            print(voter_id, voter_id_list)
-
             if voter_id in voter_id_list:
+                voter = Voter.objects.get(voter_id=voter_id)
+                if request.POST['email'] == voter.voter_email and\
+                        request.POST['fullname'] == voter.voter_name:
 
+                    reg_form1 = registration_form1.save()
+                    reg_form1.is_active = False
+                    reg_form1.set_password(reg_form1.password)
+                    reg_form1.save()
 
-                reg_form1 = registration_form1.save()
-                reg_form1.is_active = False
-                reg_form1.set_password(reg_form1.password)
-                reg_form1.save()
+                    reg_form2 = registration_form2.save(commit=False)
 
-                reg_form2 = registration_form2.save(commit=False)
+                    reg_form2.user = reg_form1
+                    reg_form2.user.is_active = False
 
-                reg_form2.user = reg_form1
-                reg_form2.user.is_active = False
-                reg_form2.activation = 'False'
+                    reg_form2.save()
 
+                    current_site = get_current_site(request)
+                    mail_subject = 'Verify your email.'
+                    message = render_to_string('voters/acc_active_email.html', {
+                        'user': reg_form2.user,
+                        'domain': current_site.domain,
+                        'uid': urlsafe_base64_encode(force_bytes(reg_form2.user.pk)).decode(),
+                        'token': account_activation_token.make_token(reg_form2.user),
+                    })
+                    to_email = reg_form1.email
+                    email = EmailMessage(
+                        mail_subject, message, to=[to_email]
+                    )
+                    email.send()
 
-                reg_form2.save()
+                    registered = True
 
+                    Voters_Profile.objects.get(voterId=voter_id).user.first_name = 'Voter'
 
-                current_site = get_current_site(request)
-                mail_subject = 'Verify your email.'
-                message = render_to_string('acc_active_email.html', {
-                    'user': reg_form2.user,
-                    'domain': current_site.domain,
-                    'uid': urlsafe_base64_encode(force_bytes(reg_form2.user.pk)).decode(),
-                    'token': account_activation_token.make_token(reg_form2.user),
-                })
-                print(message)
-                to_email =reg_form1.email
-                email = EmailMessage(
-                    mail_subject, message, to=[to_email]
-                )
-                email.send()
-
-
-                registered = True
-
-
-                print('form saved successfully!!')
+                else:
+                    messages.error(request, f'(Email Id) or (fullname) or (Date of Birth) does\'nt'
+                                            f' matches with the given Voter Id')
             else:
-                messages.error(request, f'Invalid details given!!')
+                messages.error(request, f'Voter with the given Voter Id does not exist!!')
 
         else:
+            messages.error(request, (registration_form1.errors, registration_form2.errors))
             print(registration_form1.errors, registration_form2.errors)
     else:
         registration_form1 = Registration_form1()
         registration_form2 = Registration_form2()
 
     if not registered:
-        return render(request, 'register.html', {'reg_form1': registration_form1, 'reg_form2': registration_form2})
+        return render(request, 'voters/register.html',
+                      {'reg_form1': registration_form1, 'reg_form2': registration_form2})
 
     else:
         logout(request)
-        return redirect('evoting-login')
+        return render(request, 'voters/login.html',
+                      {'registered_message': 'We have sent a mail to the registeered mail.'
+                       ' Please click that link to activate your account and then login', 'USER': 'voter'})
+
 
 def user_acc_activation(request):
-    return render(request, 'acc_activate.html')
+    return render(request, 'voters/acc_activate.html')
+
 
 def activate(request, uidb64, token):
     try:
@@ -113,26 +125,53 @@ def activate(request, uidb64, token):
 
 # ======================================================================================================================
 
-def user_login(request):
+def voter_login(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
 
         user = authenticate(username=username, password=password)
 
-        if user:
+        if user and User.objects.get(username=username).first_name == '':
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('evoting-home'))
+                a = User.objects.get(username=username)
+                print(a.first_name)
+                return render(request, 'voters/home.html',
+                              {'username': username, 'user_type': User.objects.get(username=username).first_name})
 
             else:
                 return HttpResponse('account not active')
 
         else:
             messages.error(request, f'Invalid login details!')
-            return redirect(reverse('evoting-login'))
+            print()
+            return redirect(reverse('evoting-voter-login'))
     else:
-        return render(request, 'login.html')
+        return render(request, 'voters/login.html', {'USER': 'voter'})
+
+
+def orgainser_login(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+
+        if user and User.objects.get(username=username).first_name == 'Organiser':
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('organiser_app:mainpage'))
+
+            else:
+                return HttpResponse('account not active')
+
+        else:
+            messages.error(request, f'Invalid login details!')
+            return redirect(reverse('evoting-organiser-login'))
+    else:
+        return render(request, 'voters/login.html', {'USER': 'organiser'})
+
 
 def user_logout(request):
     logout(request)
@@ -147,7 +186,12 @@ def send_email(request):
 
 
 def print_username(request):
-    activation_status = User.objects.filter(username='strange321')
-    print(activation_status)
-    username = User.objects.values_list('username', flat=True)
-    return HttpResponse(activation_status)
+    voter = Voter.objects.get(voter_id='TS2018102')
+    userx = request.user
+    print(type(userx))
+    # username = User.objects.values_list('username', flat=True)
+    return HttpResponse(str(userx))
+
+
+def test_ajax(request):
+    return render(request, 'voters/test.html')
