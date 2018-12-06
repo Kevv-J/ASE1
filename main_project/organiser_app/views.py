@@ -64,7 +64,7 @@ def add_voter(request):
 
                 voter_form.save(commit=True)
 
-                return render(request, 'organiser_app/add_voter.html', {'voter_form':voter_form})
+                return render(request, 'organiser_app/add_voter.html', {'voter_form':voter_form })
 
         else:
             print(voter_form.errors)
@@ -83,7 +83,7 @@ def voter_region_page(request):
         voters = Voter.objects.filter(voter_region=region)
         return render(request, 'organiser_app/voters_list.html',{'voters':voters})
 
-    return render(request, 'organiser_app/region_page.html',context=context)
+    return render(request, 'organiser_app/select_region.html',context=context)
 
 
 def search_voter(request):
@@ -95,45 +95,41 @@ def search_voter(request):
             voter = Voter.objects.get(voter_id = voterid )
             print(voter.voter_name)
             context = {'voter':voter}
-            return render(request,'organiser_app/update_voter.html',context=context)
+            return render(request,'organiser_app/search_results.html',context=context)
         except:
             message = 'Voter Id '+ str(voterid) + " does not exist."
             context = {'message' : message}
-            return render(request, 'organiser_app/update_voter.html', context=context)
+            return render(request, 'organiser_app/search_results.html', context=context)
 
-    return render(request,'organiser_app/update_voter.html')
+    return render(request,'organiser_app/search_results.html')
 
 
 def voter_view(request,pk):
-    template_name='organiser_app/voter_detail.html'
+    template_name='organiser_app/voter_details.html'
     voter=get_object_or_404(Voter,pk=pk)
     return render(request,template_name,{'voter':voter})
 
 
 def voter_update(request,pk):
-    template_name='organiser_app/voter_form.html'
+    template_name='organiser_app/update_voter_form.html'
     voter=get_object_or_404(Voter,pk=pk)
     voter_form=Voterform(request.POST or None,instance=voter)
     if request.method == 'POST':
         if voter_form.is_valid():
             voter_form.save()
-
+            message = 'Voter Id ' + str(voter.voter_id) + ' is updated successfully!'
+            return render(request, template_name, {'voter_form': voter_form, 'message': message})
     return render(request,template_name,{'voter_form':voter_form})
 
+
 #-------------------------------------------End Voter Code--------------------------------------------------
-
-
 
 
 def addelection(request):
     if request.method=="POST":
         addelection_form=Electionform(data=request.POST)
 
-
-
         if addelection_form.is_valid():
-
-
             election_instance = addelection_form.save()
 
             for candidate in election_instance.candidates.all():
@@ -143,18 +139,14 @@ def addelection(request):
                 candidate_election_instance.election = election_instance
                 candidate_election_instance.save()
 
-
             election_instance=Election.objects.all()
             context={'election_instance':election_instance}
             return render(request,'organiser_app/election.html',context)
 
-
         else:
             print(user_form.errors,profile_form.errors)
-
     else:
         addelection_form=Electionform()
-
 
     return render(request,'organiser_app/election_form.html',{'addelection_form':addelection_form })
 
@@ -173,8 +165,6 @@ def candidate_update(request,pk):
 
         if form.is_valid():
             form.save()
-
-
 
     return render(request,template_name,{'form':form})
 

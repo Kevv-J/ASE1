@@ -33,10 +33,7 @@
 
             <ul class="navbar-nav mr-auto">
                <li class="nav-item active">
-                 <a class="nav-link text-white" href="#" style="font-size:22px">Home <span class="sr-only">(current)</span></a>
-               </li>
-               <li class="nav-item active">
-                 <a class="nav-link text-white" href="#" style="font-size:22px">VoterPage<span class="sr-only">(current)</span></a>
+                 <a class="nav-link text-white" href="{% url 'organiser_app:mainpage' %}" style="font-size:22px">Home <span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item active">
                  <a class="nav-link text-white" href="#" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
@@ -53,7 +50,9 @@
             <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
                 <form method="post" action="">
                     {% csrf_token %}
-
+                    {% if message %}
+                        <script>alert('{{ message}}')</script>
+                    {% endif%}
 
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:28px ">Enter Voter Id</label>
@@ -147,7 +146,7 @@
 
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <button type="submit" class="btn btn-danger">Submit</button>
+                            <button type="submit" class="btn btn-danger">Update</button>
                         </div>
                     </div>
                 </form>

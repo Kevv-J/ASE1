@@ -33,7 +33,7 @@
             </div>
         {% else %}
             <div style="display: block;" class="container registration_table">
-                <form method="post">
+                <form method="post" action="">
                     {% csrf_token %}
                     {% if messages %}
                         {% for message in messages %}

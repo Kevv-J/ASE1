@@ -1,36 +1,21 @@
 from django import forms
 from . models import Candidate,Voter,Election
 
-region_options=(
-
- ('0','AndhraPradesh') ,
- ('1','Bihar') ,
- ('2','karnataka'),
- ('3','Tamilnadu' ),
- ('4','Kerela') ,
- ('5','UttarPradesh'),
- ('6','WestBengal') ,
- ('7','MadhyaPradesh') ,
- ('8','Haryana') ,
- ('9','Assam')
-
-)
 
 region_options=(
 
- ('0','AndhraPradesh') ,
- ('1','Bihar') ,
+ ('0','AndhraPradesh'),
+ ('1','Bihar'),
  ('2','karnataka'),
- ('3','Tamilnadu' ),
- ('4','Kerela') ,
+ ('3','Tamilnadu'),
+ ('4','Kerela'),
  ('5','UttarPradesh'),
- ('6','WestBengal') ,
- ('7','MadhyaPradesh') ,
- ('8','Haryana') ,
+ ('6','WestBengal'),
+ ('7','MadhyaPradesh'),
+ ('8','Haryana'),
  ('9','Assam')
 
 )
-
 
 
 class Candidateform(forms.ModelForm):
@@ -42,14 +27,17 @@ class Candidateform(forms.ModelForm):
 
 
 class Electionform(forms.ModelForm):
-    date_of_start = forms.DateField(widget=forms.SelectDateWidget(years=range(1900, 2002)))
-    date_of_end = forms.DateField(widget=forms.SelectDateWidget(years=range(1900, 2002)))
+    date_of_start = forms.DateField(widget=forms.SelectDateWidget(years=range(2015, 2020)))
+    date_of_end = forms.DateField(widget=forms.SelectDateWidget(years=range(2015, 2020)))
+
     class Meta():
         model=Election
         fields=('election_type','election_year','date_of_start','date_of_end', 'candidates')
 
+
 class Voterform(forms.ModelForm):
-    voter_dob = forms.DateField(widget=forms.SelectDateWidget())
+    voter_dob = forms.DateField(widget=forms.SelectDateWidget(years=range(1950, 2002)))
+
     class Meta:
         model = Voter
         fields = '__all__'

@@ -65,7 +65,7 @@ def register(request):
                     'token': account_activation_token.make_token(reg_form2.user),
                 })
                 print(message)
-                to_email = reg_form1.email
+                to_email =reg_form1.email
                 email = EmailMessage(
                     mail_subject, message, to=[to_email]
                 )

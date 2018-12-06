@@ -5,8 +5,6 @@ from django.http import HttpResponse
 # Create your views here.
 
 
-
-
 def voter(request):
     return render(request, "trail/index1.html")
 
@@ -14,12 +12,14 @@ def voter(request):
 def candidate(request):
     return render(request, "trail/index2.html")
 
+
 def candidate_details(request,pk):
     template_name='trail/candidate_detail.html'
     candidate=get_object_or_404(candidateLog,pk=pk)
     return render(request,template_name,{'object':candidate})
-def result(request):
 
+
+def result(request):
 
     region = request.POST.get('region', False)
     voterid=request.POST.get('voterid',False)
@@ -46,17 +46,17 @@ def result(request):
           for i in range(0,len(candidates)):
             candidates_new.append([candidates[i][0],candidate_ids[i][0]])
           for i in range(0,len(candidates)):
-           if (i%2==0):
-                evenlist.append(candidates_new[i])
+              if (i%2==0):
+                  evenlist.append(candidates_new[i])
 
-           else:
-                oddlist.append(candidates_new[i])
+              else:
+                  oddlist.append(candidates_new[i])
 
           result_region={'region':region,'oddlist':oddlist,'evenlist':evenlist,'mylist':mylist,'candidates_new':candidates_new}
           return render(request,"trail/index5.html",result_region)
 
-        else:
-         return HttpResponse('Invalid Details!!')
+    else:
+        return HttpResponse('Invalid Details!!')
 
 
 def otherpage(request):

@@ -12,14 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <style>
-      a:hover {
-        background: #006064;
-
-      }
-    </style>
-
-    <title>Search Results</title>
+    <title>Voter Details.</title>
   </head>
 <body style="position:relative; padding-top: 20px;">
 
@@ -29,10 +22,7 @@
 
             <ul class="navbar-nav mr-auto" >
                <li class="nav-item active">
-                 <a class="nav-link text-white" href="#" style="font-size:22px">Home <span class="sr-only">(current)</span></a>
-               </li>
-               <li class="nav-item active">
-                 <a class="nav-link text-white" href="#" style="font-size:22px">VoterPage<span class="sr-only">(current)</span></a>
+                 <a class="nav-link text-white" href="{% url 'organiser_app:mainpage' %}" style="font-size:22px">Home <span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item active">
                  <a class="nav-link text-white" href="#" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
@@ -45,11 +35,17 @@
         </div>
     </nav>
 
-    <form class="container-fluid h-100 text-dark " style="margin-top:80px;" action="search_voter" method="POST">
+    <div style="margin-top:80px;" >
         <center>
-        <button class="btn btn-primary " type="submit" >Update Voter</button>
+        <ul>
+            <li class="btn btn-primary">
+                <a href="{% url 'organiser_app:voter_update' voter.voter_id %}" style="color: white ;text-decoration:none ">Update Voter Details</a>
+            </li>
+        </ul>
         </center>
-    </form>
+    </div>
+
+
         <table class="table" style="margin: 20px auto">
             <thead class="thead thead-light">
                 <th> Voter Id</th>
@@ -74,11 +70,9 @@
                 <td>{{ voter.voter_gender}}</td>
                 <td>{{ voter.voter_phone}}</td>
             </tr>
-            {% else %}
-                <script>
-                    alert('{{ message }}')
-                </script>
+
             {% endif %}
+
         </table>
     </div>
 
