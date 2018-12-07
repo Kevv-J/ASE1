@@ -118,9 +118,11 @@ def activate(request, uidb64, token):
         user.save()
         login(request, user)
         # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        message = {'acc_confirmation_message': 'Thanks for activating your account. Now you can login to your account.'}
+        return render(request, 'voters/home.html', message)
     else:
-        return HttpResponse('Activation link is invalid!')
+        err_message = {'acc_confirmation_message': 'Activation link is invalid!'}
+        return render(request, 'voters/home.html', err_message)
 
 
 # ======================================================================================================================
@@ -176,22 +178,3 @@ def orgainser_login(request):
 def user_logout(request):
     logout(request)
     return redirect('evoting-home')
-
-
-def send_email(request):
-    send_mail('Password Reset', 'Click the below link to reset your password.', 'sriram.nandala@gmail.com',
-              ['neelakantasriram.n17@iiits.in'])
-
-    return HttpResponse('Email Sent!!')
-
-
-def print_username(request):
-    voter = Voter.objects.get(voter_id='TS2018102')
-    userx = request.user
-    print(type(userx))
-    # username = User.objects.values_list('username', flat=True)
-    return HttpResponse(str(userx))
-
-
-def test_ajax(request):
-    return render(request, 'voters/test.html')
