@@ -1,0 +1,40 @@
+.organisers_description {
+    font-family: Bahnschrift;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    font-weight: bold;
+    font-size: 30px;
+    color: coral;
+    padding: 5%;
+    display: none;
+}
+
+.voters_description {
+    font-family: Bahnschrift;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    font-weight: bold;
+    font-size: 30px;
+    color: coral;
+    padding: 5%;
+    display: none;
+}
+
+#organiser_div:hover #organiser_link {
+    margin-top: 2%;
+}
+
+#voter_div:hover #voter_link {
+    letter-spacing: 1px;
+    word-spacing: 5px;
+}
+
+/*=================================================================================*/
+
+#organiser_link {
+    display: none;
+}
+
+#voter_link {
+    display: none;
+}

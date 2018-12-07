@@ -1,11 +1,3 @@
-function display_evoting_txt() {
-    document.getElementById("evoting").style.display='block';
-}
-
-function remove_evoting_txt() {
-    document.getElementById("evoting").style.display = 'none';
-}
-
 /*function username_txt_animate_out() {
     document.getElementById('username_txt').style.display='none';
 }

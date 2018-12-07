@@ -17,6 +17,7 @@
 }
 
 .box {
+    position: relative;
     margin-top: 2%;
     text-align: center;
 }
