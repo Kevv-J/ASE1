@@ -26,8 +26,4 @@ urlpatterns = [
          name='password_reset_confirm'
     ),
 
-
-    path('print/', user_views.print_username, name='print'),
-    path('test/', user_views.test_ajax, name='test-ajax')
-
 ]
