@@ -60,7 +60,7 @@
                                 </div>
                                 <button type="submit" class="login"><img src="{% static 'login/imgs/play-symbol.png' %}" class="login"></button>
 
-                            <div class="col-md-12 forgot_pass"><a href="{% url 'password-reset' %}" class="forgot_pass">Forgot Password?</a></div>
+                            <div class="col-md-12 forgot_pass"><a href="{% url 'password_reset' %}" class="forgot_pass">Forgot Password?</a></div>
                             {% if USER == 'voter' %}
                                 <div class="col-md-12"> <p class="reg_text">Haven't registered yet? Click the <a href="{% url 'evoting-register' %}" class="reg_a">Register</a> button to register.</p></div>
                             {% endif %}
