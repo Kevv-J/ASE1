@@ -123,6 +123,22 @@
     </div>
 </div>
 
+{% if message %}
+
+    <h6 style="text-align: center; color: red">
+        {{ message }}
+    </h6>
+
+{% endif %}
+
+{% if err_message %}
+
+    <h6 style="text-align: center; color: red">
+        {{ err_message }}
+    </h6>
+
+{% endif %}
+
 <!-- ====================Logout Modal ============================================-->
 <div class="modal fade logout_modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
