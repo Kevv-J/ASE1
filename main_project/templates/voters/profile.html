@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'voters/base.html' %}
 
 {% block head %}
     <title>E-Voting Profile</title>
@@ -10,7 +10,8 @@
     {% else %}
         <div class="container" style="text-align: center">
             <h2 style="color: white">It seems you are not logged in!!</h2><br>
-            <h4 style="color: white"><a href="{% url 'evoting-login' %}">Login</a> to go to your profile</h4>
+            <h4 style="color: white">Login as<a href="{% url 'evoting-voter-login' %}">Voter</a> or
+                Login as <a href="{% url 'evoting-organiser-login' %}">Organiser</a> to go to your profile</h4>
         </div>
     {% endif %}
 {% endblock body %}
