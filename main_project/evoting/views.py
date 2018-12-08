@@ -237,6 +237,20 @@ def election(request,pk):
     #       return render(request,"trail/index6.html",result_region)
     #
     candidates_new = []
+    region_options = {
+        '0': 'AndhraPradesh',
+        '1': 'Bihar',
+        '2': 'karnataka',
+        '3': 'Tamilnadu',
+        '4': 'Kerela',
+        '5': 'UttarPradesh',
+        '6': 'WestBengal',
+        '7': 'MadhyaPradesh',
+        '8': 'Haryana',
+        '9': 'Assam'
+    }
+    # candidate.candidate_region = region_options[candidate.candidate_region]
+    region = region_options[region]
     for candidate in candidates:
         candidates_new.append([candidate.candidate_name, candidate.candidate_id])
     result_region = {'region': region, 'candidates_new': candidates_new}
