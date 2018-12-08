@@ -55,7 +55,7 @@ def register(request):
                     reg_form1.save()
 
                     reg_form2 = registration_form2.save(commit=False)
-
+                    reg_form2.region = voter.voter_region
                     reg_form2.user = reg_form1
                     reg_form2.user.is_active = False
 
@@ -69,6 +69,7 @@ def register(request):
                         'uid': urlsafe_base64_encode(force_bytes(reg_form2.user.pk)).decode(),
                         'token': account_activation_token.make_token(reg_form2.user),
                     })
+                    print(message)
                     to_email = reg_form1.email
                     email = EmailMessage(
                         mail_subject, message, to=[to_email]
@@ -197,3 +198,44 @@ def print_username(request):
 
 def test_ajax(request):
     return render(request, 'voters/test.html')
+
+def election(request,pk):
+
+    # region = request.POST.get('region', False)
+    print(request.user)
+    user = Voters_Profile.objects.get(user = request.user)
+    region = user.region
+    # voterid= request.POST.get('voterid',False)
+    # regions = candidateLog.objects.values_list('region_2', flat=True)
+    # voterId = voterLog.objects.values_list('voterid', flat=True)
+    #
+    # if region in regions:
+    #     if voterid not in voterId:
+    #       regions=candidateLog.objects.filter(region_2=reg
+
+    candidates = Candidate_election.objects.filter(pk = pk)
+    candidates = {candidates for candidates.region in region}
+
+    #       candidates=regions.values_list('candidate')
+    #       candidate_ids=regions.values_list('candidate_id')
+    #       a=len(candidates)
+    #       #evenlist=[]
+    #       #oddlist=[]
+    #       candidates_new=[]
+    #       for i in range(0,len(candidates)):
+    #         candidates_new.append([candidates[i][0],candidate_ids[i][0]])
+    #       result_region={'region':region,'candidates_new':candidates_new,'regions':regions}
+    #       return render(request,"trail/index6.html",result_region)
+    #
+    candidates_new = []
+    for candidate in candidates:
+        candidates_new.append([candidate.candidate_name,candidate.candidate_id])
+    result_region = {'region': region, 'candidates_new': candidates_new}
+    return render(request, "trail/index6.html", result_region)
+    #     else:
+    #       return HttpResponse('Invalid Details!!')
+
+def candidate_details(request,pk):
+    template_name='trail/candidate_detail.html'
+    candidate=get_object_or_404(Candidate,pk=pk)
+    return render(request,template_name,{'object':candidate})

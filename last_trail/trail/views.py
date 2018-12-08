@@ -25,8 +25,8 @@ def result(request):
     if region in regions:
         if voterid not in voterId:
           regions=candidateLog.objects.filter(region_2=region)
-          candidates=regions.values_list('candidate')
-          candidate_ids=regions.values_list('candidate_id')
+          candidates=regions.values_list('candidate') #Getting Name
+          candidate_ids=regions.values_list('candidate_id') #Getting ID
           a=len(candidates)
           evenlist=[]
           oddlist=[]

@@ -33,6 +33,9 @@ urlpatterns = [
 
 
     path('print/', user_views.print_username, name='print'),
-    path('test/', user_views.test_ajax, name='test-ajax')
+    path('test/', user_views.test_ajax, name='test-ajax'),
+
+    path('candidate_details/<int:pk>', user_views.candidate_details, name='candidate_details'),
+    path('election/<int:pk>', user_views.election, name='trail.election'),
 
 ]
