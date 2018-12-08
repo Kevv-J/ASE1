@@ -32,8 +32,8 @@ class Registration_form1(forms.ModelForm):
             attrs={
                 'class': 'input_boxes',
                 'placeholder': 'Email (abc@gmail.com)',
-                'pattern': '[a-z0-9._%+-]+@[g]+[m]+[a]+[i]+[l]+\.[c]+[o]+[m]$',
-                'oninvalid': 'this.setCustomValidity("Email must be in (example@gmail.com) format")',
+                'pattern': '[a-z0-9._%+-]+@[a-z]+\.[c]+[o]+[m]$',
+                'oninvalid': 'this.setCustomValidity("Email must be in (example@email.com) format")',
                 'name': 'email',
             }
         )
