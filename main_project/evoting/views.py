@@ -200,6 +200,7 @@ def print_username(request):
     return HttpResponse(str(userx))
 
 
+
 def test_ajax(request):
     return render(request, 'voters/test.html')
 

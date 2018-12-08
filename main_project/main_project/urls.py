@@ -21,7 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('evoting.urls')),
     path('evoting/', include('evoting.urls')),
-    path('organiser_app/',include('organiser_app.urls'))
+    path('organiser_app/',include('organiser_app.urls')),
+    path('charts/', include('charts.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
