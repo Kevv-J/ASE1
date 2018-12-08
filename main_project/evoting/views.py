@@ -12,6 +12,7 @@ from django.template.loader import render_to_string
 from evoting.tokens import account_activation_token
 from django.core.mail import EmailMessage, send_mail
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -26,7 +27,10 @@ def home(request):
         user_type = User.objects.get(username=request.user).first_name
     else:
         user_type = 'null'
-    return render(request, 'voters/home.html', {'elections': elections, 'username': request.user, 'user_type': user_type})
+    print(elections)
+    print("hi")
+    context = {'elections': elections, 'username': request.user, 'user_type': user_type}
+    return render(request, 'voters/home.html', context = context)
 
 
 def profile(request):
@@ -55,7 +59,7 @@ def register(request):
                     reg_form1.save()
 
                     reg_form2 = registration_form2.save(commit=False)
-
+                    reg_form2.region = voter.voter_region
                     reg_form2.user = reg_form1
                     reg_form2.user.is_active = False
 
@@ -69,6 +73,7 @@ def register(request):
                         'uid': urlsafe_base64_encode(force_bytes(reg_form2.user.pk)).decode(),
                         'token': account_activation_token.make_token(reg_form2.user),
                     })
+                    print(message)
                     to_email = reg_form1.email
                     email = EmailMessage(
                         mail_subject, message, to=[to_email]
@@ -116,13 +121,14 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
+        # login(request, user)
         # return redirect('home')
         message = {'acc_confirmation_message': 'Thanks for activating your account. Now you can login to your account.'}
-        return render(request, 'voters/home.html', message)
+
     else:
-        err_message = {'acc_confirmation_message': 'Activation link is invalid!'}
-        return render(request, 'voters/home.html', err_message)
+        message = {'acc_confirmation_message': 'Activation link is invalid!'}
+
+    return render(request, 'voters/home.html', message)
 
 
 # ======================================================================================================================
@@ -138,10 +144,11 @@ def voter_login(request):
             if user.is_active:
                 login(request, user)
                 a = User.objects.get(username=username)
+                print("Should print first name")
                 print(a.first_name)
-                return render(request, 'voters/home.html',
-                              {'username': username, 'user_type': User.objects.get(username=username).first_name})
-
+                # return render(request, 'voters/home.html',
+                #               {'username': username, 'user_type': User.objects.get(username=username).first_name})
+                return redirect('evoting-home')
             else:
                 return HttpResponse('account not active')
 
@@ -197,3 +204,78 @@ def print_username(request):
 
 def test_ajax(request):
     return render(request, 'voters/test.html')
+
+def election(request,pk):
+
+    # region = request.POST.get('region', False)
+    print(request.user)
+    user = Voters_Profile.objects.get(user = request.user)
+    region = user.region
+    # voterid= request.POST.get('voterid',False)
+    # regions = candidateLog.objects.values_list('region_2', flat=True)
+    # voterId = voterLog.objects.values_list('voterid', flat=True)
+    #
+    # if region in regions:
+    #     if voterid not in voterId:
+    #       regions=candidateLog.objects.filter(region_2=reg
+
+
+    candidates = Candidate_election.objects.filter(election = pk)
+    candidates = {candidate.candidate for candidate in candidates}
+    candidates = {candidate for candidate in candidates if candidate.candidate_region in region}
+    print(candidates)
+    #candidates = {candidates for candidates.region in region}
+    #print(candidates)
+
+    #       candidates=regions.values_list('candidate')
+    #       candidate_ids=regions.values_list('candidate_id')
+    #       a=len(candidates)
+    #       #evenlist=[]
+    #       #oddlist=[]
+    #       candidates_new=[]
+    #       for i in range(0,len(candidates)):
+    #         candidates_new.append([candidates[i][0],candidate_ids[i][0]])
+    #       result_region={'region':region,'candidates_new':candidates_new,'regions':regions}
+    #       return render(request,"trail/index6.html",result_region)
+    #
+    candidates_new = []
+    region_options = {
+        '0': 'AndhraPradesh',
+        '1': 'Bihar',
+        '2': 'karnataka',
+        '3': 'Tamilnadu',
+        '4': 'Kerela',
+        '5': 'UttarPradesh',
+        '6': 'WestBengal',
+        '7': 'MadhyaPradesh',
+        '8': 'Haryana',
+        '9': 'Assam'
+    }
+    # candidate.candidate_region = region_options[candidate.candidate_region]
+    region = region_options[region]
+    for candidate in candidates:
+        candidates_new.append([candidate.candidate_name, candidate.candidate_id])
+    result_region = {'region': region, 'candidates_new': candidates_new}
+    return render(request, "trail/index6.html", result_region)
+    #     else:
+    #       return HttpResponse('Invalid Details!!')
+
+def candidate_details(request,pk):
+    template_name='trail/candidate_detail.html'
+    candidate=get_object_or_404(Candidate,candidate_id=pk)
+    region_options = {
+        '0': 'AndhraPradesh',
+        '1': 'Bihar',
+        '2': 'karnataka',
+        '3': 'Tamilnadu',
+        '4': 'Kerela',
+        '5': 'UttarPradesh',
+        '6': 'WestBengal',
+        '7': 'MadhyaPradesh',
+        '8': 'Haryana',
+        '9': 'Assam'
+    }
+    print(str(candidate.candidate_dob))
+    candidate.candidate_region = region_options[candidate.candidate_region]
+    dob = str(candidate.candidate_dob)
+    return render(request,template_name,{'object':candidate,'dob':dob})
