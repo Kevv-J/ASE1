@@ -15,7 +15,8 @@
     {% else %}
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}" style="text-align: center; color: red;z-index: 0">
+                <div class="alert alert-{{ message.tags }}" style="text-align: center; color:whitesmoke; font-weight: bold;
+                            border: 1px solid #008B8B; border-radius: 4px;">
                     {{ message }}
                 </div>
             {% endfor %}
