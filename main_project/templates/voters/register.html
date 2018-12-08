@@ -15,63 +15,55 @@
 
 {% endblock head %}
 {% block body %}
-        {% if user.is_authenticated %}
-            <div class="container" style="text-align: center;">
-                <h1 style="color: white">Oops!!</h1><br>
-                <h5 style="color: white">It seems you are logged in with an account.<br>Please logout to create a new account..</h5><br>
-                <h6 style="color: white">Or do you want to redirect to <a href="{% url 'evoting-home' %}">Home</a> page?</h6>
-            </div>
-        {% else %}
-            <div style="display: block;" class="container-fluid registration_table">
-                <form method="post">
-                    {% csrf_token %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div style="text-align: center; color:whitesmoke; font-weight: bold;
-                            border: 1px solid red; border-radius: 4px;">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                    <div class="row">
-                        <div class="col register_text" style="display: block" id="reg">
-                            REGISTER
-                        </div>
+    <div style="display: block;" class="container-fluid registration_table">
+        <form method="post">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div style="text-align: center; color:whitesmoke; font-weight: bold;
+                    border: 1px solid red; border-radius: 4px;">
+                        {{ message }}
                     </div>
-                    <div class="row">
-                        <div class="col ml-5 register_form" style="color: white; max-width: 430px;" id="reg_table">
-                                <div class="mt-4 fullname">
-                                    {{ reg_form2.fullname|as_crispy_field }}
-                                </div>
-                                <div class="mt-5 voterId">
-                                    {{ reg_form2.voterId|as_crispy_field }}
-                                </div>
-                                <div class="mt-5 username">
-                                    {{ reg_form1.username|as_crispy_field }}
-                                </div>
-                                <div class="mt-5 email">
-                                    {{ reg_form1.email|as_crispy_field }}
-                                </div>
-                                <div class="mt-5 password">
-                                    {{ reg_form1.password|as_crispy_field }}
-                                </div>
-                                <div class="" style="position: relative; margin-top: 10%">
-                                    <label style="position: relative; margin-right: 10px; font-weight: bold; font-size: 20px">
-                                        Date of Birth
-                                    </label>
-                                    <span style="position: relative; margin-left: 10%;">{{ reg_form2.voter_dob }}</span>
-                                </div>
+                {% endfor %}
+            {% endif %}
+            <div class="row">
+                <div class="col register_text" style="display: block" id="reg">
+                    REGISTER
+                </div>
+            </div>
+            <div class="row">
+                <div class="col ml-5 register_form" style="color: white; max-width: 430px;" id="reg_table">
+                    <div class="mt-4 fullname">
+                        {{ reg_form2.fullname|as_crispy_field }}
+                    </div>
+                    <div class="mt-5 voterId">
+                        {{ reg_form2.voterId|as_crispy_field }}
+                    </div>
+                    <div class="mt-5 username">
+                        {{ reg_form1.username|as_crispy_field }}
+                    </div>
+                    <div class="mt-5 email">
+                        {{ reg_form1.email|as_crispy_field }}
+                    </div>
+                    <div class="mt-5 password">
+                        {{ reg_form1.password|as_crispy_field }}
+                    </div>
+                    <div class="" style="position: relative; margin-top: 10%">
+                        <label style="position: relative; margin-right: 10px; font-weight: bold; font-size: 20px">
+                            Date of Birth
+                        </label>
+                        <span style="position: relative; margin-left: 10%;">{{ reg_form2.voter_dob }}</span>
+                    </div>
 
-                        </div>
-                        <div class="col reg_btn_div">
-                            <button type="submit" class="registration_btn" id="reg_btn">
-                                <img class="registration_btn_img" src="{% static 'register/imgs/next.png' %}">
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                </div>
+                <div class="col reg_btn_div">
+                    <button type="submit" class="registration_btn" id="reg_btn">
+                        <img class="registration_btn_img" src="{% static 'register/imgs/next.png' %}">
+                    </button>
+                </div>
             </div>
-        {% endif %}
+        </form>
+    </div>
 {% endblock body %}
 
 

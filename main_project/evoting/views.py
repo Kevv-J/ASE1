@@ -13,30 +13,26 @@ from evoting.tokens import account_activation_token
 from django.core.mail import EmailMessage, send_mail
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.shortcuts import get_object_or_404
-
-# Create your views here.
+from . import decoraters
 
 
 def base(request):
     return render(request, 'voters/base.html')
 
 
+@decoraters.voter_home
 def home(request):
     elections = Election.objects.all()
-    if str(request.user) != 'AnonymousUser':
-        user_type = User.objects.get(username=request.user).first_name
-    else:
-        user_type = 'null'
-    print(elections)
-    print("hi")
-    context = {'elections': elections, 'username': request.user, 'user_type': user_type}
+    context = {'elections': elections, 'username': request.user}
     return render(request, 'voters/home.html', context = context)
 
 
+@decoraters.voter_login_required
 def profile(request):
     return render(request, 'voters/profile.html', {'username': request.user.username})
 
 
+@decoraters.user_not_logged_in
 def register(request):
 
     registered = False
@@ -132,56 +128,56 @@ def activate(request, uidb64, token):
 
 
 # ======================================================================================================================
-
+@decoraters.user_not_logged_in
 def voter_login(request):
     if request.method == "POST":
         username = request.POST.get('username')
-        password = request.POST.get('password')
+        if hasattr(username, 'Voters_Profile'):
+            password = request.POST.get('password')
 
-        user = authenticate(username=username, password=password)
+            user = authenticate(username=username, password=password)
 
-        if user and User.objects.get(username=username).first_name == '':
             if user.is_active:
                 login(request, user)
-                a = User.objects.get(username=username)
-                print("Should print first name")
-                print(a.first_name)
-                # return render(request, 'voters/home.html',
-                #               {'username': username, 'user_type': User.objects.get(username=username).first_name})
                 return redirect('evoting-home')
             else:
                 return HttpResponse('account not active')
 
         else:
-            messages.error(request, f'Invalid login details!')
-            print()
-            return redirect(reverse('evoting-voter-login'))
+            messages.error(request, f'Invalid Login details')
+
+        return redirect(reverse('evoting-voter-login'))
+
     else:
         return render(request, 'voters/login.html', {'USER': 'voter'})
 
 
+@decoraters.user_not_logged_in
 def orgainser_login(request):
     if request.method == "POST":
         username = request.POST.get('username')
-        password = request.POST.get('password')
+        if not hasattr(username, 'Voters_Profile'):
+            password = request.POST.get('password')
 
-        user = authenticate(username=username, password=password)
+            user = authenticate(username=username, password=password)
 
-        if user and User.objects.get(username=username).first_name == 'Organiser':
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('organiser_app:mainpage'))
+                return redirect('organiser_app:mainpage')
 
             else:
                 return HttpResponse('account not active')
 
         else:
-            messages.error(request, f'Invalid login details!')
-            return redirect(reverse('evoting-organiser-login'))
+            messages.error(request, f'Invalid Login details')
+
+        return redirect(reverse('evoting-organiser-login'))
+
     else:
         return render(request, 'voters/login.html', {'USER': 'organiser'})
 
 
+@decoraters.user_login_required
 def user_logout(request):
     logout(request)
     return redirect('evoting-home')

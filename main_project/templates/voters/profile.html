@@ -5,13 +5,5 @@
 {% endblock head %}
 
 {% block body %}
-    {% if user.is_authenticated %}
-        <h2 style="text-align: center; color: white"><b>"{{ username }}"</b>, Your Profile Status will be displayed here...</h2>
-    {% else %}
-        <div class="container" style="text-align: center">
-            <h2 style="color: white">It seems you are not logged in!!</h2><br>
-            <h4 style="color: white">Login as<a href="{% url 'evoting-voter-login' %}">Voter</a> or
-                Login as <a href="{% url 'evoting-organiser-login' %}">Organiser</a> to go to your profile</h4>
-        </div>
-    {% endif %}
+    <h2 style="text-align: center; color: white"><b>"{{ username }}"</b>, Your Profile Status will be displayed here...</h2>
 {% endblock body %}

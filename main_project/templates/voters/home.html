@@ -9,33 +9,13 @@
 
 {% block body %}
 
-{% if acc_confirmation_message %}
-    <div class="alert alert-{{ message.tags }}" style="text-align: center; color:whitesmoke; font-weight: bold;
+    {% if acc_confirmation_message %}
+        <div class="alert alert-{{ message.tags }}" style="text-align: center; color:whitesmoke; font-weight: bold;
                             border: 1px solid #008B8B; border-radius: 4px;">
-        {{ acc_confirmation_message }}
-    </div>
-{% endif %}
-{%  if user.is_authenticated  %}
-    {% if user_type == 'Organiser' %}
-
-        <div class="container-fluid" style="text-align: center">
-            <div class="row">
-                <div class="col" style="color: whitesmoke">
-                    <fieldset style="border: 1px solid navajowhite">
-                        <legend style="position: relative; right: 30%">
-                            <h1>Hello, {{ username }}</h1>
-                        </legend>
-                        <h3>This is voters page, You cannot see this page</h3>
-                        <h5>Do you want us to redirect you to <a href="{% url 'organiser_app:mainpage' %}">Organiser page</a>?</h5>
-                        <div style="height: 1000px">
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
+            {{ acc_confirmation_message }}
         </div>
-
-    {% else %}
-
+    {% endif %}
+    {%  if user.is_authenticated  %}
 
         <div class="container" style="padding: 2%">
             <br>
@@ -100,87 +80,87 @@
                 {%  endfor  %}
             </table>
         </div>
-    {% endif %}
+
 {% else %}
 
-    <div class="container-fluid mt-7 border_t_b" id="login_container"
-         style="text-align: center; background-color: rgba(0, 128, 128, 0.7); height: 470px; display: block">
-        <div class="row" style="padding: 4.5%;">
-            <div class="col" id="organiser_div" onmouseover="expand_organiser()" onmouseout="contract_organiser()"
-                 style="padding: 5%; border: 2px solid mintcream; display: block; height: 350px;">
-                <div id="organiser_link_align">
-                    <i class="material-icons md-200" id="org_icn"
-                       style="color: burlywood; border-radius: 8px; text-shadow: 4px 4px 10px black;">
-                        person_outline
-                    </i>
-                    <h1 id="organiser" style="font-family: Calibri; font-weight: bolder;position: relative; color: #008B8B">
-                        ORGANISER
-                    </h1>
-                    <a href="{% url 'evoting-organiser-login' %}" id="organiser_link"
-                       style="text-decoration: none; position: relative">
-                        <h1 id="org_lnk" style="font-family: Calibri; font-weight: bolder;">
-                            ORGANISER LOGIN
+        <div class="container-fluid mt-7 border_t_b" id="login_container"
+             style="text-align: center; background-color: rgba(0, 128, 128, 0.7); height: 470px; display: block">
+            <div class="row" style="padding: 4.5%;">
+                <div class="col" id="organiser_div" onmouseover="expand_organiser()" onmouseout="contract_organiser()"
+                     style="padding: 5%; border: 2px solid mintcream; display: block; height: 350px;">
+                    <div id="organiser_link_align">
+                        <i class="material-icons md-200" id="org_icn"
+                           style="color: burlywood; border-radius: 8px; text-shadow: 4px 4px 10px black;">
+                            person_outline
+                        </i>
+                        <h1 id="organiser" style="font-family: Calibri; font-weight: bolder;position: relative; color: #008B8B">
+                            ORGANISER
                         </h1>
-                    </a>
+                        <a href="{% url 'evoting-organiser-login' %}" id="organiser_link"
+                           style="text-decoration: none; position: relative">
+                            <h1 id="org_lnk" style="font-family: Calibri; font-weight: bolder;">
+                                ORGANISER LOGIN
+                            </h1>
+                        </a>
+                    </div>
+                    <div class="organisers_description" id="org_desc">
+                        <p>A little description about Organisers</p>
+                    </div>
                 </div>
-                <div class="organisers_description" id="org_desc">
-                    <p>A little description about Organisers</p>
-                </div>
-            </div>
-            <div class="col" id="voter_div" onmouseover="expand_voter()" onmouseout="contract_voter()"
-                 style="padding: 5%; border: 2px solid mintcream; display: block; height: 350px;">
-                <div id="voter_link_align">
-                    <i class="material-icons md-200" id="vtr_icn"
-                       style="color: bisque; border-radius: 8px; text-shadow: 4px 4px 10px black;">
-                        people_outline
-                    </i>
-                    <h1 id="voter" style="font-family: Calibri; font-weight: bolder;position: relative; color: #008B8B">
-                        VOTER
-                    </h1>
-                    <a href="{% url 'evoting-voter-login' %}" id="voter_link"
-                       style="text-decoration: none; position: relative">
-                        <h1 id="vtr_lnk" style="font-family: Calibri; font-weight: bolder;">
-                            VOTER LOGIN
+                <div class="col" id="voter_div" onmouseover="expand_voter()" onmouseout="contract_voter()"
+                     style="padding: 5%; border: 2px solid mintcream; display: block; height: 350px;">
+                    <div id="voter_link_align">
+                        <i class="material-icons md-200" id="vtr_icn"
+                           style="color: bisque; border-radius: 8px; text-shadow: 4px 4px 10px black;">
+                            people_outline
+                        </i>
+                        <h1 id="voter" style="font-family: Calibri; font-weight: bolder;position: relative; color: #008B8B">
+                            VOTER
                         </h1>
-                    </a>
-                </div>
-                <div class="voters_description" id="vtr_desc">
-                    <p>A little description about Voters</p>
+                        <a href="{% url 'evoting-voter-login' %}" id="voter_link"
+                           style="text-decoration: none; position: relative">
+                            <h1 id="vtr_lnk" style="font-family: Calibri; font-weight: bolder;">
+                                VOTER LOGIN
+                            </h1>
+                        </a>
+                    </div>
+                    <div class="voters_description" id="vtr_desc">
+                        <p>A little description about Voters</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-{%  endif  %}
+    {%  endif  %}
 
     <!-- =====================================Js Functions============================= -->
-<script>
-    $(window).scroll(function(){
-        var scrollTop = $(window).scrollTop();
-        if(scrollTop < 100){
-            cont_maxHeight = 470;
-            col_maxHeight = 350;
-            icn_fnt = 200;
-            txt_fnt = 40;
-        }else if(scrollTop > 250){
-            cont_maxHeight = 270;
-            col_maxHeight = 185;
-            txt_fnt = 20;
-            icn_fnt = 80;
-        }else{
-            cont_maxHeight = 470 - (470 * (scrollTop - 100) / 350);
-            col_maxHeight = 350 - (350 * (scrollTop - 130) / 250);
-            icn_fnt = 200 - (200 * (scrollTop - 100) / 250);
-            txt_fnt = 40 - (40 * (scrollTop - 100) / 300);
-        }
-        $('#login_container').stop().animate({'height': cont_maxHeight+"px"}, 0);
-        $('#organiser_div').stop().animate({'max-height': col_maxHeight+"px"}, 0);
-        $('#voter_div').stop().animate({'max-height': col_maxHeight+"px"}, 0);
-        $('#org_icn').stop().animate({'font-size': icn_fnt+"px"}, 0);
-        $('#vtr_icn').stop().animate({'font-size': icn_fnt+"px"}, 0);
-        $('#organiser').stop().animate({'font-size': txt_fnt+"px"}, 0);
-        $('#voter').stop().animate({'font-size': txt_fnt+"px"}, 0);
-    })
-</script>
+    <script>
+        $(window).scroll(function(){
+            var scrollTop = $(window).scrollTop();
+            if(scrollTop < 100){
+                cont_maxHeight = 470;
+                col_maxHeight = 350;
+                icn_fnt = 200;
+                txt_fnt = 40;
+            }else if(scrollTop > 250){
+                cont_maxHeight = 270;
+                col_maxHeight = 185;
+                txt_fnt = 20;
+                icn_fnt = 80;
+            }else{
+                cont_maxHeight = 470 - (470 * (scrollTop - 100) / 350);
+                col_maxHeight = 350 - (350 * (scrollTop - 130) / 250);
+                icn_fnt = 200 - (200 * (scrollTop - 100) / 250);
+                txt_fnt = 40 - (40 * (scrollTop - 100) / 300);
+            }
+            $('#login_container').stop().animate({'height': cont_maxHeight+"px"}, 0);
+            $('#organiser_div').stop().animate({'max-height': col_maxHeight+"px"}, 0);
+            $('#voter_div').stop().animate({'max-height': col_maxHeight+"px"}, 0);
+            $('#org_icn').stop().animate({'font-size': icn_fnt+"px"}, 0);
+            $('#vtr_icn').stop().animate({'font-size': icn_fnt+"px"}, 0);
+            $('#organiser').stop().animate({'font-size': txt_fnt+"px"}, 0);
+            $('#voter').stop().animate({'font-size': txt_fnt+"px"}, 0);
+        })
+    </script>
 
 {% endblock body %}
