@@ -1,4 +1,4 @@
-{% extends 'graphs/index2.html' %}
+{% extends 'graphs/maincharts.html' %}
 
 <script>
 {% block jquery %}
@@ -80,7 +80,9 @@
       {% endblock jquery %}
     </script>
 {%  block content %}
+        <div style="height: 250px"></div>
         <div class="jumbotron" id="chart">
-            <canvas id="myChart1" width="100" height="80"></canvas>
+            <canvas id="myChart1" width="90" height="70"></canvas>
         </div>
+        <div style="height: 200px"></div>
 {% endblock content %}

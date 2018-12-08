@@ -1,17 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Gen,Feedback, Report_data
+from organiser_app.models import *
 from django.core.mail import send_mail
 from django.conf import settings
 # Create your views here.
 from django.template import RequestContext
 # from django.shortcuts import render_to_response
-from matplotlib.backends.backend_agg import FigureCanvasAgg
-import io
-import matplotlib.pyplot
-import matplotlib.pyplot as plt
-import numpy as np
-import random
 
 from django.http import JsonResponse
 from django.views.generic import View

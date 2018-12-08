@@ -1,11 +1,18 @@
-{% extends 'graphs/maincharts.html' %}
+<!DOCTYPE HTML>
 {% load staticfiles %}
-{% block head %}
-
-    <link rel="stylesheet" href="{% static 'graphs\css1\style.css' %}">
-{% endblock head %}
-{%  block body %}
-
+<html>
+<head>
+    <title>
+        Feedback
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'graphs\css1\style.css' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body  background="{% static 'graphs/images/bg1.jpg' %}"  >
 <div class="feedback-page">
   <div class="form">
     <form class="feedback-form" action="{% url 'charts:get_feedback' %}" method="POST">
@@ -14,7 +21,7 @@
       <label for="name1">Name:</label>
       <input type="text" id="name" name="name1" placeholder="Name"/>
       <label for="feedback">Feedback</label>
-        <textarea rows="10" id="feedback" name="feedback" placeholder="Enter Feedback"/></textarea>
+        <textarea rows="20" id="feedback" name="feedback" placeholder="Enter Feedback"/></textarea>
       <label for="stars">Rate Stars:</label><br>
        <fieldset class="rating">
         <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -27,5 +34,5 @@
     </form>
   </div>
 </div>
-<div style="height: 400px"></div>
-{% endblock body %}
+</body>
+</html>

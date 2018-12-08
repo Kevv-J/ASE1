@@ -103,7 +103,6 @@ class Election_region(models.Model):
     election=models.ForeignKey(Election,on_delete=models.CASCADE)
     region=models.CharField(choices=region_options,null=False,max_length=10)
 
-
 class Vote_count(models.Model):
     voter=models.ForeignKey(Voter,on_delete=models.CASCADE)
     candidate=models.ForeignKey(Candidate,on_delete=models.CASCADE)
