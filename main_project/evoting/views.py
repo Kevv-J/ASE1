@@ -12,6 +12,7 @@ from django.template.loader import render_to_string
 from evoting.tokens import account_activation_token
 from django.core.mail import EmailMessage, send_mail
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -26,7 +27,10 @@ def home(request):
         user_type = User.objects.get(username=request.user).first_name
     else:
         user_type = 'null'
-    return render(request, 'voters/home.html', {'elections': elections, 'username': request.user, 'user_type': user_type})
+    print(elections)
+    print("hi")
+    context = {'elections': elections, 'username': request.user, 'user_type': user_type}
+    return render(request, 'voters/home.html', context = context)
 
 
 def profile(request):
@@ -213,8 +217,13 @@ def election(request,pk):
     #     if voterid not in voterId:
     #       regions=candidateLog.objects.filter(region_2=reg
 
-    candidates = Candidate_election.objects.filter(pk = pk)
-    candidates = {candidates for candidates.region in region}
+
+    candidates = Candidate_election.objects.filter(election = pk)
+    candidates = {candidate.candidate for candidate in candidates}
+    candidates = {candidate for candidate in candidates if candidate.candidate_region in region}
+    print(candidates)
+    #candidates = {candidates for candidates.region in region}
+    #print(candidates)
 
     #       candidates=regions.values_list('candidate')
     #       candidate_ids=regions.values_list('candidate_id')
@@ -229,7 +238,7 @@ def election(request,pk):
     #
     candidates_new = []
     for candidate in candidates:
-        candidates_new.append([candidate.candidate_name,candidate.candidate_id])
+        candidates_new.append([candidate.candidate_name, candidate.candidate_id])
     result_region = {'region': region, 'candidates_new': candidates_new}
     return render(request, "trail/index6.html", result_region)
     #     else:
@@ -237,5 +246,20 @@ def election(request,pk):
 
 def candidate_details(request,pk):
     template_name='trail/candidate_detail.html'
-    candidate=get_object_or_404(Candidate,pk=pk)
-    return render(request,template_name,{'object':candidate})
+    candidate=get_object_or_404(Candidate,candidate_id=pk)
+    region_options = {
+        '0': 'AndhraPradesh',
+        '1': 'Bihar',
+        '2': 'karnataka',
+        '3': 'Tamilnadu',
+        '4': 'Kerela',
+        '5': 'UttarPradesh',
+        '6': 'WestBengal',
+        '7': 'MadhyaPradesh',
+        '8': 'Haryana',
+        '9': 'Assam'
+    }
+    print(str(candidate.candidate_dob))
+    candidate.candidate_region = region_options[candidate.candidate_region]
+    dob = str(candidate.candidate_dob)
+    return render(request,template_name,{'object':candidate,'dob':dob})

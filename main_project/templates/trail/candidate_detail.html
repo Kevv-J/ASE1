@@ -37,18 +37,18 @@
             <div class="card">
                 <br><div><img style="width:200px;height:200px;border-radius:50%" src="{% static "trail/voting_back.jpg"%}" alt = "hello!!" ></div>
                 <h1></h1>
-                <h4>I am <b style="color:red">{{ object.candidate }}</b></h4>
+                <h4>I am <b style="color:red">{{ object.candidate_name }}</b></h4>
                 <br><div class=class1>
-                <a href="#" title="email-id" data-toggle="popover" data-placement="top" data-content={{ object.email }}>
+                <a href="#" title="email-id" data-toggle="popover" data-placement="top" data-content={{ object.candidate_email }}>
                     <img src="{% static "trail/mail.png"%}" style="width:50px;height:50px">
                 </a>
-                <a href="#" title="phone-no" data-toggle="popover" data-placement="top" data-content={{ object.phone_no }}>
-                    <img src="{% static "trail/phone.jpg"%}" style="width:50px;width:50px">
-                </a>
-                <a href="#" title="date-of-birth" data-toggle="popover" data-placement="top" data-content={{ object.date_birth }}>
+                <!--<a href="#" title="phone-no" data-toggle="popover" data-placement="top" data-content={{ object.phone_no }}>-->
+                    <!--<img src="{% static "trail/phone.jpg"%}" style="width:50px;width:50px">-->
+                <!--</a>-->
+                <a href="#" title="date-of-birth" data-toggle="popover" data-placement="top" data-content={{ dob }}>
                     <img src="{% static "trail/calender.png"%}" style="width:50px;width:50px">
                 </a>
-                <a href="#" title="region" data-toggle="popover" data-placement="top" data-content={{ object.region_2 }}>
+                <a href="#" title="region" data-toggle="popover" data-placement="top" data-content={{ object.candidate_region }}>
                     <img src="{% static "trail/loca.png"%}" style="width:50px;height:50px">
                 </a>
             </div>
