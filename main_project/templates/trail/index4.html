@@ -1,29 +1,23 @@
-{% load static %}
-<!DOCTYPE html>
-<!--suppress ALL -->
-<html lang="en">
-<head>
+{% extends 'voters/base.html' %}
+{% load staticfiles %}
+{% block head %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>mypage</title>
-   <link rel="stylesheet" type="text/css" href="{% static "trail/base.css" %}"/>
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "trail/base.css" %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+{% endblock head %}
 
+{% block body %}
+<!---top button-->
 
-</head>
-<body>
-<ul>
-  <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-  <li><a href="#" style="text-decoration: none;">feedback</a></li>
-  <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-log-out"></span>logout</a></li>
-  <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-user"></span>user</a></li>
-</ul>
 <button onclick="topFunction()" id="myBtn" title="Go to top"><span class="glyphicon glyphicon-chevron-up "></span></button>
    <div id="navbar">
 
    </div>
+<!--timer-->
     <div class="background">
     <center>
 	<h1 style="font-family: 'Britannic Bold'">THE ELECTIONS WILL START IN </h1>
@@ -57,6 +51,7 @@
 
 
     <br>
+<!--- number of candidates available-->
 <div class="clipped">
     <table>
     <tr>
@@ -75,20 +70,10 @@
     </tr>
     </table>
 </div>
-       <br><br>
-       <div class="contact">
-           <center>
-               <br><div style="color:white;font-size:20px;font-family: 'Britannic Bold'">For any queries You can contact us to the number<br><span class="glyphicon glyphicon-phone-alt"></span>+321654987,<span class="glyphicon glyphicon-earphone"></span>91201054548</div>
-           </center>
-           <center><a href="#"><img src="{% static "trail/twitter-logo-sketch.jpg" %}" style="height:50px;width:50px"></a>
-           <a href="#"> <img src="{% static "trail/fb.jpg" %}" style="height:50px;width:50px"></a>
-           <a href="#"><img src="{% static "trail/insta.jpg" %}" style="height:50px;width:50px"></a>
-           <br><br><p><a href="#"><img src="{% static "trail/loca.png" %}" style="height:50px;width:50px"></a>
-           <div style="font-family: 'Britannic Bold';font-size:15px;color:red">Adress:</div><span style="color:white">2town road,sricity</span></p>
-           </center>
-       </div>
+       <br>
 
 
+<!---- javascript code---->
 <script>
 
     function date_time() {
@@ -164,6 +149,4 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 </script>
-
- </body>
-</html>
+{% endblock body %}

@@ -8,6 +8,13 @@
 {% endblock head %}
 
 {% block body %}
+
+{% if acc_confirmation_message %}
+    <div class="alert alert-{{ message.tags }}" style="text-align: center; color:whitesmoke; font-weight: bold;
+                            border: 1px solid #008B8B; border-radius: 4px;">
+        {{ acc_confirmation_message }}
+    </div>
+{% endif %}
 {%  if user.is_authenticated  %}
     {% if user_type == 'Organiser' %}
 

@@ -121,13 +121,14 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
+        # login(request, user)
         # return redirect('home')
         message = {'acc_confirmation_message': 'Thanks for activating your account. Now you can login to your account.'}
-        return render(request, 'voters/home.html', message)
+
     else:
-        err_message = {'acc_confirmation_message': 'Activation link is invalid!'}
-        return render(request, 'voters/home.html', err_message)
+        message = {'acc_confirmation_message': 'Activation link is invalid!'}
+
+    return render(request, 'voters/home.html', message)
 
 
 # ======================================================================================================================
@@ -143,10 +144,11 @@ def voter_login(request):
             if user.is_active:
                 login(request, user)
                 a = User.objects.get(username=username)
+                print("Should print first name")
                 print(a.first_name)
-                return render(request, 'voters/home.html',
-                              {'username': username, 'user_type': User.objects.get(username=username).first_name})
-
+                # return render(request, 'voters/home.html',
+                #               {'username': username, 'user_type': User.objects.get(username=username).first_name})
+                return redirect('evoting-home')
             else:
                 return HttpResponse('account not active')
 
@@ -238,6 +240,20 @@ def election(request,pk):
     #       return render(request,"trail/index6.html",result_region)
     #
     candidates_new = []
+    region_options = {
+        '0': 'AndhraPradesh',
+        '1': 'Bihar',
+        '2': 'karnataka',
+        '3': 'Tamilnadu',
+        '4': 'Kerela',
+        '5': 'UttarPradesh',
+        '6': 'WestBengal',
+        '7': 'MadhyaPradesh',
+        '8': 'Haryana',
+        '9': 'Assam'
+    }
+    # candidate.candidate_region = region_options[candidate.candidate_region]
+    region = region_options[region]
     for candidate in candidates:
         candidates_new.append([candidate.candidate_name, candidate.candidate_id])
     result_region = {'region': region, 'candidates_new': candidates_new}
