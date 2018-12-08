@@ -121,13 +121,14 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
+        # login(request, user)
         # return redirect('home')
         message = {'acc_confirmation_message': 'Thanks for activating your account. Now you can login to your account.'}
-        return render(request, 'voters/home.html', message)
+
     else:
-        err_message = {'acc_confirmation_message': 'Activation link is invalid!'}
-        return render(request, 'voters/home.html', err_message)
+        message = {'acc_confirmation_message': 'Activation link is invalid!'}
+
+    return render(request, 'voters/home.html', message)
 
 
 # ======================================================================================================================
@@ -143,10 +144,11 @@ def voter_login(request):
             if user.is_active:
                 login(request, user)
                 a = User.objects.get(username=username)
+                print("Should print first name")
                 print(a.first_name)
-                return render(request, 'voters/home.html',
-                              {'username': username, 'user_type': User.objects.get(username=username).first_name})
-
+                # return render(request, 'voters/home.html',
+                #               {'username': username, 'user_type': User.objects.get(username=username).first_name})
+                return redirect('evoting-home')
             else:
                 return HttpResponse('account not active')
 
