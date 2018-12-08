@@ -36,7 +36,26 @@ class Electionform(forms.ModelForm):
 
 
 class Voterform(forms.ModelForm):
-    voter_dob = forms.DateField(widget=forms.SelectDateWidget(years=range(1950, 2002)))
+    voter_dob = forms.DateField(
+        widget=forms.DateInput(
+
+            attrs={
+                'id': 'date',
+                'name': 'dob',
+                'placeholder': 'YYYY/MM/DD',
+                'type': 'date',
+            }
+        )
+    )
+    voter_age = forms.CharField(
+        widget=forms.NumberInput(
+            attrs={
+                'id': 'age',
+                'placeholder': 'Voter Age',
+
+            }
+        )
+    )
 
     class Meta:
         model = Voter
