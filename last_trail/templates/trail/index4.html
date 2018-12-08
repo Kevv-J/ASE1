@@ -1,5 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,191 +14,156 @@
 
 </head>
 <body>
+<ul>
+  <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+  <li><a href="#" style="text-decoration: none;">feedback</a></li>
+  <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-log-out"></span>logout</a></li>
+  <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-user"></span>user</a></li>
+</ul>
+<button onclick="topFunction()" id="myBtn" title="Go to top"><span class="glyphicon glyphicon-chevron-up "></span></button>
+   <div id="navbar">
 
-   <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
+   </div>
+    <div class="background">
+    <center>
+	<h1 style="font-family: 'Britannic Bold'">THE ELECTIONS WILL START IN </h1>
+	<div id="clockdiv">
+	  <div>
+		<span id="days"></span>
+		<div class="smalltext">Days</div>
+	  </div>
+	  <div>
+		<span id="hours"></span>
+		<div class="smalltext">Hours</div>
+	  </div>
+	  <div>
+		<span id="minutes"></span>
+		<div class="smalltext">Minutes</div>
+	  </div>
+	  <div>
+		<span id="seconds"></span>
+		<div class="smalltext">Seconds</div>
+	  </div>
+	</div>
 
-         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">logout</a></li>
-            <li><a href="#">about</a></li>
-            <li><a href="#">contact</a></li>
-         </ul>
-      </div>
-   </nav>
-        <div class="display-text">
-          <img src="{% static "trail/back1.jpg"%}" style="width:100%;height:500px">
-            <div class="centered animated lightSpeedIn" style="font-family: 'Britannic Bold'">i am a good gal<br> i am a good gal</div>
+        <div class="container">
+        <h1 style=" font-family: 'Britannic Bold'">Welcome to region <b style="color: red;">{{ region }}</b></h1>
 
-        </div>
+        <h3 style="font-family: 'Britannic Bold'">Below mentioned is the list of candidates in the region {{ region }}</h3>
+    </div>
+</center>
 
-    <div class="container">
-        <h1>WELCOME TO THE REGION <b style="color:red">{{ region }}</b></h1>
-    </div><br>
+    </div>
 
-        <div class="container3">
-        <div class="timeline">
+
+    <br>
+<div class="clipped">
+    <table>
+    <tr>
               {% for i in candidates_new %}
-                {% if  i in evenlist %}
-
-                  <div class="container2 left">
-                    <div class="content">
-                        <b><h2 style="color:red;font-family: 'Britannic Bold'">{{ i }}</h2></b>
-                      <p> Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
-                    </div>
-                  </div>
-
-                {% endif %}
-                  {% if i in oddlist %}
-
-                  <div class="container2 right">
-                    <div class="content">
-                        <b><h2 style="color:red;font-family: 'Britannic Bold'">{{ i }}</h2></b>
-                      <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
-                    </div>
-                  </div>
-
-                  {% endif %}
-
+                  <td style="padding: 20px;">
+                   <div class="card">
+                    <br><div><img style="width:200px;height:200px;border-radius:50%" src="{% static "trail/voting_back.jpg"%}" alt = "hello!!" ></div>
+                    <h1></h1>
+                    <h4> <b style="color:black">i am {{ i.0 }}</b></h4>
+                        <form action="{% url 'candidate_details' i.1 %}" method="POST">
+                        {%  csrf_token %}
+                    <button class="button1"><span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span></button>
+                        </form></div>
+                  </td>
                 {% endfor %}
-            </div>
-        </div>
-
-
-
-       <div id="myModal" class="modal">
-
-
-          <div class="modal-content">
-            <span class="close">&times</span>
-              <span class="rounded-table"><img src="{% static "trail/student-loan.jpg" %}" style="width:50px;height:50px">i am a good gal.i am a good gali am a good gali am a good gal</span>
-              <br><br><span class="rounded-table"><img src="{% static "trail/student-loan.jpg" %}" style="width:50px;height:50px">i am a good gal.i am a good gali am a good gali am a good gal</span>
-             <br><br> <span class="rounded-table"><img src="{% static "trail/student-loan.jpg" %}" style="width:50px;height:50px">i am a good gal.i am a good gali am a good gali am a good gal</span>
-              <br><br> <span class="rounded-table"><img src="{% static "trail/student-loan.jpg" %}" style="width:50px;height:50px">i am a good gal.i am a good gali am a good gali am a good gal</span>
-          </div>
-       </div>
-<br>
-   <div>
-       <table>
-        <tr>
-           <td>
-               <div class="flip-card">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="{% static "trail/voting_back.jpg"%}"  class="img-thumbnail" style="width:300px;height:300px;">
-                        </div>
-                        <div class="flip-card-back">
-                            <h1>John Doe</h1>
-                            <p>region</p>
-                            <p>i am a wait fellow</p>
-                            <button class="button1" id="myBtn1">read more</button>
-                        </div>
-                    </div>
-               </div>
-           </td>
-       <td>
-           <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="{% static "trail/voting_back.jpg"%}" alt="Avatar"  class="img-thumbnail"style="width:300px;height:300px;">
-                </div>
-                <div class="flip-card-back">
-                    <h1>John Doe</h1>
-                    <p>Region</p>
-                    <p >no no speciality about me</p>
-                    <button class="button1" onmouseover="mouseover()">read more</button>
-
-                        </div>
-                </div>
-            </div>
-
-       </td>
-           <td> <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="{% static "trail/voting_back.jpg"%}" alt="Avatar"  class="img-thumbnail"style="width:300px;height:300px;">
-                </div>
-                <div class="flip-card-back">
-                    <h1>John Doe</h1>
-                    <p>Region</p>
-                    <p >no no speciality about me</p>
-                    <button class="button1" id="myBtn3">read more</button>
-
-                        </div>
-                </div>
-            </div>
-
-       </td>
-           <td> <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="{% static "trail/voting_back.jpg"%}" alt="Avatar"  class="img-thumbnail"style="width:300px;height:300px;">
-                </div>
-                <div class="flip-card-back">
-                    <h1>John Doe</h1>
-                    <p>Region</p>
-                    <p >no no speciality about me</p>
-                    <button class="button1" id="myBtn4">read more</button>
-
-                        </div>
-                </div>
-            </div>
-
-       </td>
-       </tr>
-   </table>
-        </div>
+    </tr>
+    </table>
+</div>
        <br><br>
        <div class="contact">
            <center>
-               <br><div style="color:white;font-size:20px;font-family: 'Britannic Bold'">For any queries You can contact us to the number<br>+321654987,91201054548</div>
+               <br><div style="color:white;font-size:20px;font-family: 'Britannic Bold'">For any queries You can contact us to the number<br><span class="glyphicon glyphicon-phone-alt"></span>+321654987,<span class="glyphicon glyphicon-earphone"></span>91201054548</div>
            </center>
            <center><a href="#"><img src="{% static "trail/twitter-logo-sketch.jpg" %}" style="height:50px;width:50px"></a>
            <a href="#"> <img src="{% static "trail/fb.jpg" %}" style="height:50px;width:50px"></a>
            <a href="#"><img src="{% static "trail/insta.jpg" %}" style="height:50px;width:50px"></a>
-           <br><br><p><a href="#"><img src="{% static "trail/locatio.png" %}" style="height:50px;width:50px"></a>
+           <br><br><p><a href="#"><img src="{% static "trail/loca.png" %}" style="height:50px;width:50px"></a>
            <div style="font-family: 'Britannic Bold';font-size:15px;color:red">Adress:</div><span style="color:white">2town road,sricity</span></p>
            </center>
        </div>
 
-  <script>
-var modal=document.getElementById('myModal');
-// Get the button that opens the modal
-function mouseover() {
-     modal.style.display = "block";
-}
-var btn1 = document.getElementById("myBtn1");
-var btn3 = document.getElementById("myBtn3");
-var btn4 = document.getElementById("myBtn4");
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal
-btn1.onclick = function() {
-    modal.style.display = "block";
-}
+<script>
 
-btn3.onclick = function() {
-    modal.style.display = "block";
-}
-btn4.onclick = function() {
-    modal.style.display = "block";
-}
+    function date_time() {
+        var date=new Date();
+        var new_date=new Date("Dec 7 2018 16:40");
+        var d=new_date.getDate() - date.getDate();
+        var h=new_date.getHours() - date.getHours();
+        var m=new_date.getMinutes() - date.getMinutes();
+        var s=new_date.getSeconds() - date.getSeconds();
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
+        if(d<0)
+            document.getElementById("days").innerHTML=d*-1;
+        else
+            document.getElementById("days").innerHTML=d;
+        if(h<0)
+            document.getElementById("hours").innerHTML=h*-1;
+        else
+            document.getElementById("hours").innerHTML=h;
+        if(m<0)
+            document.getElementById("minutes").innerHTML=m*-1;
+        else
+            document.getElementById("minutes").innerHTML=m
+        if(s<0)
+            document.getElementById("seconds").innerHTML=s*-1;
+        else
+            document.getElementById("seconds").innerHTML=s;
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+        setInterval(function(){
+            currentnumber = Number(document.getElementById('seconds').innerHTML);
+            currentmin = Number(document.getElementById('minutes').innerHTML);
+            currenthours = Number(document.getElementById('hours').innerHTML);
+            currentdays = Number(document.getElementById('days').innerHTML);
+            currentseconds=currentnumber-1;
+            if(currentseconds<0 & currentmin>0) {
+                currentseconds = 59;
+                currentmin = currentmin - 1;
+                if (currentmin < 0 & currenthours > 0) {
+                    currentmin = 59;
+                    currenthours = currenthours - 1;
+                    if (currenthours < 0 & currentdays > 0) {
+                        currenthours = 23;
+                        currentdays = currentdays - 1;
+                        if (currentdays < 0) {
+                            currentdays = 0;
+                            currenthours = 0;
+                            currentmin = 0;
+                            currentseconds = 0;
+                        }
+                    }
+                }
+            }
+            document.getElementById('seconds').innerHTML=currentseconds;
+            document.getElementById('minutes').innerHTML=currentmin;
+            document.getElementById('hours').innerHTML=currenthours;
+            document.getElementById('days').innerHTML=currentdays;
+ },1000);
+    }
+
+    date_time()
+    window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+        document.getElementById("myBtn").style.display = "block";
+    } else {
+        document.getElementById("myBtn").style.display = "none";
     }
 }
-  </script>
 
 
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+</script>
 
  </body>
 </html>

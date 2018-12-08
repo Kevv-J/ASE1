@@ -22,3 +22,5 @@ class candidateLog(models.Model):
     def __str__(self):
         return str(self.candidate_id)
 
+
+

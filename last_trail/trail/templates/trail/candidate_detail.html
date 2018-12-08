@@ -2,37 +2,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Card</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static "trail/base.css" %}">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <style>
+
+    </style>
 </head>
 <body>
+<ul>
+    <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+    <li><a href="#" style="text-decoration: none;">feedback</a></li>
+    <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-log-out"></span>logout</a></li>
+    <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-user"></span>user</a></li>
+    <li><a href="#"  onclick="history.back()" style="text-decoration: none;">go back</a></li>
+</ul>
 
-<div class="container">
-  <h1 class="font animated rubberBand">candidate information</h1>
-    <button class="button_newpage animated rubberBand" onclick="history.back();">go back!!</button>
- <br><br>
+<center>
 
-        <table>
-            <tr><td><img src="{% static "trail/voting_back.jpg" %}" style="width:250px;height: 250px;float:left" ></td>
+    <h1 class="font animated rubberBand" style="color:red">candidate information</h1>
 
-        <td>
-            <h5 class="font animated lightSpeedIn">candidate name:{{ object.candidate }}</h5>
-            <br><h5 class="font animated lightSpeedIn">candidate region:{{ object.region_2 }}</h5>
-            <br><h5 class="font animated lightSpeedIn">date of birth:{{ object.date_birth }}</h5>
-            <br><h5 class="font animated lightSpeedIn">phone number:{{ object.phone_no }}</h5>
-            <br><h5 class="font animated lightSpeedIn">email id:{{ object.email }}</h5>
-        </td>
-            </tr>
-        </table>
+    <br>
 
-</div>
 
+    <center>
+        <div class="container">
+            <div class="card">
+                <br><div><img style="width:200px;height:200px;border-radius:50%" src="{% static "trail/voting_back.jpg"%}" alt = "hello!!" ></div>
+                <h1></h1>
+                <h4>I am <b style="color:red">{{ object.candidate }}</b></h4>
+                <br><div class=class1>
+                <a href="#" title="email-id" data-toggle="popover" data-placement="top" data-content={{ object.email }}>
+                    <img src="{% static "trail/mail.png"%}" style="width:50px;height:50px">
+                </a>
+                <a href="#" title="phone-no" data-toggle="popover" data-placement="top" data-content={{ object.phone_no }}>
+                    <img src="{% static "trail/phone.jpg"%}" style="width:50px;width:50px">
+                </a>
+                <a href="#" title="date-of-birth" data-toggle="popover" data-placement="top" data-content={{ object.date_birth }}>
+                    <img src="{% static "trail/calender.png"%}" style="width:50px;width:50px">
+                </a>
+                <a href="#" title="region" data-toggle="popover" data-placement="top" data-content={{ object.region_2 }}>
+                    <img src="{% static "trail/loca.png"%}" style="width:50px;height:50px">
+                </a>
+            </div>
+            </div>
+        </div>
+    </center>
+
+
+
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
 </body>
 </html>
