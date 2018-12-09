@@ -5,18 +5,25 @@
 
     <title>E-Voting Home</title>
 
+        <style>
+        </style>
+
 {% endblock head %}
 
 {% block body %}
 
-    {% if acc_confirmation_message %}
-        <div class="alert alert-{{ message.tags }}" style="text-align: center; color:whitesmoke; font-weight: bold;
-                            border: 1px solid #008B8B; border-radius: 4px;">
-            {{ acc_confirmation_message }}
-        </div>
-    {% endif %}
-    {%  if user.is_authenticated  %}
+    {% if messages %}
 
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" style="text-align: center; color:whitesmoke; font-weight: bold;
+                        border: 1px solid #008B8B; border-radius: 4px;">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+    {%  if user.is_authenticated  %}
         <div class="container" style="padding: 2%">
             <br>
             <br>
@@ -80,8 +87,15 @@
                 {%  endfor  %}
             </table>
         </div>
+    {% else %}
 
-{% else %}
+        <div class="container-fluid" style="position: relative; width: 100%; height: 100vh;">
+            <div class="row">
+                <div class="col" style="height: 500px; text-align: center">
+                    <img src="{% static 'home/imgs/right_to_vote.png' %}" class="mt-5" style="width: 600px">
+                </div>
+            </div>
+        </div>
 
         <div class="container-fluid mt-7 border_t_b" id="login_container"
              style="text-align: center; background-color: rgba(0, 128, 128, 0.7); height: 470px; display: block">
@@ -134,33 +148,12 @@
     {%  endif  %}
 
     <!-- =====================================Js Functions============================= -->
+
     <script>
-        $(window).scroll(function(){
-            var scrollTop = $(window).scrollTop();
-            if(scrollTop < 100){
-                cont_maxHeight = 470;
-                col_maxHeight = 350;
-                icn_fnt = 200;
-                txt_fnt = 40;
-            }else if(scrollTop > 250){
-                cont_maxHeight = 270;
-                col_maxHeight = 185;
-                txt_fnt = 20;
-                icn_fnt = 80;
-            }else{
-                cont_maxHeight = 470 - (470 * (scrollTop - 100) / 350);
-                col_maxHeight = 350 - (350 * (scrollTop - 130) / 250);
-                icn_fnt = 200 - (200 * (scrollTop - 100) / 250);
-                txt_fnt = 40 - (40 * (scrollTop - 100) / 300);
-            }
-            $('#login_container').stop().animate({'height': cont_maxHeight+"px"}, 0);
-            $('#organiser_div').stop().animate({'max-height': col_maxHeight+"px"}, 0);
-            $('#voter_div').stop().animate({'max-height': col_maxHeight+"px"}, 0);
-            $('#org_icn').stop().animate({'font-size': icn_fnt+"px"}, 0);
-            $('#vtr_icn').stop().animate({'font-size': icn_fnt+"px"}, 0);
-            $('#organiser').stop().animate({'font-size': txt_fnt+"px"}, 0);
-            $('#voter').stop().animate({'font-size': txt_fnt+"px"}, 0);
-        })
+        window.onscroll = function () {
+            animate_nav_bar();
+            animate_menu_bar();
+        }
     </script>
 
 {% endblock body %}

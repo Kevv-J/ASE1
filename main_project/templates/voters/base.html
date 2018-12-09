@@ -38,7 +38,7 @@
     {% block head %}{% endblock head %}
 
 </head>
-<body style="background-image: url('{% static 'base/imgs/evoting-bg-01.jpg' %}'); overflow: visible;">
+<body style="background-image: url('{% static 'base/imgs/evoting-bg-01.jpg' %}'); overflow: hidden;">
 
 <div class="page-overlay"></div>
 <div class="page-overlay_2" style="display: none" id="page_overlay_2"></div>
@@ -50,7 +50,7 @@
 <div class="menu_bar_disp_close" id="menu_bar_display_close">
     <p id="menu_bar_open_close">&#10096;</p>
 </div>
-<div class="menu_bar_disp">
+<div class="menu_bar_disp" id="menu_bar_display_open">
     <p id="menu_bar_open_close">&#10097;</p>
 </div>
 <div class="menu_bar sticky-top" id="menu_bar">

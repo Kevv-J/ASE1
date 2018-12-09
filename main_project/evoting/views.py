@@ -35,7 +35,6 @@ def profile(request):
 @decoraters.user_not_logged_in
 def register(request):
 
-    registered = False
     if request.method == "POST":
         registration_form1 = Registration_form1(request.POST)
         registration_form2 = Registration_form2(request.POST)
@@ -76,9 +75,10 @@ def register(request):
                     )
                     email.send()
 
-                    registered = True
-
-                    Voters_Profile.objects.get(voterId=voter_id).user.first_name = 'Voter'
+                    messages.success(request, f'We have sent a mail to the registered mail.'
+                                              f' Please click that link to activate your account and then login')
+                    logout(request)
+                    return redirect('evoting-voter-login')
 
                 else:
                     messages.error(request, f'(Email Id) or (fullname) or (Date of Birth) does\'nt'
@@ -93,15 +93,7 @@ def register(request):
         registration_form1 = Registration_form1()
         registration_form2 = Registration_form2()
 
-    if not registered:
-        return render(request, 'voters/register.html',
-                      {'reg_form1': registration_form1, 'reg_form2': registration_form2})
-
-    else:
-        logout(request)
-        return render(request, 'voters/login.html',
-                      {'registered_message': 'We have sent a mail to the registeered mail.'
-                       ' Please click that link to activate your account and then login', 'USER': 'voter'})
+    return render(request, 'voters/register.html', {'reg_form1': registration_form1, 'reg_form2': registration_form2})
 
 
 def user_acc_activation(request):
@@ -117,26 +109,24 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        # login(request, user)
-        # return redirect('home')
-        message = {'acc_confirmation_message': 'Thanks for activating your account. Now you can login to your account.'}
+        messages.success(request, f'Thanks for activating your account. Now you can login to your account.')
 
     else:
-        message = {'acc_confirmation_message': 'Activation link is invalid!'}
+        messages.error(request, f'Activation link is invalid!')
 
-    return render(request, 'voters/home.html', message)
+    return render(request, 'voters/home.html')
 
 
 # ======================================================================================================================
 @decoraters.user_not_logged_in
 def voter_login(request):
     if request.method == "POST":
-        username = request.POST.get('username')
-        if hasattr(username, 'Voters_Profile'):
-            password = request.POST.get('password')
+        username = request.POST['username']
+        user_objs = User.objects.filter(username=username)
+        if hasattr(user_objs.first(), 'voters_profile'):
+            password = request.POST['password']
 
             user = authenticate(username=username, password=password)
-
             if user.is_active:
                 login(request, user)
                 return redirect('evoting-home')
@@ -156,7 +146,7 @@ def voter_login(request):
 def orgainser_login(request):
     if request.method == "POST":
         username = request.POST.get('username')
-        if not hasattr(username, 'Voters_Profile'):
+        if not hasattr(username, 'voters_profile'):
             password = request.POST.get('password')
 
             user = authenticate(username=username, password=password)

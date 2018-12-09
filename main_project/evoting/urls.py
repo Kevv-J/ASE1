@@ -11,7 +11,6 @@ urlpatterns = [
     path('voter_login/', user_views.voter_login, name='evoting-voter-login'),
     path('organiser_login/', user_views.orgainser_login, name='evoting-organiser-login'),
     path('logout/', user_views.user_logout, name='evoting-logout'),
-    # path('logout/', auth_views.LogoutView.as_view(template_name=''), name='evoting1-logout'),
     path('profile/', user_views.profile, name='evoting-user-profile'),
     path('activate/<uidb64>/<token>', user_views.activate, name='activate'),
     path('password_reset/', auth_views.PasswordResetView.as_view(
