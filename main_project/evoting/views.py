@@ -127,21 +127,21 @@ def voter_login(request):
         if user:
             user_objs = User.objects.filter(username=username)
             if hasattr(user_objs.first(), 'voters_profile'):
-
+                
                 if user.is_active:
                     login(request, user)
                     return redirect('evoting-home')
                 else:
                     return HttpResponse('account not active')
-
+    
             else:
                 messages.error(request, f'Invalid Login details')
 
         else:
             messages.error(request, f'Invalid Login details')
-        
-        return redirect(reverse('evoting-voter-login'))
 
+        return redirect(reverse('evoting-voter-login'))
+            
     else:
         return render(request, 'voters/login.html', {'USER': 'voter'})
 
@@ -150,17 +150,16 @@ def voter_login(request):
 def orgainser_login(request):
     if request.method == "POST":
         username = request.POST.get('username')
-        if not hasattr(username, 'voters_profile'):
-            password = request.POST.get('password')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            if not hasattr(username, 'voters_profile'):
 
-            user = authenticate(username=username, password=password)
-
-            if user.is_active:
                 login(request, user)
                 return redirect('organiser_app:mainpage')
 
             else:
-                return HttpResponse('account not active')
+                messages.error(request, f'Invalid Login details')
 
         else:
             messages.error(request, f'Invalid Login details')
