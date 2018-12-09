@@ -122,20 +122,24 @@ def activate(request, uidb64, token):
 def voter_login(request):
     if request.method == "POST":
         username = request.POST['username']
-        user_objs = User.objects.filter(username=username)
-        if hasattr(user_objs.first(), 'voters_profile'):
-            password = request.POST['password']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user:
+            user_objs = User.objects.filter(username=username)
+            if hasattr(user_objs.first(), 'voters_profile'):
 
-            user = authenticate(username=username, password=password)
-            if user.is_active:
-                login(request, user)
-                return redirect('evoting-home')
+                if user.is_active:
+                    login(request, user)
+                    return redirect('evoting-home')
+                else:
+                    return HttpResponse('account not active')
+
             else:
-                return HttpResponse('account not active')
+                messages.error(request, f'Invalid Login details')
 
         else:
             messages.error(request, f'Invalid Login details')
-
+        
         return redirect(reverse('evoting-voter-login'))
 
     else:
