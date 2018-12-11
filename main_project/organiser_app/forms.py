@@ -2,7 +2,7 @@ from django import forms
 from . models import Candidate,Voter,Election
 
 
-region_options=(
+region_options = (
 
  ('0','AndhraPradesh'),
  ('1','Bihar'),
