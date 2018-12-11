@@ -15,7 +15,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'johns69mith69@gmail.com'
-EMAIL_HOST_PASSWORD = 'ilovedicks99'
+EMAIL_HOST_PASSWORD = 'nehulmama'
 
 #DEFAULT_FROM_EMAIL = 'johns69mith69@gmail.com'
 
@@ -24,6 +24,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+MEDIA_DIR=os.path.join(BASE_DIR,'media')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -48,7 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'organiser_app',
-    'widget_tweaks'
+    'widget_tweaks',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -135,10 +137,14 @@ STATICFILES_DIRS = [
 
 STATIC_URL = '/static/'
 
+#media
+MEDIA_ROOT=MEDIA_DIR
+MEDIA_URL='/media/'
+
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'evoting-home'
 
 LOGOUT_REDIRECT_URL = 'evoting-login'
-

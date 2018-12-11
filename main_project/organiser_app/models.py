@@ -1,11 +1,13 @@
 from django.db import models
 from django.urls import reverse
+import datetime
 
 # Create your models here.
 
 election_options=(
-    ('P','Parliamentary'),
-    ('A','Assembly')
+    ('A','Assembly'),
+    ('P','Parliamentary')
+
 
 )
 
@@ -55,6 +57,21 @@ region_options=(
 
 )
 
+YEARS = (
+    ("2018", "2018"),
+    ("2019 ","2019"),
+    ("2020", "2020"),
+    ("2021", "2021"),
+    ("2022", "2022"),
+    ("2023", "2023"),
+    ("2024", "2024"),
+    ("2025", "2025"),
+    ("2026", "2026"),
+    ("2027", "2027"),
+    ("2028", "2028"),
+
+)
+
 
 
 class Voter(models.Model):
@@ -78,12 +95,13 @@ class Candidate(models.Model):
     candidate_id=models.AutoField(primary_key=True)
     candidate_name=models.CharField(max_length=50,null=False)
     candidate_fname=models.CharField(max_length=50,null=False)
-    candidate_party=models.CharField(choices=party_options,null=False,max_length=10)
-    candidate_region=models.CharField(choices=region_options,null=False,max_length=10)
-    candidate_gender=models.CharField(choices=Gender_options,null=False,max_length=1)
+    candidate_party=models.CharField(choices=party_options,null=False,max_length=10,default="Bhartiya Janta Party")
+    candidate_region=models.CharField(choices=region_options,null=False,max_length=10,default="AndhraPradesh")
+    candidate_gender=models.CharField(choices=Gender_options,null=False,max_length=1,default="Male")
     candidate_email=models.EmailField(unique=True,null=False)
     candidate_dob=models.DateField(null=False)
     candidate_aadhar=models.BigIntegerField(unique=True,null=False)
+    profile_pic=models.ImageField(upload_to='profile_pics',blank=False)
 
     def __str__(self):
         return (str(self.candidate_id) +"."+" "+ self.candidate_name)
@@ -92,9 +110,9 @@ class Candidate(models.Model):
         return reverse('organiser_app:view',kwargs={'pk':self.pk})
 
 class Election(models.Model):
-    election_type=models.CharField(choices=election_options,null=False,max_length=1)
+    election_type=models.CharField(choices=election_options,null=False,max_length=1,default="Parliamentary")
     election_id=models.AutoField(primary_key=True)
-    election_year=models.IntegerField(null=False)
+    election_year=models.CharField(null=False,choices=YEARS,default=2018,max_length=6)
     date_of_start=models.DateField(null=False)
     date_of_end=models.DateField(null=False)
     status=models.CharField(choices=statuses,max_length=2,default='0')
