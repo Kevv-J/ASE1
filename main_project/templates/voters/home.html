@@ -1,0 +1,159 @@
+{% extends 'voters/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+
+    <title>E-Voting Home</title>
+
+        <style>
+        </style>
+
+{% endblock head %}
+
+{% block body %}
+
+    {% if messages %}
+
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" style="text-align: center; color:whitesmoke; font-weight: bold;
+                        border: 1px solid #008B8B; border-radius: 4px;">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
+    {%  if user.is_authenticated  %}
+        <div class="container" style="padding: 2%">
+            <br>
+            <br>
+            <table class="table table-dark">
+                <tr>
+                    <th  colspan="3">Ongoing Election</th>
+                </tr>
+                <tr>
+                    <th>Election ID</th>
+                    <th>Election Year</th>
+                    <th>Link</th>
+                </tr>
+                {%  for election in elections  %}
+                    {%  if election.status == '1'  %}
+                        <tr>
+                            <td>{{ election.election_id }}</td>
+                            <td>{{ election.election_year }}</td>
+                            <td><a>Vote Now</a></td>
+                        </tr>
+                    {%  endif  %}
+                {%  endfor  %}
+            </table>
+            <br>
+            <table class="table table-dark">
+                <tr>
+                    <th colspan="3">Upcoming Election</th>
+                </tr>
+                <tr>
+                    <th>Election ID</th>
+                    <th>Election Year</th>
+                    <th>Link</th>
+                </tr>
+                {%  for election in elections  %}
+                    {%  if election.status == '0'  %}
+                        <tr>
+                            <td>{{ election.election_id }}</td>
+                            <td>{{ election.election_year }}</td>
+                            <td><a>Candidate List</a></td>
+                        </tr>
+                    {%  endif  %}
+                {%  endfor  %}
+            </table>
+            <br>
+            <table class="table table-dark">
+                <tr>
+                    <th colspan="3">Past Election</th>
+                </tr>
+                <tr>
+                    <th>Election ID</th>
+                    <th>Election Year</th>
+                    <th>Link</th>
+                </tr>
+                {%  for election in elections  %}
+                    {%  if election.status == '2'  %}
+                        <tr>
+                            <td>{{ election.election_id }}</td>
+                            <td>{{ election.election_year }}</td>
+                            <td><a>Result</a></td>
+                        </tr>
+                    {%  endif  %}
+                {%  endfor  %}
+            </table>
+        </div>
+    {% else %}
+
+        <div class="container-fluid" style="position: relative; width: 100%; height: 100vh;">
+            <div class="row">
+                <div class="col" style="height: 500px; text-align: center">
+                    <img src="{% static 'home/imgs/right_to_vote.png' %}" class="mt-5" style="width: 600px">
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid mt-7 border_t_b" id="login_container"
+             style="text-align: center; background-color: rgba(0, 128, 128, 0.7); height: 470px; display: block">
+            <div class="row" style="padding: 4.5%;">
+                <div class="col" id="organiser_div" onmouseover="expand_organiser()" onmouseout="contract_organiser()"
+                     style="padding: 5%; border: 2px solid mintcream; display: block; height: 350px;">
+                    <div id="organiser_link_align">
+                        <i class="material-icons md-200" id="org_icn"
+                           style="color: burlywood; border-radius: 8px; text-shadow: 4px 4px 10px black;">
+                            person_outline
+                        </i>
+                        <h1 id="organiser" style="font-family: Calibri; font-weight: bolder;position: relative; color: #008B8B">
+                            ORGANISER
+                        </h1>
+                        <a href="{% url 'evoting-organiser-login' %}" id="organiser_link"
+                           style="text-decoration: none; position: relative">
+                            <h1 id="org_lnk" style="font-family: Calibri; font-weight: bolder;">
+                                ORGANISER LOGIN
+                            </h1>
+                        </a>
+                    </div>
+                    <div class="organisers_description" id="org_desc">
+                        <p>A little description about Organisers</p>
+                    </div>
+                </div>
+                <div class="col" id="voter_div" onmouseover="expand_voter()" onmouseout="contract_voter()"
+                     style="padding: 5%; border: 2px solid mintcream; display: block; height: 350px;">
+                    <div id="voter_link_align">
+                        <i class="material-icons md-200" id="vtr_icn"
+                           style="color: bisque; border-radius: 8px; text-shadow: 4px 4px 10px black;">
+                            people_outline
+                        </i>
+                        <h1 id="voter" style="font-family: Calibri; font-weight: bolder;position: relative; color: #008B8B">
+                            VOTER
+                        </h1>
+                        <a href="{% url 'evoting-voter-login' %}" id="voter_link"
+                           style="text-decoration: none; position: relative">
+                            <h1 id="vtr_lnk" style="font-family: Calibri; font-weight: bolder;">
+                                VOTER LOGIN
+                            </h1>
+                        </a>
+                    </div>
+                    <div class="voters_description" id="vtr_desc">
+                        <p>A little description about Voters</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {%  endif  %}
+
+    <!-- =====================================Js Functions============================= -->
+
+    <script>
+        window.onscroll = function () {
+            animate_nav_bar();
+            animate_menu_bar();
+        }
+    </script>
+
+{% endblock body %}

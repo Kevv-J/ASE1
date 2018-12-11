@@ -49,7 +49,6 @@ class Candidateform(forms.ModelForm):
 class Electionform(forms.ModelForm):
     date_of_start = forms.DateField(widget=forms.SelectDateWidget(),initial=datetime.date.today)
     date_of_end = forms.DateField(widget=forms.SelectDateWidget(),initial=datetime.date.today)
-
     class Meta():
         model=Election
         fields=('election_type','election_year','date_of_start','date_of_end', 'candidates')

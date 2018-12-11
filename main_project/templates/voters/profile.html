@@ -1,0 +1,27 @@
+{% extends 'voters/base.html' %}
+{% load staticfiles %}
+
+{% block head %}
+    <title>E-Voting Profile</title>
+{% endblock head %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <div class="container-fluid" style="background-color: rebeccapurple">
+            <div class="row" style="padding: 5%">
+                <div class="col-md-3" style="height: 300px; border-right: 2px dotted dimgray">
+                    <img src="{% static 'profile/images/Telangana.png' %}" style="width: 262px; padding: 6%">
+                </div>
+                <div class="col-md-9">
+                    {{ first_letter_of_username }}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container" style="text-align: center">
+            <h2 style="color: white">It seems you are not logged in!!</h2><br>
+            <h4 style="color: white">Login as<a href="{% url 'evoting-voter-login' %}">Voter</a> or
+                Login as <a href="{% url 'evoting-organiser-login' %}">Organiser</a> to go to your profile</h4>
+        </div>
+    {% endif %}
+{% endblock body %}

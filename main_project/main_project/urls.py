@@ -23,10 +23,11 @@ from organiser_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('evoting.urls')),
     path('evoting/', include('evoting.urls')),
     path('organiser_app/',include('organiser_app.urls')),
     path('api/candidate/',views.candidateListView.as_view()),
+    path('charts/', include('charts.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

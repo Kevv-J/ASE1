@@ -11,50 +11,42 @@ election_options=(
 
 )
 
-statuses=(
-
-    ('0','not started'),
-    ('1','on going'),
-    ('2','end')
-
+statuses = (
+    ('0', 'not started'),
+    ('1', 'on going'),
+    ('2', 'end')
 )
-
 
 Gender_options = (
-
-    ('M','Male'),
-    ('F','Female'),
-    ('O','Others')
+    ('M', 'Male'),
+    ('F', 'Female'),
+    ('O', 'Others')
 )
 
-party_options=(
-
-    ('BJP','Bhartiya Janta Party'),
-    ('CPI','Communist Party of India'),
-    ('INC','Indian National Congress'),
-    ('AAP','Aam Aadmi Party') ,
-    ('TDP','Telugu Desam Party'),
-    ('SS','Shiv Sena') ,
-    ('TRS','Telangana Rashtra Samithi'),
-    ('JD','Janata Dal') ,
-    ('SP','Samajwadi Party') ,
-   ('RJD', 'Rashtriya Janata Dal')
-
+party_options = (
+    ('BJP', 'Bhartiya Janta Party'),
+    ('CPI', 'Communist Party of India'),
+    ('INC', 'Indian National Congress'),
+    ('AAP', 'Aam Aadmi Party'),
+    ('TDP', 'Telugu Desam Party'),
+    ('SS', 'Shiv Sena'),
+    ('TRS', 'Telangana Rashtra Samithi'),
+    ('JD', 'Janata Dal'),
+    ('SP', 'Samajwadi Party'),
+    ('RJD', 'Rashtriya Janata Dal')
 )
 
-region_options=(
-
- ('0','AndhraPradesh') ,
- ('1','Bihar') ,
+region_options = (
+ ('0','AndhraPradesh'),
+ ('1','Bihar'),
  ('2','karnataka'),
- ('3','Tamilnadu' ),
- ('4','Kerela') ,
+ ('3','Tamilnadu'),
+ ('4','Kerela'),
  ('5','UttarPradesh'),
- ('6','WestBengal') ,
- ('7','MadhyaPradesh') ,
- ('8','Haryana') ,
+ ('6','WestBengal'),
+ ('7','MadhyaPradesh'),
+ ('8','Haryana'),
  ('9','Assam')
-
 )
 
 YEARS = (
@@ -73,7 +65,6 @@ YEARS = (
 )
 
 
-
 class Voter(models.Model):
     voter_id=models.CharField(max_length=10,unique=True,primary_key=True,null=False)
     voter_name=models.CharField(max_length=50,null=False)
@@ -86,9 +77,8 @@ class Voter(models.Model):
     voter_gender=models.CharField(choices=Gender_options,null=False,max_length=10)
     voter_region=models.CharField(choices=region_options,null=False,max_length=10)
 
-
     def __str__(self):
-        return (str(self.voter_id) +"."+" "+ self.voter_name)
+        return str(self.voter_id) +"."+" "+ self.voter_name
 
 
 class Candidate(models.Model):
@@ -104,10 +94,11 @@ class Candidate(models.Model):
     profile_pic=models.ImageField(upload_to='profile_pics',blank=False)
 
     def __str__(self):
-        return (str(self.candidate_id) +"."+" "+ self.candidate_name)
+        return str(self.candidate_id) +"."+" "+ self.candidate_name
 
     def get_absolute_url(self):
         return reverse('organiser_app:view',kwargs={'pk':self.pk})
+
 
 class Election(models.Model):
     election_type=models.CharField(choices=election_options,null=False,max_length=1,default="Parliamentary")
@@ -121,6 +112,7 @@ class Election(models.Model):
     def __str__(self):
         return str(self.election_id)
 
+
 class Candidate_election(models.Model):
     candidate=models.ForeignKey(Candidate,on_delete=models.CASCADE)
     election=models.ForeignKey(Election,on_delete=models.CASCADE)
@@ -129,7 +121,6 @@ class Candidate_election(models.Model):
 class Election_region(models.Model):
     election=models.ForeignKey(Election,on_delete=models.CASCADE)
     region=models.CharField(choices=region_options,null=False,max_length=10)
-
 
 class Vote_count(models.Model):
     voter=models.ForeignKey(Voter,on_delete=models.CASCADE)

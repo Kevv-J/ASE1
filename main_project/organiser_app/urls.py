@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from evoting import views as user_views
 
 app_name="organiser_app"
 
@@ -23,5 +24,5 @@ urlpatterns=[
         path('election-candidate/<int:pk>',views.election_candidate,name="election-candidate"),
         path('election_edit/<int:pk>',views.election_update,name="election_edit"),
         path('candidate-election/<int:pk>',views.candidate_election,name="candidate-election"),
-
+        path('logout/', user_views.user_logout, name='evoting-logout'),
 ]
