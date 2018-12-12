@@ -320,7 +320,7 @@ def election_update(request,pk):
     return render(request,template_name,{'form':form})
 
 
-@login_required
+
 class candidateListView(APIView):
 
     def get(self,request):
