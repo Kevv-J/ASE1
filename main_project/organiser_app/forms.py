@@ -4,7 +4,7 @@ from django.core import validators
 import datetime
 
 
-region_options=(
+region_options = (
 
  ('0','AndhraPradesh') ,
  ('1','Bihar') ,
@@ -57,7 +57,9 @@ class Electionform(forms.ModelForm):
 
 
 class Voterform(forms.ModelForm):
-    voter_dob = forms.DateField(widget=forms.SelectDateWidget())
+    voter_dob = forms.DateField(widget=forms.DateInput(attrs={'id':'date','type':'date',}))
+    voter_age = forms.IntegerField(widget=forms.NumberInput(attrs={'id':'age'}))
+
     class Meta:
         model = Voter
         fields = '__all__'
