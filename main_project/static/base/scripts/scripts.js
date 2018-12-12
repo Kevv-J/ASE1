@@ -10,8 +10,8 @@ function menu_bar_off() {
     document.getElementById("page_overlay_2").style.display = "none";
 }
 
-function nav_bar_background() {
-    if (document.body.scrollTop > 650 || document.documentElement.scrollTop > 650) {
+function animate_navbar_back() {
+    if (document.body.scrollTop > 15 || document.documentElement.scrollTop > 15) {
         document.getElementById("nav_bar").style.backgroundColor = '#008B8B';
         document.getElementById("nav_bar").style.borderBottom = 'none';
     } else {
@@ -37,7 +37,7 @@ function scrolltopFunction() {
 /*=====================================Google map===========================================*/
 
 function stop_scrolling() {
-    $("body").css({overflow: 'hidden'});
+    document.body.style.overflow = 'hidden';
 }
 
 function start_scrolling() {
@@ -88,8 +88,10 @@ var time_interval = 100;
 
 function load() {
     $('#loading').animate({width: loading_percent + '%'}, 0);
+    $('#loading_home').animate({width: loading_percent + '%'}, 0);
     loading_percent += loading_bar_inc;
     if (loading_percent <= 100) {
+        loading_bar_inc /= 1.2;
         if ($(document).ready()){
             loading_bar_inc = 5;
             time_interval = 10;
@@ -97,8 +99,88 @@ function load() {
         setTimeout(load, time_interval);
     }
     else {
-        loading_bar_inc /= 1.2;
         start_scrolling();
         document.getElementById('loading').style.display = 'none';
+        document.getElementById('loading_home').style.display = 'none';
+        document.getElementById('scrolldown').style.display = 'block';
+        document.getElementById('loading_row').style.maxWidth = '70%';
+        document.getElementById('loading_row').style.left = '16.5%';
+        document.getElementById('landing').style.background = 'rgba(0, 0, 0, 0.5)';
     }
+}
+
+
+/*=================================Menu Bar===================*/
+$(function () {
+    $(".menu_bar_disp").click(function () {
+        $(".menu_bar").animate({left: '0'});
+        $(".menu_bar").css({boxShadow: '0 0 30px 0 rgba(0, 0, 0, 1)'});
+        $("#page_overlay_2").css({display: 'block'});
+        document.getElementById("menu_bar_display_close").style.visibility = 'visible';
+        $(".menu_bar_disp_close").animate({left: '25%'});
+        $("#menu_bar_open_close").html('&#10096;');
+        stop_scrolling()
+    });
+});
+
+$(function(){
+    $(".menu_bar_disp_close").click(function(){
+        $(".menu_bar").animate({left: '-25%'});
+        $(".menu_bar").css({boxShadow: 'none'});
+        $("#page_overlay_2").css({display: 'none'});
+        document.getElementById("menu_bar_display_close").style.visibility = 'hidden';
+        $(".menu_bar_disp_close").animate({left: '0'});
+        $("#menu_bar_open_close").html('&#10097;');
+        start_scrolling()
+    });
+});
+
+$(function(){
+    $(".menu_bar_cancel").click(function(){
+        $(".menu_bar").animate({left: '-25%'});
+        $(".menu_bar").css({boxShadow: 'none'});
+        $("#page_overlay_2").css({display: 'none'});
+        document.getElementById("menu_bar_display_close").style.visibility = 'hidden';
+        $(".menu_bar_disp_close").animate({left: '0'});
+        $("#menu_bar_open_close").html('&#10097;');
+        start_scrolling()
+    });
+});
+
+
+// Note: This example requires that you consent to location sharing when
+// prompted by your browser. If you see the error "The Geo location service
+// failed.", it means you probably did not give permission for the browser to
+// locate you.
+var map;
+function initMap() {
+    map = new google.maps.Map(document.getElementById('google_map'), {
+        center: {lat: -34.397, lng: 150.644},
+        zoom: 10,
+    });
+
+    // Try HTML5 geolocation.
+    var pos = {
+        lat: 13.5576742,
+        lng: 80.0255356,
+    };
+
+    document.getElementById('lat_lng').innerHTML = '<b>Lattitude:</b> <input id="lat" value="' + pos['lat'] + '" readonly>' +
+        '<span style = "margin-left: 10%"><b>Longitude:</b> <input id="lng" value="' + pos['lng'] + '" readonly>'
+        + '</span>';
+
+    document.getElementById('co-ords').value = pos['lat'] + ', ' +pos['lng'];
+
+    var marker = new google.maps.Marker({
+        position: pos,
+        map: map,
+        icon:'{% static "images/pin.png" %}',
+        animation:google.maps.Animation.BOUNCE,
+    });
+    map.setCenter(pos);
+
+    // Apply new JSON when the user selects a different style.
+    styleSelector.addEventListener('change', function() {
+        map.setOptions({styles: styles[styleSelector.value]});
+    });
 }
