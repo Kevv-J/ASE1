@@ -38,7 +38,7 @@
     {% block head %}{% endblock head %}
 
 </head>
-<body style="background-image: url('{% static 'base/imgs/evoting-bg-01.jpg' %}'); overflow: visible;">
+<body style="background-image: url('{% static 'base/imgs/evoting-bg-01.jpg' %}');background-size: cover; overflow: visible;">
 
 <div class="page-overlay"></div>
 <div class="page-overlay_2" style="display: none" id="page_overlay_2"></div>
@@ -100,7 +100,8 @@
                             Logout
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Feedback</a>
+                        <a class="dropdown-item" href="{% url 'charts:feedback' %}">Feedback</a>
+                        <a class="dropdown-item" href="{% url 'charts:report' %}">Report Problem</a>
                     {% else %}
                         <a class="dropdown-item" href="{% url 'evoting-home' %}">Home</a>
                         <div class="dropdown-divider"></div>
@@ -168,6 +169,16 @@
 
 {% block body %}{% endblock body %}
 
+{% include 'base/js.html' %}
+    <div class='container'>
+    {% block content %}
+    {% endblock content %}
+    </div>
+    <script>
+    $(document).ready(function(){
+      {% block jquery %}{% endblock jquery %}
+    })
+    </script>
 <div style="height: 1000px"></div>
 <!-- ==========================Google Maps================================ -->
 
