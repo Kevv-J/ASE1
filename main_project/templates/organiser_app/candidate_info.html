@@ -79,7 +79,7 @@
 
 
                 <li class="nav-item active">
-                  <a class="nav-link text-white" href="#" style="font-size:26px">Logout <span class="sr-only">(current)</span></a>
+                  <a class="nav-link text-white" href="{% url 'organiser_app:evoting-logout'%}" style="font-size:26px">Logout <span class="sr-only">(current)</span></a>
                 </li>
 
               </ul>
@@ -128,7 +128,7 @@
               </tr>
               <tr>
                   <th> Candidate Region</th>
-                  <td>{{ object.candidate_region}}</td>
+                  <td>{{region}}</td>
               </tr>
               <tr>
                   <th> Candidate Aadhar</th>

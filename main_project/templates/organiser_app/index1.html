@@ -41,7 +41,7 @@
             <img src="{% static "images/e-voting.png"%}" alt="evoting image" width="50" height="50">
             <p style="color:white; font-size:30px;margin:5px"><a style="color:white;text-decoration: none" href="{% url 'evoting-home' %}" >E-Voting </a></p>
          </div>
-         
+
          <ul class=" nav navbar-nav navbar-right">
             <li class="nav-item active">
                <a class="nav-link text-white" href="{% url 'organiser_app:election' %}" style="font-size:26px">Election <span class="sr-only">(current)</span></a>
@@ -51,6 +51,12 @@
             </li>
             <li class="nav-item active">
                <a class="nav-link text-white" href="{% url 'organiser_app:party' %}" style="font-size:26px">Party <span class="sr-only">(current)</span></a>
+            </li>
+            <li>
+               <p class="text-white " style="font-size:26px;margin:5px">|</p>
+            </li>
+             <li class="nav-item active">
+               <a class="nav-link text-white " href="{% url 'charts:feedback_responses' %}" style="font-size:26px">Feedbacks <span class="sr-only">(current)</span></a>
             </li>
             <li>
                <p class="text-white " style="font-size:26px;margin:5px">|</p>
