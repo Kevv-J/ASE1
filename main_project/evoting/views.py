@@ -207,37 +207,17 @@ def test_ajax(request):
 
 def election(request,pk):
 
-    # region = request.POST.get('region', False)
+
     print(request.user)
     user = Voters_Profile.objects.get(user = request.user)
     region = user.region
-    # voterid= request.POST.get('voterid',False)
-    # regions = candidateLog.objects.values_list('region_2', flat=True)
-    # voterId = voterLog.objects.values_list('voterid', flat=True)
-    #
-    # if region in regions:
-    #     if voterid not in voterId:
-    #       regions=candidateLog.objects.filter(region_2=reg
 
 
     candidates = Candidate_election.objects.filter(election = pk)
     candidates = {candidate.candidate for candidate in candidates}
     candidates = {candidate for candidate in candidates if candidate.candidate_region in region}
     print(candidates)
-    #candidates = {candidates for candidates.region in region}
-    #print(candidates)
 
-    #       candidates=regions.values_list('candidate')
-    #       candidate_ids=regions.values_list('candidate_id')
-    #       a=len(candidates)
-    #       #evenlist=[]
-    #       #oddlist=[]
-    #       candidates_new=[]
-    #       for i in range(0,len(candidates)):
-    #         candidates_new.append([candidates[i][0],candidate_ids[i][0]])
-    #       result_region={'region':region,'candidates_new':candidates_new,'regions':regions}
-    #       return render(request,"trail/index6.html",result_region)
-    #
     candidates_new = []
     region_options = {
         '0': 'AndhraPradesh',
@@ -251,14 +231,12 @@ def election(request,pk):
         '8': 'Haryana',
         '9': 'Assam'
     }
-    # candidate.candidate_region = region_options[candidate.candidate_region]
+
     region = region_options[region]
     for candidate in candidates:
         candidates_new.append([candidate.candidate_name, candidate.candidate_id])
-    result_region = {'region': region, 'candidates_new': candidates_new}
+    result_region = {'region': region, 'candidates_new': candidates_new,'user':user}
     return render(request, "trail/index6.html", result_region)
-    #     else:
-    #       return HttpResponse('Invalid Details!!')
 
 def candidate_details(request,pk):
     template_name='trail/candidate_detail.html'
