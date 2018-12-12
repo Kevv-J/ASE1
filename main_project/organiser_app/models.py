@@ -91,7 +91,7 @@ class Candidate(models.Model):
     candidate_email=models.EmailField(unique=True,null=False)
     candidate_dob=models.DateField(null=False)
     candidate_aadhar=models.BigIntegerField(unique=True,null=False)
-    profile_pic=models.ImageField(upload_to='profile_pics',blank=False)
+    profile_pic=models.ImageField(upload_to='profile_pics',blank=True)
 
     def __str__(self):
         return str(self.candidate_id) +"."+" "+ self.candidate_name
