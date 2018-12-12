@@ -254,30 +254,33 @@ def vote(request,eid,cid):
     user = Voters_Profile.objects.get(user=request.user)
     region = user.region
     if Election.objects.filter(election_id= eid).exists():
-        if Candidate_election.objects.filter(election = Election.objects.get(election_id= eid), candidate=Candidate.objects.filter(candidate_id=cid).exists()).exists():
-            if Candidate.objects.get(candidate_id=cid).candidate_region == region:
+        if Candidate.objects.filter(candidate_id=cid).exists():
+            if Candidate_election.objects.filter(election = Election.objects.get(election_id= eid), candidate=Candidate.objects.get(candidate_id=cid)).exists():
+                if Candidate.objects.get(candidate_id=cid).candidate_region == region:
 
-                user = Voters_Profile.objects.get(user=request.user)
-                user = Voter.objects.get(voter_id = user.voterId)
-                cand = Candidate.objects.get(candidate_id = cid)
-                elec = Election.objects.get(election_id = eid)
-                try:
-                    voter = Vote_count.objects.get(voter=user)
-                    messages.error(request, "You have already voted in this Election", extra_tags='vote')
-                except:
+                    user = Voters_Profile.objects.get(user=request.user)
+                    user = Voter.objects.get(voter_id = user.voterId)
+                    cand = Candidate.objects.get(candidate_id = cid)
+                    elec = Election.objects.get(election_id = eid)
+                    try:
+                        voter = Vote_count.objects.get(voter=user)
+                        messages.error(request, "You have already voted in this Election", extra_tags='vote')
+                    except:
 
-                    voteCount = Vote_count()
-                    voteCount.voter = user
-                    voteCount.candidate = cand
-                    voteCount.election = elec
-                    voteCount.save()
+                        voteCount = Vote_count()
+                        voteCount.voter = user
+                        voteCount.candidate = cand
+                        voteCount.election = elec
+                        voteCount.save()
 
-                    messages.success(request, "Your Vote has Successfully been registered", extra_tags='vote')
-                date_of_end = elec.date_of_end
-                messages.success(request, "The Result will be display on "+str(date_of_end), extra_tags='result')
-                return render(request, "trail/vote_count.html" )
+                        messages.success(request, "Your Vote has Successfully been registered", extra_tags='vote')
+                    date_of_end = elec.date_of_end
+                    messages.success(request, "The Result will be display on "+str(date_of_end), extra_tags='result')
+                    return render(request, "trail/vote_count.html" )
+                else:
+                    raise Http404("Candidate does not exist in your Region")
             else:
-                raise Http404("Candidate does not exist in your Region")
+                raise Http404("Candidate does not exist in election")
         else:
             raise Http404("Candidate does not exist in election")
     else:
