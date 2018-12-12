@@ -15,7 +15,7 @@
 
 {% endblock head %}
 {% block body %}
-    <div style="display: block;" class="container-fluid registration_table mt-7">
+    <div style="margin-bottom: 10%" class="container-fluid registration_table mt-7">
         <form method="post">
             {% csrf_token %}
             {% if messages %}
@@ -63,6 +63,21 @@
                 </div>
             </div>
         </form>
+        <div class="row mt-5" style="text-align: center; border-top: 1px solid #80bdff;">
+            <div class="col-sm-12">
+                <p class="mt-4" style="color: whitesmoke">
+                    If you are already registered, plase click any of the below link to continue
+                </p>
+            </div>
+            <div class="col-sm">
+                <a href="{% url 'evoting-voter-login' %}">
+                    <button type="button" class="btn btn-outline-primary">Voter Login</button>
+                </a>
+                <a href="{% url 'evoting-organiser-login' %}">
+                    <button type="button" class="btn btn-outline-secondary">Organiser Login</button>
+                </a>
+            </div>
+        </div>
     </div>
 {% endblock body %}
 

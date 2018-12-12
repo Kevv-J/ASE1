@@ -133,6 +133,7 @@
   -webkit-animation-delay: .15s;
   animation-delay: .15s;
 }
+
 #scrolldown a span:nth-of-type(3) {
   top: 32px;
     border-left: 1px solid #5efd27;
@@ -140,25 +141,37 @@
   -webkit-animation-delay: .3s;
   animation-delay: .3s;
 }
+
+#register {
+    position: absolute; top: 40px; right: 50px; z-index: 3; transition: all 0.5s ease-in;
+    -webkit-animation: animate_register_btn;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: animate_register_btn;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+#register span { padding-left: 20px; padding-right: 20px }
+
 @-webkit-keyframes scrolldown_btn_animation {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
 }
 @keyframes scrolldown_btn_animation {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@-webkit-keyframes animate_register_btn {
+  0% { top: 35px; }
+  50% { top: 45px; }
+  100% { top: 35px; }
+}
+@keyframes animate_register_btn {
+  0% { top: 35px; }
+  50% { top: 45px; }
+  100% { top: 35px; }
 }
