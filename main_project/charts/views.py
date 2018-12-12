@@ -68,7 +68,7 @@ def send_email(request):
     return HttpResponse("Thanks , your report has been sent")
 
 
-class ChartData(APIView):
+"""class ChartData(APIView):
     authentication_classes = []
     permission_classes = []
 
@@ -84,7 +84,7 @@ class ChartData(APIView):
             "default": votes,
         }
         return Response(data)
-
+"""
 def feedback_response(request):
     fresponse=Feedback.objects.all()
     data={'fresponse':fresponse}

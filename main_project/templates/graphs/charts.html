@@ -1,25 +1,13 @@
-{% extends 'voters/base.html' %}
+{% extends 'graphs/maincharts.html' %}
 
 <script>
 {% block jquery %}
-          var endpoint = "{% url 'charts:api_data'%}"
-            var defaultData = []
-            var labels = [];
-            $.ajax({
-                method: "GET",
-                url: endpoint,
-                success: function(data){
-                    labels = data.labels
-                    defaultData = data.default
-                    setChart()
-                },
-                error: function(error_data){
-                    console.log("error")
-                    console.log(error_data)
-                }
-            })
 
-            function setChart(){
+            labels={{labelsdata | safe}}
+            defaultData={{defaultdata | safe}}
+
+            setChart(labels,defaultData)
+            function setChart(labels,defaultData){
                 if ( new Date() <= new Date("Dec 24 2018 16:10") ) {
                     var ctx2 = document.getElementById("myChart1");}
             else { document.getElementById("chart").innerHTML="Sorry,the Results are not released yet"};

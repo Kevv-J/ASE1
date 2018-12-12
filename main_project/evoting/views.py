@@ -285,3 +285,38 @@ def vote(request,eid,cid):
             raise Http404("Candidate does not exist in election")
     else:
         raise Http404("Election does not exist")
+
+def resultpage(request,eid):
+    party_options = (
+        'BJP',
+        'CPI',
+        'INC',
+        'AAP',
+        'TDP',
+        'SS',
+        'TRS',
+        'JD',
+        'SP',
+        'RJD'
+    )
+    elec = Election.objects.get(election_id=eid)
+    if elec.status == '2':
+        votercount = Vote_count.objects.filter(election = elec)
+        count={}
+        for x in party_options:
+            count[x]=0
+        for entry in votercount:
+            count[entry.candidate.candidate_party] += 1
+        print(count)
+        parties=[]
+        votes=[]
+        for key,value in count.items():
+            parties.append(key)
+            votes.append(value)
+        data = {
+            'labelsdata': parties,
+            'defaultdata': votes,
+        }
+        return render(request, 'graphs/charts.html', context=data)
+    else:
+        raise Http404("Election Results dont exist")
