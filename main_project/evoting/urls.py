@@ -37,5 +37,6 @@ urlpatterns = [
 
     path('candidate_details/<int:pk>', user_views.candidate_details, name='candidate_details'),
     path('election/<int:pk>', user_views.election, name='trail.election'),
+    path('vote/<int:eid>/<int:cid>', user_views.vote, name='trail.vote'),
 
 ]

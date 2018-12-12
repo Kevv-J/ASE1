@@ -1,11 +1,37 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 25px 20px;
+    font-size: 20px;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+li a:hover {
+  background-color: gray;
+    width:100%;
+    opacity:0.5;
+    height:75px;
+}
 
 .background
 {
-    background-image: url("back1.jpg");
+    background-image: linear-gradient(to bottom right, #93a5cf, #e4efe9);
     opacity: 0.9;
     background-size :cover;
     background-repeat: no-repeat;
-
 }
 clock{
 	text-align:center;
@@ -136,25 +162,6 @@ text-color:white;
 {
     opacity: 1;
 }
-.timeline {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-
-.timeline::after {
-    content: '';
-    position: absolute;
-    width: 6px;
-    background-color: white;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -3px;
-}
-
-
 .container2 {
     padding: 10px 40px;
     position: relative;
@@ -176,48 +183,6 @@ text-color:white;
     z-index: 1;
 }
 
-
-.left {
-    left: 0;
-}
-
-
-.right {
-    left: 50%;
-}
-
-
-.left::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    right: 30px;
-    border: medium solid white;
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent white;
-}
-
-
-.right::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    left: 30px;
-    border: medium solid white;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent white transparent transparent;
-}
-
-
-.right::after {
-    left: -16px;
-}
 
 
 .content {
@@ -292,7 +257,7 @@ text-color:white;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.7);
     background-color: gray;
   width: 400px;
-    height:350px;
+    height:400px;
   margin: auto;
   text-align: center;
   font-family: "Britannic Bold";
@@ -327,3 +292,48 @@ text-color:white;
   background-color: #555;
 }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+/*position of the tooltip*/
+    position: absolute;
+  z-index: 1;
+  top: -5px;
+  right: 105%;
+
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+.modal-body
+	{
+		background-color:black;
+		color:white;
+		font-size:20px;
+	}
+	.modal-footer
+	{
+		background-color:gray;
+		color:white;
+
+	}
+	.btn
+	{
+
+		background-color:black;
+		color:white;
+		width:150px;
+		font-size:20px;
+	}
