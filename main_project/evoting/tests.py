@@ -1,7 +1,7 @@
 from django.test import TestCase as django_test_case
 from unittest import TestCase as unit_test_case
 from django.test import Client,TestCase
-from django.contrib.auth.models import user
+from django.contrib.auth.models import User
 
 class EvotingUrl(TestCase):
 

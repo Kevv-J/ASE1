@@ -48,7 +48,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
               <img src="{% static "images/e-voting.png"%}" alt="evoting image" width="50" height="50">
-              <p style="color:white; font-size:30px;margin:5px">E-Voting</p>
+              <p style="color:white; font-size:30px;margin:5px"><a style="color:white;text-decoration: none" href="{% url 'evoting-home' %}" >E-Voting </a></p>
 
 
             </div>
@@ -75,7 +75,7 @@
 
 
                 <li class="nav-item active">
-                  <a class="nav-link text-white" href="#" style="font-size:26px">Logout <span class="sr-only">(current)</span></a>
+                  <a class="nav-link text-white" href="{% url 'organiser_app:evoting-logout'%}" style="font-size:26px">Logout <span class="sr-only">(current)</span></a>
                 </li>
 
               </ul>

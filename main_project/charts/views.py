@@ -67,24 +67,6 @@ def send_email(request):
     send_mail(subject, message, email_from, recipient_list)
     return HttpResponse("Thanks , your report has been sent")
 
-
-"""class ChartData(APIView):
-    authentication_classes = []
-    permission_classes = []
-
-    def get(self, request, format=None):
-        parties = []
-        votes = []
-        voting = Gen.objects.all()
-        for i in range(0, len(voting)):
-            parties.append(voting[i].party)
-            votes.append(voting[i].total)
-        data = {
-            "labels": parties,
-            "default": votes,
-        }
-        return Response(data)
-"""
 def feedback_response(request):
     fresponse=Feedback.objects.all()
     data={'fresponse':fresponse}
