@@ -2,6 +2,7 @@ from django.urls import path
 from evoting import views as user_views
 from django.contrib.auth import views as auth_views
 
+
 urlpatterns = [
 
     path('base/', user_views.base, name='base'),
