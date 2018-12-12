@@ -196,9 +196,7 @@ def test_ajax(request):
     return render(request, 'voters/test.html')
 
 def election(request,pk):
-
-
-    print(request.user)
+    print(Voters_Profile.objects.values_list('user'))
     user = Voters_Profile.objects.get(user = request.user)
     region = user.region
 
