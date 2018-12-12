@@ -16,20 +16,39 @@ from django.shortcuts import get_object_or_404,Http404
 from . import decoraters
 
 
-def base(request):
-    return render(request, 'voters/base.html')
-
-
 @decoraters.voter_home
 def home(request):
     elections = Election.objects.all()
+    changer={'P':'Parliamentary','A':'Assembly'}
+    for election in elections:
+        election.election_type = changer[election.election_type]
     context = {'elections': elections, 'username': request.user}
     return render(request, 'voters/home.html', context = context)
 
 
 @decoraters.voter_login_required
 def profile(request):
-    return render(request, 'voters/profile.html', {'username': request.user.username})
+    region_options = {
+        '0': 'AndhraPradesh',
+        '1': 'Bihar',
+        '2': 'karnataka',
+        '3': 'Tamilnadu',
+        '4': 'Kerela',
+        '5': 'UttarPradesh',
+        '6': 'WestBengal',
+        '7': 'MadhyaPradesh',
+        '8': 'Haryana',
+        '9': 'Assam',
+    }
+    user_details = Voters_Profile.objects.get(user=request.user.id)
+    user_details_1 = Voter.objects.get(voter_name=user_details.fullname)
+    details = {
+        'user_region': region_options[user_details.region],
+        'Voters_Profile': user_details,
+        'Voter': user_details_1,
+    }
+    print(user_details_1.voter_gender)
+    return render(request, 'voters/profile.html', details)
 
 
 @decoraters.user_not_logged_in
@@ -45,8 +64,7 @@ def register(request):
 
             if voter_id in voter_id_list:
                 voter = Voter.objects.get(voter_id=voter_id)
-                if request.POST['email'] == voter.voter_email and\
-                        request.POST['fullname'] == voter.voter_name:
+                if request.POST['email'] == voter.voter_email and request.POST['fullname'] == voter.voter_name:
 
                     reg_form1 = registration_form1.save()
                     reg_form1.is_active = False
@@ -127,7 +145,7 @@ def voter_login(request):
         if user:
             user_objs = User.objects.filter(username=username)
             if hasattr(user_objs.first(), 'voters_profile'):
-                
+
                 if user.is_active:
                     login(request, user)
                     return redirect('evoting-home')
@@ -176,29 +194,28 @@ def user_logout(request):
     return redirect('evoting-home')
 
 
-def send_email(request):
-    send_mail('Password Reset', 'Click the below link to reset your password.', 'sriram.nandala@gmail.com',
-              ['neelakantasriram.n17@iiits.in'])
+@decoraters.user_login_required
+def edit_username(request):
+    username = request.POST['new-username']
+    usernames = User.objects.values_list('username')
+    if username == request.user.username:
+        messages.success(request, f'Given username is already your username')
+        return redirect('evoting-user-profile')
+    else:
+        if (username,) in usernames:
+            messages.error(request, f'Username already exists!!')
+            print(usernames)
+            return redirect('evoting-user-profile')
+        else:
+            user = User.objects.get(username=request.user)
+            user.username = username
+            user.save()
+            messages.success(request, f'Successfully Updated Username')
+            return redirect('evoting-user-profile')
 
-    return HttpResponse('Email Sent!!')
-
-
-def print_username(request):
-    voter = Voter.objects.get(voter_id='TS2018102')
-    userx = request.user
-    print(type(userx))
-    # username = User.objects.values_list('username', flat=True)
-    return HttpResponse(str(userx))
-
-
-
-def test_ajax(request):
-    return render(request, 'voters/test.html')
 
 def election(request,pk):
-
-
-    print(request.user)
+    print(Voters_Profile.objects.values_list('user'))
     user = Voters_Profile.objects.get(user = request.user)
     region = user.region
 
@@ -221,13 +238,16 @@ def election(request,pk):
         '8': 'Haryana',
         '9': 'Assam'
     }
-    status = Election.objects.get(pk = pk)
-    status = status.status
+    elec = Election.objects.get(pk = pk)
+    status = elec.status
     print(status)
     region = region_options[region]
+    doe= elec.date_of_end
+    print(doe)
+    print('Hello')
     for candidate in candidates:
-        candidates_new.append([candidate.candidate_name, candidate.candidate_id])
-    context = {'region': region, 'candidates_new': candidates_new,'user':user, 'status':status,'eid':pk}
+        candidates_new.append([candidate.candidate_name, candidate.candidate_id, candidate.profile_pic])
+    context = {'region': region, 'candidates_new': candidates_new,'user':user, 'status':status,'eid':pk,'doe':doe}
     return render(request, "trail/index6.html", context=context)
 
 def candidate_details(request,pk):

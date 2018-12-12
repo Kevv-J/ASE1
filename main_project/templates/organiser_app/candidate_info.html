@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 {% load staticfiles %}
 {% load widget_tweaks %}
-<!DOCTYPE html>
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -22,7 +23,7 @@
       -moz-box-shadow: 1px 5px 15px 9px rgba(0,0,0,0.75);
       box-shadow: 1px 5px 15px 9px rgba(0,0,0,0.75);
       width:375px;
-      height:743px;
+      height:700px;
       margin-left: -30px;
       margin-top:20px;
       }
@@ -35,8 +36,11 @@
 
     <body style="position:relative; padding-top: 20px">
 
+          {% if message %}
 
+              <h1 style="margin:200px;margin-left:350px;background-color:cyan">{{message}}<h1>
 
+              {% else %}
         <nav class="navbar fixed-top container-fluid navbar-expand-lg navbar-light bg-dark" style="background-color:#008B8B" >
 
 
@@ -64,7 +68,7 @@
 
 
                 <li class="nav-item active">
-                  <a class="nav-link text-white" href=" " style="font-size:26px">Update <span class="sr-only">(current)</span></a>
+                  <a class="nav-link text-white" href=" {% url "organiser_app:candidate_edit" object.candidate_id %}" style="font-size:26px">Update <span class="sr-only">(current)</span></a>
                 </li>
 
                 <li>
@@ -140,9 +144,6 @@
               </tr>
 
 
-
-
-
   </table>
 </table>
 </div>
@@ -151,6 +152,7 @@
               {% endif %}
   </div>
 
+{% endif %}
 
   </body>
 </html>

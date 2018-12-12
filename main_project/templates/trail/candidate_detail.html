@@ -2,37 +2,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+  <!--styles-->
      <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>mypage</title>
+    <!--css pages-->
    <link rel="stylesheet" type="text/css" href="{% static "trail/base.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "trail/styles.css" %}"/>
+    <!--end of css pages-->
+  <!--jquery ,bootstrap,ajax links--->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
+<!--end of styles-->
 </head>
 <body>
+<!--start of nav bar-->
 <ul>
-    <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-    <li><a href="#" style="text-decoration: none;">feedback</a></li>
-    <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-log-out"></span>logout</a></li>
-    <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-user"></span>user</a></li>
-    <li><a href="#"  onclick="history.back()" style="text-decoration: none;">go back</a></li>
-</ul>
+    <li><a href="{% url 'evoting-home' %}" style="text-decoration: none;"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+    <li><a href="{% url 'charts:feedback' %}" style="text-decoration: none;">feedback</a></li>
+        <li><a href="{% url 'charts:report' %}" style="text-decoration: none;">report</a></li>
+
+    <li><a href="{% url 'evoting-logout' %}" style="text-decoration: none;"><span class="glyphicon glyphicon-log-out"></span>logout</a></li>
+    <li><a href=" " style="text-decoration: none;"><span class="glyphicon glyphicon-user"></span>{{user}}</a></li>
+
+    </ul>
+
+</div>
 
 <center>
 
     <h1 class="font animated rubberBand" style="color:red">candidate information</h1>
 
     <br>
-
+<!---candidate card--->
 
     <center>
         <div class="container">
             <div style="background-color:white" class="card">
 
-                <br><div><img style="width:200px;height:200px;border-radius:50%" src="{% static "trail/voting_back.jpg"%}" alt = "hello!!" ></div>
+                <br><div><img style="width:200px;height:200px;border-radius:50%" src="{{ object.profile_pic.url }}" alt = "hello!!" ></div>
                 <h1></h1>
                 <h4>I am <b style="color:red">{{ object.candidate_name }}</b></h4>
                 <br><div class=class1>
@@ -46,9 +55,8 @@
             </div>
         </div>
     </center>
-
-
-
+</center>
+    <!--end of candidate card--->
 
 <script>
    $(document).ready(function(){

@@ -32,25 +32,15 @@ class Registration_form1(forms.ModelForm):
             attrs={
                 'class': 'input_boxes',
                 'placeholder': 'Email (abc@gmail.com)',
-                'pattern': '[a-z0-9._%+-]+@[a-z]+\.[c]+[o]+[m]$',
                 'oninvalid': 'this.setCustomValidity("Email must be in (example@email.com) format")',
                 'name': 'email',
             }
         )
     )
 
-    first_name = forms.CharField(
-        required=False,
-        widget=forms.TextInput(
-            attrs={
-                'value': 'Organiser'
-            }
-        )
-    )
-
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', 'first_name')
+        fields = ('username', 'email', 'password')
 
 
 class Registration_form2(forms.ModelForm):

@@ -57,12 +57,12 @@
                <th> Election DoS</th>
                <th> Election DoE</th>
                <th class="status"> Election Status</th>
-               <th>Region</th>
+
                <th> Info </th>
                <th>Update</th>
             </thead>
             <tbody class="list">
-               {% for election in election_instance %}
+               {% for election in election_instance%}
                <tr style="text-align: center">
                   <td class="eid">{{ election.election_id}}</td>
                   <td class="type">{{ election.election_type}}</td>
@@ -70,7 +70,7 @@
                   <td>{{ election.date_of_start}}</td>
                   <td>{{ election.date_of_end}}</td>
                   <td class="status">{{ election.status}}</td>
-                  <td></td>
+
                   <td><a href="{% url "organiser_app:election-candidate" election.election_id %}" >Click</a></td>
                   <td><a href="{% url "organiser_app:election_edit" election.election_id %}" >Click</a></td>
                </tr>
@@ -90,14 +90,7 @@
       <script src="{% static 'javascript/list.min.js' %}" ></script>
 
 
-      <script>
-         var options = {
-           valueNames: [ 'eid','type','status',"year"]
-         };
-
-         var musiclibraryList = new List('elections', options);
-      </script>
-
+      
 
    </body>
 </html>

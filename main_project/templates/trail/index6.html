@@ -2,28 +2,33 @@
 <html>
 
 <head>
+      <!--styles-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>mypage</title>
+       <!--css pages-->
    <link rel="stylesheet" type="text/css" href="{% static "trail/base.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "trail/styles.css" %}"/>
+    <!--end of css pages-->
+    <!--jquery ,bootstrap,ajax links--->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
+<!--end of styles-->
 </head>
 <body>
+<!--start of nav bar-->
 <ul>
-  <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-  <li><a href="#" style="text-decoration: none;">feedback</a></li>
-  <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-log-out"></span>logout</a></li>
-  <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-user"></span>{{user}}</a></li>
-</ul>
+    <li><a href="{% url 'evoting-home' %}" style="text-decoration: none;"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+    <li><a href="{% url 'charts:feedback' %}" style="text-decoration: none;">feedback</a></li>
+        <li><a href="{% url 'charts:report' %}" style="text-decoration: none;">report</a></li>
 
-<button onclick="topFunction()" id="myBtn"><span class="glyphicon glyphicon-chevron-up "></span></button>
-   <div id="navbar">
+    <li><a href="{% url 'evoting-logout' %}" style="text-decoration: none;"><span class="glyphicon glyphicon-log-out"></span>logout</a></li>
+    <li><a href=" " style="text-decoration: none;"><span class="glyphicon glyphicon-user"></span>{{user}}</a></li>
+    </ul>
 
    </div>
-        <!--{% if status != 2 %}-->
+
     <div class="background">
     <center>
 	<h1 id="demo1" style="font-family: 'Britannic Bold'">THE ELECTIONS ENDS IN </h1>
@@ -50,7 +55,7 @@
         <h1 style=" font-family: 'Britannic Bold'">Welcome to region <b style="color: red;">{{ region }}</b></h1>
 
         <h3 style="font-family: 'Britannic Bold'">Below mentioned is the list of candidates in the region {{ region }}</h3>
-    </div>
+        </div>
 </center>
 
     </div>
@@ -58,15 +63,18 @@
 
     <br>
 <center>
+    <!---candidate card--->
+
 <div class="clipped">
     <table>
     <tr>
               {% for i in candidates_new %}
                   <td style="padding: 20px;">
                    <div class="card">
-                    <br><div><img style="width:200px;height:200px;border-radius:50%" src="{% static "trail/voting_back.jpg"%}" alt = "hello!!" ></div>
+                    <br><div><img style="width:200px;height:200px;border-radius:50%" src="{{ i.2.url }}" alt = "hello!!" ></div>
                     <h1></h1>
                     <h4> <b style="color:black">I am {{ i.0 }}</b></h4>
+
                        <div>
                            <form action="{% url 'candidate_details' i.1 %}" method="POST">
                         {%  csrf_token %}
@@ -122,23 +130,30 @@
       </div>
 
     </div>
-  <
-</div></center>
+
+</div>
+</div>
+</center>
 <br>
 <h3 style="font-family: 'Britannic Bold';text-align: center" id="demo"></h3>
        <br>
-    <!--{% else %}-->
-    <!--<div class=background>-->
-        <!--<h1 id="demo1" style="font-family: 'Britannic Bold'">The Election has ended</h1>-->
 
 
-    <!--</div>-->
-
-    <!--{% endif %}-->
-<!--suppress JSAnnotator -->
+<div class="contact">
+           <center>
+               <br><div style="color:white;font-size:20px;font-family: 'Britannic Bold'">For any queries You can contact us to the number<br><span class="glyphicon glyphicon-phone-alt"></span>+321654987,<span class="glyphicon glyphicon-earphone"></span>91201054548</div>
+           </center>
+           <center><a href="#"><img src="{% static "trail/twitter-logo-sketch.jpg" %}" style="height:50px;width:50px"></a>
+           <a href="#"> <img src="{% static "trail/fb.jpg" %}" style="height:50px;width:50px"></a>
+           <a href="#"><img src="{% static "trail/insta.jpg" %}" style="height:50px;width:50px"></a>
+           <br><br><p><a href="#"><img src="{% static "trail/loca.png" %}" style="height:50px;width:50px"></a>
+           <div style="font-family: 'Britannic Bold';font-size:15px;color:red">Adress:</div><span style="color:white">2town road,sricity</span></p>
+           </center>
+       </div>
 <script>
 
-    var countDownDate = new Date("dec 12, 2018 23:59:59").getTime();
+
+    var countDownDate = new Date("dec 15, 2018 11:37:25").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
