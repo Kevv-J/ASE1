@@ -262,11 +262,12 @@ def vote(request,eid,cid):
                     user = Voter.objects.get(voter_id = user.voterId)
                     cand = Candidate.objects.get(candidate_id = cid)
                     elec = Election.objects.get(election_id = eid)
-                    try:
-                        voter = Vote_count.objects.get(voter=user)
-                        messages.error(request, "You have already voted in this Election", extra_tags='vote')
-                    except:
+                    if Vote_count.objects.filter(voter=user,election=elec).exists() :
 
+                        messages.error(request, "You have already voted in this Election", extra_tags='vote')
+                        print('not voted')
+                    else:
+                        print('voted')
                         voteCount = Vote_count()
                         voteCount.voter = user
                         voteCount.candidate = cand
@@ -274,8 +275,6 @@ def vote(request,eid,cid):
                         voteCount.save()
 
                         messages.success(request, "Your Vote has Successfully been registered", extra_tags='vote')
-                    date_of_end = elec.date_of_end
-                    messages.success(request, "The Result will be display on "+str(date_of_end), extra_tags='result')
                     return render(request, "trail/vote_count.html" )
                 else:
                     raise Http404("Candidate does not exist in your Region")
