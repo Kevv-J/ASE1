@@ -238,13 +238,16 @@ def election(request,pk):
         '8': 'Haryana',
         '9': 'Assam'
     }
-    status = Election.objects.get(pk = pk)
-    status = status.status
+    elec = Election.objects.get(pk = pk)
+    status = elec.status
     print(status)
     region = region_options[region]
+    doe= elec.date_of_end
+    print(doe)
+    print('Hello')
     for candidate in candidates:
-        candidates_new.append([candidate.candidate_name, candidate.candidate_id])
-    context = {'region': region, 'candidates_new': candidates_new,'user':user, 'status':status,'eid':pk}
+        candidates_new.append([candidate.candidate_name, candidate.candidate_id, candidate.profile_pic])
+    context = {'region': region, 'candidates_new': candidates_new,'user':user, 'status':status,'eid':pk,'doe':doe}
     return render(request, "trail/index6.html", context=context)
 
 def candidate_details(request,pk):
