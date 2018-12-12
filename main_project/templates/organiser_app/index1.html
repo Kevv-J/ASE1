@@ -55,8 +55,14 @@
             <li>
                <p class="text-white " style="font-size:26px;margin:5px">|</p>
             </li>
+             <li class="nav-item active">
+               <a class="nav-link text-white " href="{% url 'charts:feedback_responses' %}" style="font-size:26px">Feedbacks <span class="sr-only">(current)</span></a>
+            </li>
+            <li>
+               <p class="text-white " style="font-size:26px;margin:5px">|</p>
+            </li>
             <li class="nav-item active">
-               <a class="nav-link text-white " href="{% url 'organiser_app:evoting-logout'%}" style="font-size:26px">Logout <span class="sr-only">(current)</span></a>
+               <a class="nav-link text-white " href="{% url 'organiser_app:evoting-logout' %}" style="font-size:26px">Logout <span class="sr-only">(current)</span></a>
             </li>
          </ul>
       </nav>
@@ -74,7 +80,7 @@
                <div class="card sm-6" style="width: 18rem;margin-left:50px">
                   <img class="card-img-top" src="{% static "images/voters.jpeg"%}" alt="Card image cap" width="50" height="250">
                   <div class="card-body">
-                     <a href="{% url 'organiser_app:voter_region_page' %}" class="btn btn-primary" style="background-color:#006064">Voters</a>
+                     <a href="{% url 'organiser_app:select_region_page' %}" class="btn btn-primary" style="background-color:#006064">Voters</a>
                   </div>
                </div>
             </div>

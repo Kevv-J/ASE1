@@ -1,8 +1,12 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 1400px 650px;
-    z-index: -2;
+    z-index: -3;
 }
 
 
@@ -14,7 +18,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.85);
+    background-color: rgba(0,0,0,0.8);
     z-index: -1;
 }
 
@@ -27,7 +31,7 @@ body {
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.7);
-    z-index: 2;
+    z-index: 101;
     -webkit-animation: animate_page_overlay;
     -webkit-animation-duration: 1s;
     animation-name: animate_page_overlay;
@@ -42,6 +46,8 @@ body {
     background: transparent;
 }
 
+#evoting-heading {color: #8fcafe; font-size: 50px; font-family: "Microsoft Yi Baiti"; font-weight: bolder;}
+
 .evoting_txt {
     position: relative;
     top: 3px; padding-left: 10px;
@@ -54,13 +60,19 @@ body {
 }
 
 .menu_bar_disp {
-    position: fixed;
-    left: 0; top: 50%;
     width: 1.2%;
     height: 80px;
     background-color: lightgoldenrodyellow;
     border-top-right-radius: 8px; border-bottom-right-radius: 8px;
     z-index: 2;
+}
+
+#menu_bar_display_open {
+    position: fixed;
+    /*left: -1.2%;*/
+    left: 0;
+    top: 50%;
+    transition:all .5s ease;
 }
 
 .menu_bar_disp p {
@@ -78,7 +90,7 @@ body {
     height: 80px;
     background-color: lightgoldenrodyellow;
     border-top-right-radius: 8px; border-bottom-right-radius: 8px;
-    z-index: 2;
+    z-index: 102;
 }
 
 .menu_bar_disp_close p {
@@ -89,7 +101,7 @@ body {
 }
 
 .menu_bar {
-    width: 30%; height: 100%;
+    width: 25%; height: 100%;
     opacity: 1;
     background-color: gainsboro;
 }
@@ -101,43 +113,11 @@ body {
     color: #008B8B;
 }
 
-.user-profile-image {
-    position: relative;
-    margin-top: 5%;
-    font-size: 65px;
-    border-radius: 50%;
-    padding: 10px;
-    border: 2px solid blueviolet;
-    background: transparent;
-    opacity: 0.8;
+/*------------------------------Dropdown class---------------*/
+.dropdown-menu {
+    width: 10%; !important;
 }
 
-.register_btn {
-    font-family: "Microsoft JhengHei UI Light";
-    font-size: 19px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: white;
-}
-
-.login_btn {
-    font-family: "Microsoft JhengHei UI Light";
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    color: whitesmoke;
-}
-
-.logout_btn {
-    font-family: "Microsoft JhengHei UI Light";
-    font-size: 15px;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    color: #888888;
-    padding: 10px;
-    background: transparent;
-    border-radius: 2px;
-}
 
 /*===============================Modal classes===============*/
 .logout_modal {
@@ -161,6 +141,10 @@ body {
 .footer-content {
     background-color: cadetblue;
     z-index: 4;
+}
+
+footer img {
+    width: 120px;
 }
 
 .footer-copyright {
@@ -218,7 +202,7 @@ body {
 #menu_bar {
     position: fixed;
     left: -30%;
-    z-index: 10;
+    z-index: 102;
 }
 
 #profile {
@@ -256,11 +240,13 @@ body {
 
 /*===============================Nav Ids=================*/
 #nav_bar_div {
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
+    width: 100%;
+    /*top: -66px;*/
     top: 0;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.8);
     z-index: 1;
+    transition:all .5s ease;
 }
 
 #nav_bar {
@@ -270,6 +256,17 @@ body {
 #navbardrop {
     font-size: 17px;
     color: gainsboro;
+}
+
+#navbar_dropdown {
+    position: absolute;
+    right: 0;
+    border-radius: 0;
+    background: rgba(20, 20, 20, 0.95);
+}
+
+#navbar_dropdown a {
+    color: whitesmoke;
 }
 
 /*------*/      /*===========Back top top===========*/      /*------*/
@@ -316,6 +313,8 @@ body {
     cursor: pointer;
     color: #006064;
 }
+
+.user-profile-image { font-size: 70px; border: 1px solid #31b0d5    ;border-radius: 50%; padding: 10px }
 
 .user-profile-image:hover {
     cursor: pointer;
@@ -556,8 +555,9 @@ body {
 
 .container-fluid.mt-7 {margin-top: 7%;}
 .container-fluid.border_t_b {
-    border-top: 1px solid burlywood;
-    border-bottom: 1px solid burlywood;
-    border-right: none;
-    border-left: none;
+    border: none;
+}
+
+.mt-8 {
+    margin-top: 8%;
 }
