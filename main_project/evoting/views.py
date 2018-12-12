@@ -262,11 +262,12 @@ def vote(request,eid,cid):
                     user = Voter.objects.get(voter_id = user.voterId)
                     cand = Candidate.objects.get(candidate_id = cid)
                     elec = Election.objects.get(election_id = eid)
-                    try:
-                        voter = Vote_count.objects.get(voter=user)
-                        messages.error(request, "You have already voted in this Election", extra_tags='vote')
-                    except:
+                    if Vote_count.objects.filter(voter=user,election=elec).exists() :
 
+                        messages.error(request, "You have already voted in this Election", extra_tags='vote')
+                        print('not voted')
+                    else:
+                        print('voted')
                         voteCount = Vote_count()
                         voteCount.voter = user
                         voteCount.candidate = cand
@@ -274,8 +275,6 @@ def vote(request,eid,cid):
                         voteCount.save()
 
                         messages.success(request, "Your Vote has Successfully been registered", extra_tags='vote')
-                    date_of_end = elec.date_of_end
-                    messages.success(request, "The Result will be display on "+str(date_of_end), extra_tags='result')
                     return render(request, "trail/vote_count.html" )
                 else:
                     raise Http404("Candidate does not exist in your Region")
@@ -299,24 +298,50 @@ def resultpage(request,eid):
         'SP',
         'RJD'
     )
+    region_options = (
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+
+    )
+
     elec = Election.objects.get(election_id=eid)
     if elec.status == '2':
         votercount = Vote_count.objects.filter(election = elec)
-        count={}
-        for x in party_options:
-            count[x]=0
-        for entry in votercount:
-            count[entry.candidate.candidate_party] += 1
-        print(count)
-        parties=[]
-        votes=[]
-        for key,value in count.items():
-            parties.append(key)
-            votes.append(value)
-        data = {
-            'labelsdata': parties,
-            'defaultdata': votes,
-        }
-        return render(request, 'graphs/charts.html', context=data)
+        print(votercount)
+        count=[]
+        data={}
+        # for i in 0,10:
+        #     count[i]={}
+        i=0
+        count1={}
+        data=[]
+        for region in region_options:
+            for item in party_options:
+                count1[item] = 0
+            for entry in votercount:
+                if entry.candidate.candidate_region==region:
+                    count1[entry.candidate.candidate_party] += 1
+
+            parties=[]
+            votes=[]
+            for key,value in count1.items():
+                parties.append(key)
+                votes.append(value)
+            data1={
+                'labelsdata':parties,
+                'defaultdata':votes,
+            }
+            data.append(data1);
+        print(data)
+        context = {'data':data}
+        return render(request, 'graphs/charts.html', context=context)
     else:
         raise Http404("Election Results dont exist")

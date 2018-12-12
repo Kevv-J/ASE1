@@ -118,7 +118,7 @@ def search_voter(request):
 
 
 def voter_view(request, pk):
-    template_name = 'organiser_app/voter_details.html'
+    template_name = 'organiser_app/voter_info.html'
     voter=get_object_or_404(Voter, pk=pk)
     return render(request, template_name, {'voter': voter})
 
