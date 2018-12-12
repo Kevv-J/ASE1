@@ -25,4 +25,5 @@ urlpatterns=[
         path('election_edit/<int:pk>',views.election_update,name="election_edit"),
         path('candidate-election/<int:pk>',views.candidate_election,name="candidate-election"),
         path('logout/', user_views.user_logout, name='evoting-logout'),
+        path('srccandidate/',views.srchcandidate,name='srccandidate')
 ]

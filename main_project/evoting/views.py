@@ -12,7 +12,7 @@ from django.template.loader import render_to_string
 from evoting.tokens import account_activation_token
 from django.core.mail import EmailMessage, send_mail
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404,Http404
 from . import decoraters
 
 
@@ -197,37 +197,17 @@ def test_ajax(request):
 
 def election(request,pk):
 
-    # region = request.POST.get('region', False)
+
     print(request.user)
     user = Voters_Profile.objects.get(user = request.user)
     region = user.region
-    # voterid= request.POST.get('voterid',False)
-    # regions = candidateLog.objects.values_list('region_2', flat=True)
-    # voterId = voterLog.objects.values_list('voterid', flat=True)
-    #
-    # if region in regions:
-    #     if voterid not in voterId:
-    #       regions=candidateLog.objects.filter(region_2=reg
 
 
     candidates = Candidate_election.objects.filter(election = pk)
     candidates = {candidate.candidate for candidate in candidates}
     candidates = {candidate for candidate in candidates if candidate.candidate_region in region}
     print(candidates)
-    #candidates = {candidates for candidates.region in region}
-    #print(candidates)
 
-    #       candidates=regions.values_list('candidate')
-    #       candidate_ids=regions.values_list('candidate_id')
-    #       a=len(candidates)
-    #       #evenlist=[]
-    #       #oddlist=[]
-    #       candidates_new=[]
-    #       for i in range(0,len(candidates)):
-    #         candidates_new.append([candidates[i][0],candidate_ids[i][0]])
-    #       result_region={'region':region,'candidates_new':candidates_new,'regions':regions}
-    #       return render(request,"trail/index6.html",result_region)
-    #
     candidates_new = []
     region_options = {
         '0': 'AndhraPradesh',
@@ -241,14 +221,14 @@ def election(request,pk):
         '8': 'Haryana',
         '9': 'Assam'
     }
-    # candidate.candidate_region = region_options[candidate.candidate_region]
+    status = Election.objects.get(pk = pk)
+    status = status.status
+    print(status)
     region = region_options[region]
     for candidate in candidates:
         candidates_new.append([candidate.candidate_name, candidate.candidate_id])
-    result_region = {'region': region, 'candidates_new': candidates_new}
-    return render(request, "trail/index6.html", result_region)
-    #     else:
-    #       return HttpResponse('Invalid Details!!')
+    context = {'region': region, 'candidates_new': candidates_new,'user':user, 'status':status,'eid':pk}
+    return render(request, "trail/index6.html", context=context)
 
 def candidate_details(request,pk):
     template_name='trail/candidate_detail.html'
@@ -269,3 +249,74 @@ def candidate_details(request,pk):
     candidate.candidate_region = region_options[candidate.candidate_region]
     dob = str(candidate.candidate_dob)
     return render(request,template_name,{'object':candidate,'dob':dob})
+
+def vote(request,eid,cid):
+    user = Voters_Profile.objects.get(user=request.user)
+    region = user.region
+    if Election.objects.filter(election_id= eid).exists():
+        if Candidate.objects.filter(candidate_id=cid).exists():
+            if Candidate_election.objects.filter(election = Election.objects.get(election_id= eid), candidate=Candidate.objects.get(candidate_id=cid)).exists():
+                if Candidate.objects.get(candidate_id=cid).candidate_region == region:
+
+                    user = Voters_Profile.objects.get(user=request.user)
+                    user = Voter.objects.get(voter_id = user.voterId)
+                    cand = Candidate.objects.get(candidate_id = cid)
+                    elec = Election.objects.get(election_id = eid)
+                    try:
+                        voter = Vote_count.objects.get(voter=user)
+                        messages.error(request, "You have already voted in this Election", extra_tags='vote')
+                    except:
+
+                        voteCount = Vote_count()
+                        voteCount.voter = user
+                        voteCount.candidate = cand
+                        voteCount.election = elec
+                        voteCount.save()
+
+                        messages.success(request, "Your Vote has Successfully been registered", extra_tags='vote')
+                    date_of_end = elec.date_of_end
+                    messages.success(request, "The Result will be display on "+str(date_of_end), extra_tags='result')
+                    return render(request, "trail/vote_count.html" )
+                else:
+                    raise Http404("Candidate does not exist in your Region")
+            else:
+                raise Http404("Candidate does not exist in election")
+        else:
+            raise Http404("Candidate does not exist in election")
+    else:
+        raise Http404("Election does not exist")
+
+def resultpage(request,eid):
+    party_options = (
+        'BJP',
+        'CPI',
+        'INC',
+        'AAP',
+        'TDP',
+        'SS',
+        'TRS',
+        'JD',
+        'SP',
+        'RJD'
+    )
+    elec = Election.objects.get(election_id=eid)
+    if elec.status == '2':
+        votercount = Vote_count.objects.filter(election = elec)
+        count={}
+        for x in party_options:
+            count[x]=0
+        for entry in votercount:
+            count[entry.candidate.candidate_party] += 1
+        print(count)
+        parties=[]
+        votes=[]
+        for key,value in count.items():
+            parties.append(key)
+            votes.append(value)
+        data = {
+            'labelsdata': parties,
+            'defaultdata': votes,
+        }
+        return render(request, 'graphs/charts.html', context=data)
+    else:
+        raise Http404("Election Results dont exist")

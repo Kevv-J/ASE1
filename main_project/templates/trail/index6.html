@@ -1,8 +1,7 @@
-{% extends 'voters/base.html' %}
-{% load staticfiles %}
+{% load static%}
+<html>
 
-<!--suppress ALL -->
-{% block head %}
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>mypage</title>
    <link rel="stylesheet" type="text/css" href="{% static "trail/base.css" %}"/>
@@ -11,17 +10,23 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
-{% endblock head %}
-{% block body %}
+</head>
+<body>
+<ul>
+  <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+  <li><a href="#" style="text-decoration: none;">feedback</a></li>
+  <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-log-out"></span>logout</a></li>
+  <li><a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-user"></span>{{user}}</a></li>
+</ul>
 
-
-<button onclick="topFunction()" id="myBtn" title="Go to top"><span class="glyphicon glyphicon-chevron-up "></span></button>
+<button onclick="topFunction()" id="myBtn"><span class="glyphicon glyphicon-chevron-up "></span></button>
    <div id="navbar">
 
    </div>
+        <!--{% if status != 2 %}-->
     <div class="background">
     <center>
-	<h1 style="font-family: 'Britannic Bold'">THE ELECTIONS WILL START IN </h1>
+	<h1 id="demo1" style="font-family: 'Britannic Bold'">THE ELECTIONS ENDS IN </h1>
 	<div id="clockdiv">
 	  <div>
 		<span id="days"></span>
@@ -52,6 +57,7 @@
 
 
     <br>
+<center>
 <div class="clipped">
     <table>
     <tr>
@@ -60,136 +66,123 @@
                    <div class="card">
                     <br><div><img style="width:200px;height:200px;border-radius:50%" src="{% static "trail/voting_back.jpg"%}" alt = "hello!!" ></div>
                     <h1></h1>
-                    <h4> <b style="color:black">i am {{ i.0 }}</b></h4>
+                    <h4> <b style="color:black">I am {{ i.0 }}</b></h4>
                        <div>
                            <form action="{% url 'candidate_details' i.1 %}" method="POST">
                         {%  csrf_token %}
-                    <button class="button1"><span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span></button>
+                    <button class="button1" style="width:350px;">READ MORE  <span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span></button>
                        </form>
-
-                       <button class="button1" onclick="myFunction()">vote</button>
+                    {% if status == '1' %}
+                       <!--<button class="button1" style="width:350px;" onclick="myFunction()">vote</button>-->
+                           <a class="button1" href="" data-toggle="modal" data-target="#exampleModalCenter" onclick="stop_scrolling()">
+                               Vote
+                           </a>
+                           <div class="modal fade logout_modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content logout_modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title color-white" id="exampleModalLongTitle">Confirmation</h5>
+                                            <button type="button" class="close color-white" data-dismiss="modal" aria-label="Close" onclick="start_scrolling()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body color-white" style="font-family: 'Microsoft YaHei Light'; font-weight: bold">
+                                            Are you sure you want to Vote for {{ i.0 }}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="{% url 'trail.vote' eid i.1 %}">
+                                                <button type="button" class="btn btn-danger">Vote</button>
+                                            </a>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="start_scrolling()">No</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                     {% endif %}
                            </div>
                        </div>
                   </td>
                 {% endfor %}
     </tr>
     </table>
-</div>
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+
+        <div class="modal-body">
+          <h4>note:</h4>
+		  <p>are you sure u want to vote</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" value="ok" id="btn1">ok</button>
+		  <button type="button" class="btn btn-default" data-dismiss="modal" value="close" id="btn2" >close</button>
+        </div>
+      </div>
+
+    </div>
+  <
+</div></center>
 <br>
 <h3 style="font-family: 'Britannic Bold';text-align: center" id="demo"></h3>
        <br>
+    <!--{% else %}-->
+    <!--<div class=background>-->
+        <!--<h1 id="demo1" style="font-family: 'Britannic Bold'">The Election has ended</h1>-->
 
 
+    <!--</div>-->
 
+    <!--{% endif %}-->
+<!--suppress JSAnnotator -->
 <script>
 
-    function date_time() {
-        var date=new Date();
-        var new_date=new Date("Dec 8 2018 18:20");
-        var d=new_date.getDate() - date.getDate();
-        var h=new_date.getHours() - date.getHours();
-        var m=new_date.getMinutes() - date.getMinutes();
-        var s=new_date.getSeconds() - date.getSeconds();
+    var countDownDate = new Date("dec 12, 2018 23:59:59").getTime();
 
-        if(d<0)
-            document.getElementById("days").innerHTML=d*-1;
-        else
-            document.getElementById("days").innerHTML=d;
-        if(h<0)
-            document.getElementById("hours").innerHTML=h*-1;
-        else
-            document.getElementById("hours").innerHTML=h;
-        if(m<0)
-            document.getElementById("minutes").innerHTML=m*-1;
-        else
-            document.getElementById("minutes").innerHTML=m
-        if(s<0)
-            document.getElementById("seconds").innerHTML=s*-1;
-        else
-            document.getElementById("seconds").innerHTML=s;
+// Update the count down every 1 second
+var x = setInterval(function() {
+var clock=document.getElementById("clockdiv");
+  // Get todays date and time
+  var now = new Date().getTime();
 
-        setInterval(function(){
-            currentnumber = Number(document.getElementById('seconds').innerHTML);
-            currentmin = Number(document.getElementById('minutes').innerHTML);
-            currenthours = Number(document.getElementById('hours').innerHTML);
-            currentdays = Number(document.getElementById('days').innerHTML);
-            currentseconds=currentnumber-1;
-            if(currentseconds<0 & currentmin>0) {
-                currentseconds = 59;
-                currentmin = currentmin - 1;
-                if (currentmin < 0 & currenthours > 0) {
-                    currentmin = 59;
-                    currenthours = currenthours - 1;
-                    if (currenthours < 0 & currentdays > 0) {
-                        currenthours = 23;
-                        currentdays = currentdays - 1;
-                        if (currentdays < 0) {
-                            currentdays = 0;
-                            currenthours = 0;
-                            currentmin = 0;
-                            currentseconds = 0;
-                        }
-                    }
-                    else if (currenthours < 0 & currentdays < 0) {
-                        currenthours = 0;
-                        currentdays = 0;
-                    }
-                }
-                else if(currentmin<0 & currenthours< 0 & currentdays <0){
-                    currentmin=0;
-                    currenthours=0;
-                    currentdays=0;
-                }
-            }
-             else if(currentmin<0 & currenthours< 0 & currentdays <0){
-                 currentmin=0;
-                 currenthours=0;
-                 currentdays=0;
-                 currentseconds=0;
-             }
-            document.getElementById('seconds').innerHTML=currentseconds;
-            document.getElementById('minutes').innerHTML=currentmin;
-            document.getElementById('hours').innerHTML=currenthours;
-            document.getElementById('days').innerHTML=currentdays;
- },1000);
-    }
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
 
-    date_time()
-    window.onscroll = function() {scrollFunction()};
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Output the result in an element with id="demo"
+   document.getElementById("days").innerHTML=days;
+   document.getElementById("hours").innerHTML=hours;
+   document.getElementById("minutes").innerHTML=minutes;
+   document.getElementById("seconds").innerHTML=seconds;
+
+  // If the count down is over, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo1").innerHTML = "Elections ended";
+    clock.style.display="none";
+  }
+}, 1000);
+window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-    if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-        document.getElementById("myBtn").style.display = "block";
-    } else {
-        document.getElementById("myBtn").style.display = "none";
-    }
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("myBtn").style.display = "block";
+  } else {
+    document.getElementById("myBtn").style.display = "none";
+  }
 }
-var count=1;
 
-  function myFunction() {
-    var txt;
-    if (count==1){
-      if (confirm("do u want to vote")) {
-        txt = "your vote has been registered";
-        count+=1;
-    	} else {
-     		 txt = "Your vote has not been registered";
-   		 }
-   	 document.getElementById("demo").innerHTML =txt ;
- 	 }
- else
-{
-	var txt;
-    if (confirm("do u want to change ur mind")) {
-      txt = "your vote has been updated";
-      count+=1;
-    } else {
-      txt = "Your vote remains unchanged";
-    }
-    document.getElementById("demo").innerHTML =txt ;
- }
- }
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
 
 </script>
-
- {% endblock body %}
+</body>
+</html>

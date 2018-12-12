@@ -3,18 +3,14 @@
 <html lang="en">
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static "trail/base.css" %}">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mypage</title>
+   <link rel="stylesheet" type="text/css" href="{% static "trail/base.css" %}"/>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-    <style>
 
-    </style>
 </head>
 <body>
 <ul>
@@ -34,23 +30,18 @@
 
     <center>
         <div class="container">
-            <div class="card">
+            <div style="background-color:white" class="card">
+
                 <br><div><img style="width:200px;height:200px;border-radius:50%" src="{% static "trail/voting_back.jpg"%}" alt = "hello!!" ></div>
                 <h1></h1>
                 <h4>I am <b style="color:red">{{ object.candidate_name }}</b></h4>
                 <br><div class=class1>
-                <a href="#" title="email-id" data-toggle="popover" data-placement="top" data-content={{ object.candidate_email }}>
-                    <img src="{% static "trail/mail.png"%}" style="width:50px;height:50px">
-                </a>
-                <!--<a href="#" title="phone-no" data-toggle="popover" data-placement="top" data-content={{ object.phone_no }}>-->
-                    <!--<img src="{% static "trail/phone.jpg"%}" style="width:50px;width:50px">-->
-                <!--</a>-->
-                <a href="#" title="date-of-birth" data-toggle="popover" data-placement="top" data-content={{ dob }}>
-                    <img src="{% static "trail/calender.png"%}" style="width:50px;width:50px">
-                </a>
-                <a href="#" title="region" data-toggle="popover" data-placement="top" data-content={{ object.candidate_region }}>
-                    <img src="{% static "trail/loca.png"%}" style="width:50px;height:50px">
-                </a>
+                <a href="#" data-toggle="tooltip" title="gender:{{ object.candidate_gender }}"><img src="{% static "trail/gender.png"%}" style="width:50px;height:50px"></a>
+                <a href="#" data-toggle="tooltip" title="party:{{ object.candidate_party }}"><img src="{% static "trail/party.png"%}" style="width:50px;height:50px"></a>
+                <a href="#" data-toggle="tooltip" title="email:{{ object.candidate_email }}"><img src="{% static "trail/mail.png"%}" style="width:50px;height:50px"></a>
+                <a href="#" data-toggle="tooltip" title="Date-of-birth:{{ object.candidate_dob }}"><img src="{% static "trail/calender.png"%}" style="width:50px;height:50px"></a>
+                <a href="#" data-toggle="tooltip" title="region:{{ object.candidate_region }}"><img src="{% static "trail/loca.png"%}" style="width:50px;height:50px"></a>
+
             </div>
             </div>
         </div>
@@ -60,9 +51,9 @@
 
 
 <script>
-    $(document).ready(function(){
-        $('[data-toggle="popover"]').popover();
-    });
+   $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
 </script>
 </body>
 </html>

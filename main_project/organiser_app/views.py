@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
-from  organiser_app.serializers import  candidateserializer
+from  organiser_app.serializers import  CandidateSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -29,6 +29,15 @@ def index(request):
     return render(request, 'organiser_app/index.html',context)
 
 
+def srchcandidate(request):
+    candidate_id=request.POST.get('Candidateid')
+    print(candidate_id)
+    object=Candidate.objects.get(candidate_id=candidate_id)
+    print(object)
+    context = {'object':object}
+    return render(request,'organiser_app/candidate_info.html',context)
+
+
 def candidate_page(request):
 
     if request.method =="POST":
@@ -37,11 +46,6 @@ def candidate_page(request):
         if candidate_form.is_valid():
 
             candidate_form.save()
-
-            # if 'profile_pic' in request.FILES:
-            #     candidate.profile_pic=request.FILES['profile_pic']
-
-
 
             return render(request,'organiser_app/index1.html')
 
@@ -190,6 +194,7 @@ def candidate_update(request,pk):
 
         if form.is_valid():
             form.save()
+            #return HttpResponseRedirect(reverse( organiser_app:candidate_edit 'form.candidate_id ))
 
     return render(request,template_name,{'form':form})
 
@@ -199,11 +204,14 @@ def reg_candidate(request,pk):
     context={'candidates':candidates}
     return render(request,template_name,context)
 
+
 def party_candidate(request,pk):
     template_name='organiser_app/region_candidate.html'
     candidates=Candidate.objects.filter(candidate_party=pk)
     context={'candidates':candidates}
     return render(request,template_name,context)
+
+
 
 def election_candidate(request,pk):
     template_name='organiser_app/region_candidate.html'
@@ -245,13 +253,12 @@ class candidateListView(APIView):
 
     def get(self,request):
         candidate=Candidate.objects.all()
-        serializer=candidateserializer(candidate,many=True)
-
+        serializer=CandidateSerializer(candidate,many=True)
         return Response(serializer.data)
 
 
     def post(self,request):
-        serializer=candidateserializer(data=request.data)
+        serializer=CandidateSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
