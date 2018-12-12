@@ -39,7 +39,7 @@
                  <a class="nav-link text-white" href="#" style="font-size:22px">Back <span class="sr-only">(current)</span></a>
                </li>
                <li class="nav-item active">
-                 <a class="nav-link text-white" href="#" style="font-size:22px">Logout <span class="sr-only">(current)</span></a>
+                 <a class="nav-link text-white" href="{% url 'evoting-logout' %}" style="font-size:22px">Logout <span class="sr-only">(current)</span></a>
                </li>
             </ul>
 
@@ -119,12 +119,18 @@
                         </div>
                     </div>
 
+                    <div class="form-group row inline-group">
+                        <div class="col-sm-12">
+                            <input type="button" onclick="getAge()" value="Get Age">
+                        </div>
+                    </div>
+
                     <div class="form-group row" style="margin-top:-10px">
                         <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:25px ">Voter's Age</label>
                     </div>
                     <div class="form-group row" style="margin-top:-20px">
                         <div class="col-sm-12">
-                             {{ voter_form.voter_age|attr:"placeholder:Enter Voter's Age"|add_class:"input100" }}
+                             {{ voter_form.voter_age }}
                         </div>
                     </div>
 
@@ -167,6 +173,21 @@
               }
         }
     </script>
+    <script>
+        function getAge() {
+
+            var DOB = document.getElementById('date').value;
+            var today = new Date();
+            var birthDate = new Date(DOB);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age = age - 1;
+            }
+             document.getElementById('age').value = age;
+        }
+    </script>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
