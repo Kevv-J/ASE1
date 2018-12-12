@@ -8,14 +8,19 @@
 {% block body %}
     {% if messages %}
         {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}" style="text-align: center; color:whitesmoke; font-weight: bold;
-                        border: 1px solid #008B8B; border-radius: 4px; background: transparent">
-                {{ message }}
-            </div>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class="alert alert-warning" style="text-align: center; position: absolute; width: 100%; top: 69px">
+                    {{ message }}
+                </div>
+            {% else %}
+                <div class="alert alert-success" style="text-align: center; position: absolute; width: 100%; top: 69px">
+                    {{ message }}
+                </div>
+            {% endif %}
         {% endfor %}
     {% endif %}
 
-    <div  class="container box" style="max-width: 450px;">
+    <div  class="container box" style="max-width: 450px; margin-top: 7.5%">
         <div class="row">
             <div class="col-md-12 login_heading">
                 {% if USER == 'voter' %}
@@ -58,6 +63,18 @@
     </div>
 {% endblock body %}
 
+<script>
+    function fadeout_alert_msg() {
+        $('.alert').css({display: 'none'});
+    }
+
+    {% if messages %}
+
+        setTimeout(500, fadeout_alert_msg());
+
+    {% endif %}
+
+</script>
 
 <!--
     Password Pattern.........

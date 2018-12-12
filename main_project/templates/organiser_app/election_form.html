@@ -1,6 +1,7 @@
+<!doctype html>
 {% load staticfiles %}
 {% load widget_tweaks %}
-<!doctype html>
+
 <html lang="en">
    <head>
       <!-- Required meta tags -->
@@ -155,6 +156,11 @@
            var d = document.getElementById("ElectionType").value;
              if( d == 'P' ){
              document.getElementById("region").disabled = true;
+
+           }
+             else if( d == 'A' ){
+             document.getElementById("region").disabled = false;
+
            }
          }
 
