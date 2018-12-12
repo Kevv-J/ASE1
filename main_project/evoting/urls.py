@@ -5,8 +5,6 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
 
-    path('base/', user_views.base, name='base'),
-    path('', user_views.home, name='home'),
     path('home/', user_views.home, name='evoting-home'),
     path('register/', user_views.register, name='evoting-register'),
     path('voter_login/', user_views.voter_login, name='evoting-voter-login'),
@@ -14,6 +12,8 @@ urlpatterns = [
     path('logout/', user_views.user_logout, name='evoting-logout'),
     path('profile/', user_views.profile, name='evoting-user-profile'),
     path('activate/<uidb64>/<token>', user_views.activate, name='activate'),
+    path('edit_username/', user_views.edit_username, name='edit-username'),
+
     path('password_reset/', auth_views.PasswordResetView.as_view(
         template_name='voters/password_reset.html', email_template_name="voters/password_reset_email.html", subject_template_name="voters/subject.txt"),
          name='password_reset'
@@ -30,10 +30,6 @@ urlpatterns = [
         template_name='voters/password_reset_complete.html'),
          name='password_reset_complete'
     ),
-
-
-    path('print/', user_views.print_username, name='print'),
-    path('test/', user_views.test_ajax, name='test-ajax'),
 
     path('candidate_details/<int:pk>', user_views.candidate_details, name='candidate_details'),
     path('election/<int:pk>', user_views.election, name='trail.election'),

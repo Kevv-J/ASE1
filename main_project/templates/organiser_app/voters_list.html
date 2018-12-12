@@ -54,7 +54,13 @@
                 <p class="text-white " style="font-size:26px;margin:5px">|</p>
             </li>
             <li class="nav-item active">
-                <a class="nav-link text-white" href="#" style="font-size:26px">Logout</a>
+                <a class="nav-link text-white" href="{% url 'organiser_app:select_region_page' %}" style="font-size:26px">Regions</a>
+            </li>
+            <li>
+                <p class="text-white " style="font-size:26px;margin:5px">|</p>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link text-white" href="{% url 'organiser_app:evoting-logout' %}" style="font-size:26px">Logout</a>
             </li>
         </ul>
     </nav>
