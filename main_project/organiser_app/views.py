@@ -89,32 +89,17 @@ def add_voter(request):
     return render(request, 'organiser_app/add_voter.html', {'voter_form':voter_form})
 
 
-def voter_region_page(request):
-
+def select_region_page(request):
     region_form = RegionForm()
     context = {'region_form':region_form}
-    if request.method == 'POST':
-        region = request.POST.get('select_region')
-        voters = Voter.objects.filter(voter_region=region)
-        return render(request, 'organiser_app/voters_list.html',{'voters':voters})
-
-    return render(request, 'organiser_app/select_region.html',context=context)
+    return render(request, 'organiser_app/select_region.html',context)
 
 
-def search_voter(request):
-
-    if request.method == 'POST':
-        voterid = request.POST.get('voterid')
-        try:
-            voter = Voter.objects.get(voter_id=voterid)
-            context = {'voter': voter}
-            return render(request, 'organiser_app/search_results.html', context=context)
-        except:
-            message = 'Voter Id "' + str(voterid) + '" does not exist.'
-            context = {'message': message}
-            return render(request, 'organiser_app/search_results.html', context=context)
-
-    return render(request, 'organiser_app/search_results.html')
+def voter_region_page(request,pk):
+    template_name='organiser_app/voters_list.html'
+    voters = Voter.objects.filter(voter_region=pk)
+    context={'voters':voters}
+    return render(request,template_name,context)
 
 
 def voter_view(request, pk):
@@ -197,6 +182,7 @@ def candidate_update(request,pk):
             #return HttpResponseRedirect(reverse( organiser_app:candidate_edit 'form.candidate_id ))
 
     return render(request,template_name,{'form':form})
+
 
 def reg_candidate(request,pk):
     template_name='organiser_app/region_candidate.html'
