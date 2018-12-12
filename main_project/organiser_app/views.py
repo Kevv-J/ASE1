@@ -37,8 +37,6 @@ def party(request):
     return render(request, 'organiser_app/party.html',context)
 
 
-
-
 def index(request):
     region_form = RegionForm()
     context = {'region_form':region_form}
@@ -56,7 +54,6 @@ def srchcandidate(request):
         message ='Sorry,' + 'Candidate Id "' + str(candidate_id) + '" does not exist.'
         context = {'message': message}
         return render(request, 'organiser_app/candidate_info.html', context=context)
-
 
     return render(request,'organiser_app/index.html',context)
 
@@ -79,6 +76,7 @@ def candidate_page(request):
         candidate_form=Candidateform()
 
     return render(request, 'organiser_app/addcandidate.html', {'candidate_form':candidate_form })
+
 
 def main_page(request):
     return render(request,'organiser_app/index1.html')
@@ -128,7 +126,9 @@ def voter_region_page(request,pk):
 def voter_view(request, pk):
     template_name = 'organiser_app/voter_info.html'
     voter=get_object_or_404(Voter, pk=pk)
-    return render(request, template_name, {'voter': voter})
+    region = region_options[voter.voter_region]
+    context = {'voter': voter, 'region': region}
+    return render(request, template_name, context=context)
 
 
 def voter_update(request, pk):
@@ -144,7 +144,6 @@ def voter_update(request, pk):
 
 
 #-------------------------------------------End Voter Code--------------------------------------------------
-
 
 def addelection(request):
     if request.method=="POST":
@@ -183,13 +182,11 @@ def addelection(request):
 
             #election_region = zip(election_instance, region)
 
-
             context={'election_instance':election_instance}
             return render(request,'organiser_app/election.html',context)
 
         else:
             print(addelection_form.errors)
-
     else:
         addelection_form=Electionform()
 
@@ -232,7 +229,6 @@ def party_candidate(request,pk):
     return render(request,template_name,context)
 
 
-
 def election_candidate(request,pk):
     template_name='organiser_app/region_candidate.html'
     candidates_ele=Candidate_election.objects.filter(election=pk)
@@ -271,11 +267,8 @@ def election_update(request,pk):
                 candidate_election_instance.election = election_instance
                 candidate_election_instance.save()
 
-
             for reg in Election_region.objects.filter(election=id):
                 reg.delete()
-
-
 
             if election_instance.election_type == 'P':
                 for i in range(0,10):
@@ -284,7 +277,6 @@ def election_update(request,pk):
                     election_region_instance.election=election_instance
                     election_region_instance.save()
 
-
             if election_instance.election_type=='A':
                 election_region_instance=Election_region()
                 region=request.POST['statelist']
@@ -292,14 +284,11 @@ def election_update(request,pk):
                 election_region_instance.election=election_instance
                 election_region_instance.save()
 
-
-
             election_instance=Election.objects.all()
             context={'election_instance':election_instance}
             return render(request,'organiser_app/election.html',context)
 
     return render(request,template_name,{'form':form})
-
 
 
 class candidateListView(APIView):

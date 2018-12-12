@@ -42,78 +42,64 @@
          }
 
       </style>
-      <title>organiser_main</title>
+      <title>Select Region.</title>
    </head>
-
-
    <body style="position: relative; padding-top: 20px;">
-      <nav class="navbar fixed-top container-fluid navbar-expand-lg navbar-light bg-dark" style="background-color:#008B8B">
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-         </button>
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+   <nav class="navbar fixed-top navbar-expand-lg bg-dark" >
+        <div class="navbar-collapse " id="navbarSupportedContent">
             <img src="{% static "images/e-voting.png"%}" alt="evoting image" width="50" height="50">
-            <p style="color:white; font-size:30px;margin:5px">E-Voting</p>
-         </div>
-         <ul class="nav navbar-nav navbar-right">
+            <p style="color:white; font-size:25px;margin:5px">E-Voting</p>
+        </div>
+
+        <ul class="navbar-nav navbar-right">
             <li class="nav-item active">
                 <a class="nav-link text-white" href="{% url 'organiser_app:mainpage' %}" style="font-size:25px">Mainpage</a>
             </li>
             <li>
-               <p class="text-white " style="font-size:26px;margin:5px">|</p>
+                <p class="text-white " style="font-size:25px;margin:5px">|</p>
             </li>
             <li class="nav-item active">
-               <a class="nav-link text-white " href="{% url 'organiser_app:evoting-logout' %}" style="font-size:26px">Logout <span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="{% url 'organiser_app:evoting-logout' %}" style="font-size:26px">Logout</a>
             </li>
-         </ul>
-      </nav>
+        </ul>
 
-
-
+   </nav>
 
       <ul class="nospace" style="margin-left:15px;margin-top:70px">
-
-
-        <form class="form-inline justify-content-center " method="post" action="{% url 'organiser_app:srccandidate' %}">
-          {% csrf_token %}
-              <input class="form-control mr-sm-2 " type="search" placeholder="Enter Candidate Id" aria-label="Search" name="Candidateid">
-              <button class=" btn btn-danger my-2 my-sm-0 text-white" type="submit" style="font-size:17px;margin-left:-8px;background-color: #424242;border:none;">
-                <img height="25" width="25" style="margin-left:-5px;"src="{% static 'images/button.png' %}"></button>
-
-            </form>
-
-
-         {% for region in region_form.select_region.field.choices %}
-         {% if forloop.counter|modulo:3 == 1 %}
-         <li class="one_quarter first">
-            <form action="{% url 'organiser_app:select_region_page' %}"  method="post">
-               {% csrf_token %}
-               <div class="card sm-6 " style="width: 18rem;margin:50px;">
-                  <img class="card-img-top" src="{% static 'images/'|add:region.1|add:'.jpeg' %}" alt="Card image cap" width="50" height="250">
-                  <div class="card-body">
-                     <a href="{% url 'organiser_app:voter_region_page' region.0 %}" class="btn btn-primary" style="background-color:#424242">{{region.1}}</a>
+          {% for region in region_form.select_region.field.choices %}
+          {% if forloop.counter|modulo:3 == 1 %}
+          <li class="one_quarter first">
+              <form action="{% url 'organiser_app:select_region_page' %}"  method="post">
+                  {% csrf_token %}
+                  <div class="card sm-6 " style="width: 18rem;margin:50px;">
+                      <img class="card-img-top" src="{% static 'images/'|add:region.1|add:'.jpeg' %}" alt="Card image cap" width="50" height="250">
+                      <div class="card-body">
+                          <a href="{% url 'organiser_app:voter_region_page' region.0 %}" class="btn btn-primary" style="background-color:#424242">{{region.1}}</a>
+                      </div>
                   </div>
-               </div>
-            </form>
-         </li>
+              </form>
+          </li>
          {% else %}
          <li class="one_quarter">
-            <form action="{% url 'organiser_app:select_region_page' %}"  method="post">
-               {% csrf_token %}
-               <div class="card sm-6  " style="width: 18rem;margin:50px">
-                  <img class="card-img-top" src="{% static 'images/'|add:region.1|add:'.jpeg' %}" alt="Card image cap" width="50" height="250">
-                  <div class="card-body">
-                     <a href="{% url 'organiser_app:voter_region_page' region.0 %}" class="btn btn-primary" style="background-color:#424242">{{region.1}}</a>
-                  </div>
-               </div>
-            </form>
+             <form action="{% url 'organiser_app:select_region_page' %}"  method="post">
+                 {% csrf_token %}
+                 <div class="card sm-6  " style="width: 18rem;margin:50px">
+                     <img class="card-img-top" src="{% static 'images/'|add:region.1|add:'.jpeg' %}" alt="Card image cap" width="50" height="250">
+                     <div class="card-body">
+                         <a href="{% url 'organiser_app:voter_region_page' region.0 %}" class="btn btn-primary" style="background-color:#424242">{{region.1}}</a>
+                     </div>
+                 </div>
+             </form>
          </li>
-         {% endif %}
-         {% endfor %}
+          {% endif %}
+          {% endfor %}
       </ul>
 
+   </body>
+</html>
 
-      <!-- Optional JavaScript -->
+
+<!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -139,6 +125,3 @@
 
       </script>
 
-
-   </body>
-</html>
