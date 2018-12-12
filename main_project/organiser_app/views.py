@@ -11,7 +11,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from django.contrib import messages
-
+import schedule
+import time
+import datetime
 
 region_options={
 
@@ -50,7 +52,8 @@ def srchcandidate(request):
 
     try:
         object = Candidate.objects.get(candidate_id=candidate_id)
-        context = {'object': object}
+        region=region_options[object.candidate_region]
+        context = {'object': object,'region':region}
         return render(request, 'organiser_app/candidate_info.html', context=context)
     except:
         message ='Sorry,' + 'Candidate Id "' + str(candidate_id) + '" does not exist.'
@@ -68,9 +71,16 @@ def candidate_page(request):
 
         if candidate_form.is_valid():
 
-            candidate_form.save()
+            #if (datetime.date.today() - (candidate_form.candidate_dob)).days < 365*25:
+            #    message = 'Candidate Age is less than"' + str(candidate_form.candidate_dob) + '" years'
+            #    context = {'message': message}
+            #    return render(request, 'organiser_app/addcandidate.html', context=context)
 
-            return render(request,'organiser_app/index1.html')
+            #else:
+            object=candidate_form.save()
+            region=region_options[object.candidate_region]
+            context={'object':object,'region':region}
+            return render(request,'organiser_app/candidate_info.html',context)
 
         else:
             print(candidate_form.errors)
@@ -322,3 +332,26 @@ class candidateListView(APIView):
         candidate=Candidate.objects.all()
         serializer=CandidateSerializer(candidate,many=True)
         return Response(serializer.data)
+
+"""
+def job():
+    date=datetime.date.today()
+    elections=Election.objects.all()
+    for election in elections:
+        if date <= election.date_of_start:
+            print('hiii')
+            election.status = '0'
+        if date >= election.date_of_start and date <= election.date_of_end:
+            election.status = '1'
+        if date >= election.date_of_end:
+            election.status = '2'
+
+        election.save()
+
+
+schedule.every(6).hours.do(job)
+
+while 1:
+    schedule.run_pending()
+    time.sleep(1)
+"""

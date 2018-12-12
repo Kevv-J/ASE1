@@ -41,7 +41,7 @@
             <img src="{% static "images/e-voting.png"%}" alt="evoting image" width="50" height="50">
             <a href=" "  style="color:white; font-size:30px;margin:5px">E-Voting</a>
          </div>
-         
+
          <ul class=" nav navbar-nav navbar-right">
             <li class="nav-item active">
                <a class="nav-link text-white" href="{% url 'organiser_app:election' %}" style="font-size:26px">Election <span class="sr-only">(current)</span></a>
@@ -56,7 +56,7 @@
                <p class="text-white " style="font-size:26px;margin:5px">|</p>
             </li>
             <li class="nav-item active">
-               <a class="nav-link text-white " href="#" style="font-size:26px">Logout <span class="sr-only">(current)</span></a>
+               <a class="nav-link text-white " href="{% url 'organiser_app:evoting-logout'%}" style="font-size:26px">Logout <span class="sr-only">(current)</span></a>
             </li>
          </ul>
       </nav>
