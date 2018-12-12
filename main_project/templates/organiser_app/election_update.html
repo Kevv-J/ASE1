@@ -31,7 +31,7 @@
          -moz-box-shadow: 1px 5px 15px 9px rgba(0,0,0,0.75);
          box-shadow: 1px 5px 15px 9px rgba(0,0,0,0.75);
          width:352px;
-         height:565px;
+         height:630px;
          margin-left: -30px;
          margin-top:20px;
          }
@@ -74,7 +74,7 @@
                   </div>
                   <div class="form-group row" style="margin-top:-32px">
                      <div class="col-sm-12">
-                        {{ form.election_type |add_class:"input100"}}
+                        {{ form.election_type |add_class:"input100"|attr:"id=ElectionType"|attr:"onchange:myFunction()"}}
                      </div>
                   </div>
                   <div class="form-group row" style="margin-top:-10px">
@@ -109,6 +109,29 @@
                         {{ form.candidates|add_class:"input100" }}
                      </div>
                   </div>
+
+                  <div class="form-group row">
+                     <label for="inputEmail3" class="col-sm-12 col-form-label" style="font-size:18px;color:white;">Select Region</label>
+                  </div>
+
+
+                  <div class="form-group row" style="margin-top:-28px">
+                     <div class="col-sm-12">
+                        <select name="statelist"  id="region" class="input100">
+                           <option value="Bihar">Bihar</option>
+                           <option value="AndhraPradesh">AndhraPradesh</option>
+                           <option value="Tamilnadu">Tamilnadu</option>
+                           <option value="karnataka">karnataka</option>
+                           <option value="UttarPradesh">UttarPradesh</option>
+                           <option value="Assam">Assam</option>
+                           <option value="WestBengal">WestBengal</option>
+                           <option value="MadhyaPradesh">MadhyaPradesh</option>
+                           <option value="Haryana">Haryana</option>
+                           <option value="Kerela">Kerela</option>
+                        </select>
+                     </div>
+                  </div>
+
                   <div class="form-group row">
                      <div class="col-sm-12">
                         <button type="submit" class="btn btn-danger" style="margin-left:5px;border-radius:5px;margin-top:5px;width:100px">Submit</button>
@@ -129,6 +152,22 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+
+      <script type="text/javascript">
+         function myFunction() {
+           var d = document.getElementById("ElectionType").value;
+             if( d == 'P' ){
+             document.getElementById("region").disabled = true;
+            
+           }
+             else if( d == 'A' ){
+             document.getElementById("region").disabled = false;
+
+           }
+         }
+
+      </script>
 
 
    </body>
