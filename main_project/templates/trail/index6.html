@@ -23,9 +23,10 @@
    <div id="navbar">
 
    </div>
+        <!--{% if status != 2 %}-->
     <div class="background">
     <center>
-	<h1 id="demo1" style="font-family: 'Britannic Bold'">THE ELECTIONS WILL START IN </h1>
+	<h1 id="demo1" style="font-family: 'Britannic Bold'">THE ELECTIONS ENDS IN </h1>
 	<div id="clockdiv">
 	  <div>
 		<span id="days"></span>
@@ -71,8 +72,33 @@
                         {%  csrf_token %}
                     <button class="button1" style="width:350px;">READ MORE  <span class="glyphicon glyphicon-chevron-right"></span><span class="glyphicon glyphicon-chevron-right"></span></button>
                        </form>
-
-                       <button class="button1" style="width:350px;" onclick="myFunction()">vote</button>
+                    {% if status == '1' %}
+                       <!--<button class="button1" style="width:350px;" onclick="myFunction()">vote</button>-->
+                           <a class="button1" href="" data-toggle="modal" data-target="#exampleModalCenter" onclick="stop_scrolling()">
+                               Vote
+                           </a>
+                           <div class="modal fade logout_modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content logout_modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title color-white" id="exampleModalLongTitle">Confirmation</h5>
+                                            <button type="button" class="close color-white" data-dismiss="modal" aria-label="Close" onclick="start_scrolling()">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body color-white" style="font-family: 'Microsoft YaHei Light'; font-weight: bold">
+                                            Are you sure you want to Vote for {{ i.0 }}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="{% url 'trail.vote' eid i.1 %}">
+                                                <button type="button" class="btn btn-danger">Vote</button>
+                                            </a>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="start_scrolling()">No</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                     {% endif %}
                            </div>
                        </div>
                   </td>
@@ -101,13 +127,18 @@
 <br>
 <h3 style="font-family: 'Britannic Bold';text-align: center" id="demo"></h3>
        <br>
+    <!--{% else %}-->
+    <!--<div class=background>-->
+        <!--<h1 id="demo1" style="font-family: 'Britannic Bold'">The Election has ended</h1>-->
 
 
+    <!--</div>-->
 
+    <!--{% endif %}-->
 <!--suppress JSAnnotator -->
 <script>
 
-    var countDownDate = new Date("dec 12, 2018 11:05:00").getTime();
+    var countDownDate = new Date("dec 12, 2018 23:59:59").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
