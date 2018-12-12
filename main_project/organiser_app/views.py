@@ -109,17 +109,20 @@ def add_voter(request):
 
     return render(request, 'organiser_app/add_voter.html', {'voter_form':voter_form})
 
-
+@login_required
 def select_region_page(request):
+
     region_form = RegionForm()
+
     context = {'region_form':region_form}
+
     return render(request, 'organiser_app/select_region.html',context)
 
-
+@login_required
 def voter_region_page(request,pk):
     template_name='organiser_app/voters_list.html'
     voters = Voter.objects.filter(voter_region=pk)
-    context={'voters':voters}
+    context = {'voters':voters}
     return render(request,template_name,context)
 
 
@@ -143,7 +146,23 @@ def voter_update(request, pk):
     return render(request, template_name, {'voter_form': voter_form})
 
 
-#-------------------------------------------End Voter Code--------------------------------------------------
+def search_voter(request):
+
+    if request.method == 'POST':
+        voterid = request.POST.get('voterid')
+        try:
+            voter = Voter.objects.get(voter_id=voterid)
+            context = {'voter': voter}
+            return render(request, 'organiser_app/search_results.html', context=context)
+        except:
+            message = 'Voter Id "' + str(voterid) + '" does not exist.'
+            context = {'message': message}
+            return render(request, 'organiser_app/search_results.html', context=context)
+
+    return render(request, 'organiser_app/search_results.html')
+
+
+#-------------------------------------------End Voter Code---------------------------------------------
 
 def addelection(request):
     if request.method=="POST":
@@ -197,7 +216,7 @@ def candidate_view(request,pk):
     template_name='organiser_app/candidate_detail.html'
     candidate=get_object_or_404(Candidate,pk=pk)
     region=region_options[candidate.candidate_region]
-    context={'object':candidate,'region':region}
+    context={'object':candidate, 'region':region}
     return render(request,template_name,context=context)
 
 
