@@ -85,7 +85,7 @@
 
     function date_time() {
         var date=new Date();
-        var new_date=new Date("Dec 7 2018 16:40");
+        var new_date=new Date("Dec 8 2018 18:20");
         var d=new_date.getDate() - date.getDate();
         var h=new_date.getHours() - date.getHours();
         var m=new_date.getMinutes() - date.getMinutes();
@@ -130,8 +130,23 @@
                             currentseconds = 0;
                         }
                     }
+                    else if (currenthours < 0 & currentdays < 0) {
+                        currenthours = 0;
+                        currentdays = 0;
+                    }
+                }
+                else if(currentmin<0 & currenthours< 0 & currentdays <0){
+                    currentmin=0;
+                    currenthours=0;
+                    currentdays=0;
                 }
             }
+             else if(currentmin<0 & currenthours< 0 & currentdays <0){
+                 currentmin=0;
+                 currenthours=0;
+                 currentdays=0;
+                 currentseconds=0;
+             }
             document.getElementById('seconds').innerHTML=currentseconds;
             document.getElementById('minutes').innerHTML=currentmin;
             document.getElementById('hours').innerHTML=currenthours;
