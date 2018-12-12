@@ -23,6 +23,9 @@ def base(request):
 @decoraters.voter_home
 def home(request):
     elections = Election.objects.all()
+    changer={'P':'Parliamentary','A':'Assembly'}
+    for election in elections:
+        election.election_type = changer[election.election_type]
     context = {'elections': elections, 'username': request.user}
     return render(request, 'voters/home.html', context = context)
 
@@ -45,8 +48,7 @@ def register(request):
 
             if voter_id in voter_id_list:
                 voter = Voter.objects.get(voter_id=voter_id)
-                if request.POST['email'] == voter.voter_email and\
-                        request.POST['fullname'] == voter.voter_name:
+                if request.POST['email'] == voter.voter_email and request.POST['fullname'] == voter.voter_name:
 
                     reg_form1 = registration_form1.save()
                     reg_form1.is_active = False

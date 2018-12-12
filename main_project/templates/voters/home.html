@@ -29,11 +29,14 @@
             <br>
             <table class="table table-dark">
                 <tr>
-                    <th  colspan="3">Ongoing Election</th>
+                    <th  colspan="6">Ongoing Election</th>
                 </tr>
                 <tr>
                     <th>Election ID</th>
-                    <th>Election Year</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
                     <th>Link</th>
                 </tr>
                 {%  for election in elections  %}
@@ -41,6 +44,9 @@
                         <tr>
                             <td>{{ election.election_id }}</td>
                             <td>{{ election.election_year }}</td>
+                            <td>{{ election.election_type }}</td>
+                            <td>{{ election.date_of_start }}</td>
+                            <td>{{ election.date_of_end }}</td>
                             <td><a href="{% url 'trail.election' election.election_id %}">Voting Page</a></td>
                         </tr>
                     {%  endif  %}
@@ -49,11 +55,14 @@
             <br>
             <table class="table table-dark">
                 <tr>
-                    <th colspan="3">Upcoming Election</th>
+                    <th colspan="6">Upcoming Election</th>
                 </tr>
                 <tr>
                     <th>Election ID</th>
-                    <th>Election Year</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
                     <th>Link</th>
                 </tr>
                 {%  for election in elections  %}
@@ -61,6 +70,9 @@
                         <tr>
                             <td>{{ election.election_id }}</td>
                             <td>{{ election.election_year }}</td>
+                            <td>{{ election.election_type }}</td>
+                            <td>{{ election.date_of_start }}</td>
+                            <td>{{ election.date_of_end }}</td>
                             <td><a href="{% url 'trail.election' election.election_id %}">Candidate List</a></td>
                         </tr>
                     {%  endif  %}
@@ -69,11 +81,14 @@
             <br>
             <table class="table table-dark">
                 <tr>
-                    <th colspan="3">Past Election</th>
+                    <th colspan="6">Past Election</th>
                 </tr>
                 <tr>
                     <th>Election ID</th>
-                    <th>Election Year</th>
+                    <th>Year</th>
+                    <th>Type</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
                     <th>Link</th>
                 </tr>
                 {%  for election in elections  %}
@@ -81,6 +96,9 @@
                         <tr>
                             <td>{{ election.election_id }}</td>
                             <td>{{ election.election_year }}</td>
+                            <td>{{ election.election_type }}</td>
+                            <td>{{ election.date_of_start }}</td>
+                            <td>{{ election.date_of_end }}</td>
                             <td><a href="{% url 'resultpage' election.election_id %}">Result</a></td>
                         </tr>
                     {%  endif  %}
