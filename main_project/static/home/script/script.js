@@ -1,3 +1,23 @@
+function animate_nav_bar() {
+    var scrollHeight = document.body.scrollHeight;
+    if (scrollHeight <= 500){
+        document.getElementById('nav_bar').style.display = 'none';
+    }
+    else {
+        document.getElementById('nav_bar').style.display = 'flex';
+    }
+}
+
+function animate_menu_bar() {
+    var scrollHeight = document.body.scrollHeight;
+    if (scrollHeight <= 500){
+        document.getElementById('menu_bar_display_open').style.display = 'none';
+    }
+    else {
+        document.getElementById('menu_bar_display_open').style.display = 'block';
+    }
+}
+
 function expand_organiser() {
     if (document.getElementById('login_container').style.height == '470px') {
         document.getElementById('organiser_div').classList.remove('col');

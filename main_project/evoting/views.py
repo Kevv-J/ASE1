@@ -12,34 +12,29 @@ from django.template.loader import render_to_string
 from evoting.tokens import account_activation_token
 from django.core.mail import EmailMessage, send_mail
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.shortcuts import get_object_or_404
-
-# Create your views here.
+from django.shortcuts import get_object_or_404,Http404
+from . import decoraters
 
 
 def base(request):
     return render(request, 'voters/base.html')
 
 
+@decoraters.voter_home
 def home(request):
     elections = Election.objects.all()
-    if str(request.user) != 'AnonymousUser':
-        user_type = User.objects.get(username=request.user).first_name
-    else:
-        user_type = 'null'
-    print(elections)
-    print("hi")
-    context = {'elections': elections, 'username': request.user, 'user_type': user_type}
+    context = {'elections': elections, 'username': request.user}
     return render(request, 'voters/home.html', context = context)
 
 
+@decoraters.voter_login_required
 def profile(request):
     return render(request, 'voters/profile.html', {'username': request.user.username})
 
 
+@decoraters.user_not_logged_in
 def register(request):
 
-    registered = False
     if request.method == "POST":
         registration_form1 = Registration_form1(request.POST)
         registration_form2 = Registration_form2(request.POST)
@@ -80,9 +75,10 @@ def register(request):
                     )
                     email.send()
 
-                    registered = True
-
-                    Voters_Profile.objects.get(voterId=voter_id).user.first_name = 'Voter'
+                    messages.success(request, f'We have sent a mail to the registered mail.'
+                                              f' Please click that link to activate your account and then login')
+                    logout(request)
+                    return redirect('evoting-voter-login')
 
                 else:
                     messages.error(request, f'(Email Id) or (fullname) or (Date of Birth) does\'nt'
@@ -97,15 +93,7 @@ def register(request):
         registration_form1 = Registration_form1()
         registration_form2 = Registration_form2()
 
-    if not registered:
-        return render(request, 'voters/register.html',
-                      {'reg_form1': registration_form1, 'reg_form2': registration_form2})
-
-    else:
-        logout(request)
-        return render(request, 'voters/login.html',
-                      {'registered_message': 'We have sent a mail to the registeered mail.'
-                       ' Please click that link to activate your account and then login', 'USER': 'voter'})
+    return render(request, 'voters/register.html', {'reg_form1': registration_form1, 'reg_form2': registration_form2})
 
 
 def user_acc_activation(request):
@@ -121,67 +109,68 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        # login(request, user)
-        # return redirect('home')
-        message = {'acc_confirmation_message': 'Thanks for activating your account. Now you can login to your account.'}
+        messages.success(request, f'Thanks for activating your account. Now you can login to your account.')
 
     else:
-        message = {'acc_confirmation_message': 'Activation link is invalid!'}
+        messages.error(request, f'Activation link is invalid!')
 
-    return render(request, 'voters/home.html', message)
+    return render(request, 'voters/home.html')
 
 
 # ======================================================================================================================
-
+@decoraters.user_not_logged_in
 def voter_login(request):
     if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-
+        username = request.POST['username']
+        password = request.POST['password']
         user = authenticate(username=username, password=password)
-
-        if user and User.objects.get(username=username).first_name == '':
-            if user.is_active:
-                login(request, user)
-                a = User.objects.get(username=username)
-                print("Should print first name")
-                print(a.first_name)
-                # return render(request, 'voters/home.html',
-                #               {'username': username, 'user_type': User.objects.get(username=username).first_name})
-                return redirect('evoting-home')
+        if user:
+            user_objs = User.objects.filter(username=username)
+            if hasattr(user_objs.first(), 'voters_profile'):
+                
+                if user.is_active:
+                    login(request, user)
+                    return redirect('evoting-home')
+                else:
+                    return HttpResponse('account not active')
+    
             else:
-                return HttpResponse('account not active')
+                messages.error(request, f'Invalid Login details')
 
         else:
-            messages.error(request, f'Invalid login details!')
-            print()
-            return redirect(reverse('evoting-voter-login'))
+            messages.error(request, f'Invalid Login details')
+
+        return redirect(reverse('evoting-voter-login'))
+            
     else:
         return render(request, 'voters/login.html', {'USER': 'voter'})
 
 
+@decoraters.user_not_logged_in
 def orgainser_login(request):
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
-
         user = authenticate(username=username, password=password)
+        if user:
+            if not hasattr(username, 'voters_profile'):
 
-        if user and User.objects.get(username=username).first_name == 'Organiser':
-            if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('organiser_app:mainpage'))
+                return redirect('organiser_app:mainpage')
 
             else:
-                return HttpResponse('account not active')
+                messages.error(request, f'Invalid Login details')
 
         else:
-            messages.error(request, f'Invalid login details!')
-            return redirect(reverse('evoting-organiser-login'))
+            messages.error(request, f'Invalid Login details')
+
+        return redirect(reverse('evoting-organiser-login'))
+
     else:
         return render(request, 'voters/login.html', {'USER': 'organiser'})
 
 
+@decoraters.user_login_required
 def user_logout(request):
     logout(request)
     return redirect('evoting-home')
@@ -208,37 +197,17 @@ def test_ajax(request):
 
 def election(request,pk):
 
-    # region = request.POST.get('region', False)
+
     print(request.user)
     user = Voters_Profile.objects.get(user = request.user)
     region = user.region
-    # voterid= request.POST.get('voterid',False)
-    # regions = candidateLog.objects.values_list('region_2', flat=True)
-    # voterId = voterLog.objects.values_list('voterid', flat=True)
-    #
-    # if region in regions:
-    #     if voterid not in voterId:
-    #       regions=candidateLog.objects.filter(region_2=reg
 
 
     candidates = Candidate_election.objects.filter(election = pk)
     candidates = {candidate.candidate for candidate in candidates}
     candidates = {candidate for candidate in candidates if candidate.candidate_region in region}
     print(candidates)
-    #candidates = {candidates for candidates.region in region}
-    #print(candidates)
 
-    #       candidates=regions.values_list('candidate')
-    #       candidate_ids=regions.values_list('candidate_id')
-    #       a=len(candidates)
-    #       #evenlist=[]
-    #       #oddlist=[]
-    #       candidates_new=[]
-    #       for i in range(0,len(candidates)):
-    #         candidates_new.append([candidates[i][0],candidate_ids[i][0]])
-    #       result_region={'region':region,'candidates_new':candidates_new,'regions':regions}
-    #       return render(request,"trail/index6.html",result_region)
-    #
     candidates_new = []
     region_options = {
         '0': 'AndhraPradesh',
@@ -252,14 +221,14 @@ def election(request,pk):
         '8': 'Haryana',
         '9': 'Assam'
     }
-    # candidate.candidate_region = region_options[candidate.candidate_region]
+    status = Election.objects.get(pk = pk)
+    status = status.status
+    print(status)
     region = region_options[region]
     for candidate in candidates:
         candidates_new.append([candidate.candidate_name, candidate.candidate_id])
-    result_region = {'region': region, 'candidates_new': candidates_new}
-    return render(request, "trail/index6.html", result_region)
-    #     else:
-    #       return HttpResponse('Invalid Details!!')
+    context = {'region': region, 'candidates_new': candidates_new,'user':user, 'status':status,'eid':pk}
+    return render(request, "trail/index6.html", context=context)
 
 def candidate_details(request,pk):
     template_name='trail/candidate_detail.html'
@@ -280,3 +249,39 @@ def candidate_details(request,pk):
     candidate.candidate_region = region_options[candidate.candidate_region]
     dob = str(candidate.candidate_dob)
     return render(request,template_name,{'object':candidate,'dob':dob})
+
+def vote(request,eid,cid):
+    user = Voters_Profile.objects.get(user=request.user)
+    region = user.region
+    if Election.objects.filter(election_id= eid).exists():
+        if Candidate.objects.filter(candidate_id=cid).exists():
+            if Candidate_election.objects.filter(election = Election.objects.get(election_id= eid), candidate=Candidate.objects.get(candidate_id=cid)).exists():
+                if Candidate.objects.get(candidate_id=cid).candidate_region == region:
+
+                    user = Voters_Profile.objects.get(user=request.user)
+                    user = Voter.objects.get(voter_id = user.voterId)
+                    cand = Candidate.objects.get(candidate_id = cid)
+                    elec = Election.objects.get(election_id = eid)
+                    try:
+                        voter = Vote_count.objects.get(voter=user)
+                        messages.error(request, "You have already voted in this Election", extra_tags='vote')
+                    except:
+
+                        voteCount = Vote_count()
+                        voteCount.voter = user
+                        voteCount.candidate = cand
+                        voteCount.election = elec
+                        voteCount.save()
+
+                        messages.success(request, "Your Vote has Successfully been registered", extra_tags='vote')
+                    date_of_end = elec.date_of_end
+                    messages.success(request, "The Result will be display on "+str(date_of_end), extra_tags='result')
+                    return render(request, "trail/vote_count.html" )
+                else:
+                    raise Http404("Candidate does not exist in your Region")
+            else:
+                raise Http404("Candidate does not exist in election")
+        else:
+            raise Http404("Candidate does not exist in election")
+    else:
+        raise Http404("Election does not exist")

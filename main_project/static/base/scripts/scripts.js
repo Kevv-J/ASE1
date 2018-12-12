@@ -11,7 +11,7 @@ function menu_bar_off() {
 }
 
 function nav_bar_background() {
-    if (document.body.scrollTop > 15 || document.documentElement.scrollTop > 15) {
+    if (document.body.scrollTop > 650 || document.documentElement.scrollTop > 650) {
         document.getElementById("nav_bar").style.backgroundColor = '#008B8B';
         document.getElementById("nav_bar").style.borderBottom = 'none';
     } else {
@@ -98,6 +98,7 @@ function load() {
     }
     else {
         loading_bar_inc /= 1.2;
+        start_scrolling();
         document.getElementById('loading').style.display = 'none';
     }
 }
