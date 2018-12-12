@@ -1,4 +1,4 @@
-{% extends 'graphs/maincharts.html' %}
+{% extends 'voters/base.html' %}
 {% load staticfiles %}
 {% block head %}
 
@@ -7,12 +7,11 @@
 {%  block body %}
 
 <div class="feedback-page">
-  <div class="form">
+<marquee id="slider" onMouseOver="this.stop()" onMouseOut="this.start()">Fill in the Feedback Form</marquee><br>
+<div class="form">
     <form class="feedback-form" action="{% url 'charts:get_feedback' %}" method="POST">
        {% csrf_token %}
      <h1>Feedback Page</h1><br>
-      <label for="name1">Name:</label>
-      <input type="text" id="name" name="name1" placeholder="Name"/>
       <label for="feedback">Feedback</label>
         <textarea rows="10" id="feedback" name="feedback" placeholder="Enter Feedback"/></textarea>
       <label for="stars">Rate Stars:</label><br>

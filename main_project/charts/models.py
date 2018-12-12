@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from organiser_app.models import *
 
@@ -13,6 +14,7 @@ class Feedback(models.Model):
     name = models.CharField(max_length=30, null=False, unique=True)
     feedback = models.CharField(max_length=300, null=False)
     rating=models.CharField(max_length=10,null=False)
+    date=models.DateTimeField(default=timezone.now)
 
     def str(self):
         return self.name

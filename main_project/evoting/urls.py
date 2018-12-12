@@ -2,6 +2,7 @@ from django.urls import path
 from evoting import views as user_views
 from django.contrib.auth import views as auth_views
 
+
 urlpatterns = [
 
     path('home/', user_views.home, name='evoting-home'),
@@ -32,5 +33,8 @@ urlpatterns = [
 
     path('candidate_details/<int:pk>', user_views.candidate_details, name='candidate_details'),
     path('election/<int:pk>', user_views.election, name='trail.election'),
+    path('vote/<int:eid>/<int:cid>', user_views.vote, name='trail.vote'),
+    path('result/<int:eid>', user_views.resultpage, name='resultpage'),
+
 
 ]

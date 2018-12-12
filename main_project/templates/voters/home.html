@@ -49,7 +49,7 @@
                         <tr>
                             <td>{{ election.election_id }}</td>
                             <td>{{ election.election_year }}</td>
-                            <td><a>Vote Now</a></td>
+                            <td><a href="{% url 'trail.election' election.election_id %}">Voting Page</a></td>
                         </tr>
                     {%  endif  %}
                 {%  endfor  %}
@@ -69,7 +69,7 @@
                         <tr>
                             <td>{{ election.election_id }}</td>
                             <td>{{ election.election_year }}</td>
-                            <td><a>Candidate List</a></td>
+                            <td><a href="{% url 'trail.election' election.election_id %}">Candidate List</a></td>
                         </tr>
                     {%  endif  %}
                 {%  endfor  %}
@@ -89,7 +89,7 @@
                         <tr>
                             <td>{{ election.election_id }}</td>
                             <td>{{ election.election_year }}</td>
-                            <td><a>Result</a></td>
+                            <td><a href="{% url 'resultpage' election.election_id %}">Result</a></td>
                         </tr>
                     {%  endif  %}
                 {%  endfor  %}

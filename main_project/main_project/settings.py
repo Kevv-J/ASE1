@@ -24,6 +24,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+MEDIA_DIR=os.path.join(BASE_DIR,'media')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -49,8 +50,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'organiser_app',
     'testing',
-    'charts',
     'widget_tweaks',
+    'rest_framework',
+    'charts',
+
 ]
 
 MIDDLEWARE = [
@@ -137,10 +140,14 @@ STATICFILES_DIRS = [
 
 STATIC_URL = '/static/'
 
+#media
+MEDIA_ROOT=MEDIA_DIR
+MEDIA_URL='/media/'
+
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'evoting-home'
 
 LOGOUT_REDIRECT_URL = 'evoting-login'
-
