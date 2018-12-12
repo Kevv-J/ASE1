@@ -7,15 +7,12 @@
 
 {%  block body %}
     <div class="feedback-page">
+      <marquee id="slider" onMouseOver="this.stop()" onMouseOut="this.start()">Report Your Problem</marquee><br>
       <div class="form">
         <form class="feedback-form" action="{% url 'charts:send_email' %}" method="POST">
            {% csrf_token %}
          <h1>Report Problem</h1><br>
-          <label>Name:</label>
-          <input type="text" id="name1" name="name1" placeholder="Name"/>
-          <label>Email:</label>
-          <input type="email" id="email" name="email" placeholder="Email"></input>
-          <label>Feedback:</label>
+          <label>Report:</label>
             <textarea rows="10" id="report" name="report" placeholder="Enter Report"/></textarea>
            <label for="stars">Rate Stars:</label><br>
            <fieldset class="rating">

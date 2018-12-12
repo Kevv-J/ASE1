@@ -29,7 +29,7 @@ def form(request):
 
 def get_feedback(request):
     print("Request Object: {}".format(request.POST))
-    name = request.POST['name1']
+    name = request.user.username
     feedback = request.POST['feedback']
     rating = request.POST['rating']
     FeedbackData = Feedback.objects.create(name=name, feedback=feedback,rating=rating)
@@ -51,8 +51,8 @@ def index(request):
 
 
 def send_email(request):
-    name1 = request.POST['name1']
-    email = request.POST['email']
+    name1 = request.user.username
+    email = request.user.email
     report = request.POST['report']
     rating = request.POST['rating']
     Report_data1 = Report_data.objects.create(name1=name1, email=email, report=report,rating='rating')
@@ -84,3 +84,8 @@ class ChartData(APIView):
             "default": votes,
         }
         return Response(data)
+
+def feedback_response(request):
+    fresponse=Feedback.objects.all()
+    data={'fresponse':fresponse}
+    return render(request,'graphs/feedback_responses.html',data)

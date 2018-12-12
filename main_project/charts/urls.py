@@ -13,5 +13,5 @@ urlpatterns=[
     url(r'^feedback/', views.feedback, name='feedback'),
     url(r'^report/', views.Report, name='report'),
     url(r'^api/chart/data/$', views.ChartData.as_view(),name='api_data'),
-
+    url(r'^feedback_response/', views.feedback_response, name='feedback_responses'),
 ]
