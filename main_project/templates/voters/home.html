@@ -32,7 +32,7 @@
     {% endif %}
 
     {%  if user.is_authenticated  %}
-        <div class="container mt-5" style="padding: 2%">
+        <div class="container mt-5" style="padding: 2%; margin-bottom: 10%">
             <br>
             <br>
             <table class="table table-dark">
@@ -135,6 +135,10 @@
                 </div>
             </div>
         </div>
+
+        <a href="{% url 'evoting-register' %}" id="register">
+            <button type="button" class="btn btn-outline-success"><span>Register</span></button>
+        </a>
 
         <div class="container-fluid border_t_b" id="login_container"
             style="background-image: url('{% static 'home/imgs/hands.png' %}')">

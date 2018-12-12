@@ -46,6 +46,11 @@ body {
     background: transparent;
 }
 
+#user_profile_name { font-family: 'Courier Prime'; font-size: 30px; text-transform: uppercase;
+                     margin-left: 5%; text-decoration: none }
+
+#user_profile_name:hover { text-decoration: none; }
+
 #evoting-heading {color: #8fcafe; font-size: 50px; font-family: "Microsoft Yi Baiti"; font-weight: bolder;}
 
 .evoting_txt {
@@ -314,10 +319,11 @@ footer img {
     color: #006064;
 }
 
-.user-profile-image { font-size: 70px; border: 1px solid #31b0d5    ;border-radius: 50%; padding: 10px }
+.user-profile-image { font-size: 70px; border: 1px solid #31b0d5; border-radius: 50%; padding: 10px }
 
 .user-profile-image:hover {
     cursor: pointer;
+    text-decoration: none;
 }
 
 .register_btn:hover {

@@ -63,6 +63,9 @@
             <div class="col" style="padding-left: 40px">
                 <a href="{% url 'evoting-user-profile' %}">
                     <i class="material-icons user-profile-image">person</i>
+                    <span id="user_profile_name">
+                        {{ user.username }}
+                    </span>
                 </a>
             </div>
         {% endif %}
@@ -179,7 +182,6 @@
       {% block jquery %}{% endblock jquery %}
     })
     </script>
-<div style="height: 1000px"></div>
 <!-- ==========================Google Maps================================ -->
 
 
@@ -283,19 +285,16 @@
 
             <!-- Grid column -->
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-                <h6 class="text-uppercase mb-4 font-weight-bold" style="color: purple">Products</h6>
+                <h6 class="text-uppercase mb-4 font-weight-bold" style="color: purple">About Us</h6>
                 <hr class="mb-4 mt-0 d-inline-block" style="width: 60px;">
                 <p>
-                    <a href="#!">MDBootstrap</a>
+                    <a href="">About Us</a>
                 </p>
                 <p>
-                    <a href="#!">MDWordPress</a>
+                    <a href="{% url 'charts:feedback' %}">Feedback</a>
                 </p>
                 <p>
-                    <a href="#!">BrandFlow</a>
-                </p>
-                <p>
-                    <a href="#!">Bootstrap Angular</a>
+                    <a href="{% url 'charts:report' %}">Report</a>
                 </p>
             </div>
 
@@ -358,22 +357,22 @@
                 <div class="text-center text-md-right">
                     <ul class="list-unstyled list-inline social">
                         <li class="list-inline-item facebook">
-                            <a class="btn-floating btn-sm mx-1" href="">
+                            <a class="btn-floating btn-sm mx-1" href="https://www.facebook.com/">
                                 <i class="fa fa-facebook"></i>
                             </a>
                         </li>
                         <li class="list-inline-item instagram">
-                            <a class="btn-floating btn-sm mx-1" href="">
+                            <a class="btn-floating btn-sm mx-1" href="https://www.instagram.com/">
                                 <i class="fa fa-instagram"></i>
                             </a>
                         </li>
                         <li class="list-inline-item linked_in">
-                            <a class="btn-floating btn-sm mx-1" href="">
+                            <a class="btn-floating btn-sm mx-1" href="https://www.linkedin.com/">
                                 <i class="fa fa-linkedin"></i>
                             </a>
                         </li>
                         <li class="list-inline-item twitter">
-                            <a class="btn-floating btn-sm mx-1" href="">
+                            <a class="btn-floating btn-sm mx-1" href="https://www.twitter.com/">
                                 <i class="fa fa-twitter"></i>
                             </a>
                         </li>
