@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'organiser_app',
+    'testing',
     'widget_tweaks',
     'rest_framework',
     'charts',
