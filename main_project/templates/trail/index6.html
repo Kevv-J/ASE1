@@ -90,6 +90,7 @@
         <h1 style=" font-family: 'Britannic Bold'">Welcome to region <b style="color: red;">{{ region }}</b></h1>
 
         <h3 style="font-family: 'Britannic Bold'">Below mentioned is the list of candidates in the region {{ region }}</h3>
+            <p id="blank" style="display:block">{{ doe }}</p>
     </div>
 </center>
 
@@ -106,9 +107,10 @@
               {% for i in candidates_new %}
                   <td style="padding: 20px;">
                    <div class="card">
-                    <br><div><img style="width:200px;height:200px;border-radius:50%" src="{% static "trail/voting_back.jpg"%}" alt = "hello!!" ></div>
+                    <br><div><img style="width:200px;height:200px;border-radius:50%" src="{{ i.2.url }}" alt = "hello!!" ></div>
                     <h1></h1>
                     <h4> <b style="color:black">I am {{ i.0 }}</b></h4>
+
                        <div>
                            <form action="{% url 'candidate_details' i.1 %}" method="POST">
                         {%  csrf_token %}
@@ -338,8 +340,9 @@
     <!--{% endif %}-->
 <!--suppress JSAnnotator -->
 <script>
+    var a=document.getElementsById("blank").value;
 
-    var countDownDate = new Date("dec 12, 2018 23:59:59").getTime();
+    var countDownDate = new Date(a).getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
