@@ -42,7 +42,7 @@
     {% block head %}{% endblock head %}
 
 </head>
-<body style="background-image: url('{% static 'base/imgs/evoting-bg-01.jpg' %}'); overflow: visible;background-size: cover">
+<body style="background-image: url('{% static 'base/imgs/evoting-bg-02.jpg' %}'); overflow: visible;background-size: cover">
 
 <div class="page-overlay"></div>
 <div class="page-overlay_2" style="display: none" id="page_overlay_2"></div>
@@ -74,7 +74,47 @@
             <img src="{% static 'login/imgs/e-voting.png' %}" class="home_img">
             <span class="evoting_txt" id="evoting">E-Voting</span>
         </a>
+         <ul class="navbar-nav">
+            <!-- Dropdown -->
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    {% if user.is_authenticated %}
+                        {{ user.username }}
+                        <i class="material-icons" style="position: relative; top:5px">how_to_reg</i>
+                    {% else %}
+                        <i class="material-icons md-24" style="position: relative; top:4px">portrait</i>
+                    {% endif %}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" id="navbar_dropdown">
+                    {% if user.is_authenticated %}
+                        <a class="dropdown-item" href="{% url 'evoting-home' %}">Home</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'evoting-user-profile' %}">Profile</a>
+                        <a class="dropdown-item" href="" data-toggle="modal" data-target="#exampleModalCenter" onclick="stop_scrolling()">
+                            Logout
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'charts:feedback' %}">Feedback</a>
+                        <a class="dropdown-item" href="{% url 'charts:report' %}">Report Problem</a>
+                    {% else %}
+                        <a class="dropdown-item" href="{% url 'evoting-home' %}">Home</a>
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">Login</h6>
+                        <a class="dropdown-item" href="{% url 'evoting-voter-login' %}">Voter Login</a>
+                        <a class="dropdown-item" href="{% url 'evoting-organiser-login' %}">Organiser Login</a>
+                        <div class="dropdown-divider"></div>
+                        <h6 class="dropdown-header">Register</h6>
+                        <a class="dropdown-item" href="{% url 'evoting-register' %}">Register</a>
+                        <div class="dropdown-divider"></div>
+                    {% endif %}
+                    <a class="dropdown-item" href="#">About</a>
+                </div>
+            </li>
+
+        </ul>
     </nav>
+
     <div>
         <div class="row" id="loading" style="height: 3px; display: block; background-color: white; width: 5%"></div>
     </div>
