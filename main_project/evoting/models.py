@@ -14,7 +14,6 @@ region_options = (
  ('7', 'MadhyaPradesh'),
  ('8', 'Haryana'),
  ('9', 'Assam'),
-('10','All')
 
 )
 

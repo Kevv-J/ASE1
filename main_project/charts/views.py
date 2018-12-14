@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Gen,Feedback, Report_data
 from organiser_app.models import *
 from django.core.mail import send_mail
+from django.contrib import messages
 from django.conf import settings
 # Create your views here.
 from django.template import RequestContext
@@ -32,10 +33,13 @@ def get_feedback(request):
     name = request.user.username
     feedback = request.POST['feedback']
     rating = request.POST['rating']
-    FeedbackData = Feedback.objects.create(name=name, feedback=feedback,rating=rating)
-    FeedbackData.save()
-    return HttpResponse("Thanks for your feedback")
-
+    if Feedback.objects.filter(name=name).exists():
+        messages.error(request, "you have already submitted feedback")
+    else:
+        FeedbackData = Feedback.objects.create(name=name, feedback=feedback,rating=rating)
+        FeedbackData.save()
+        messages.success(request, "Thanks , your feedback has been sent")
+    return redirect('evoting-voter-login')
 
 def index1(request):
     print("Request Object: {}".format(request.POST))
@@ -65,7 +69,8 @@ def send_email(request):
     email_from = settings.EMAIL_HOST_USER
     recipient_list = ['nehul.r17@iiits.in']
     send_mail(subject, message, email_from, recipient_list)
-    return HttpResponse("Thanks , your report has been sent")
+    messages.success(request, "Thanks , your report has been sent")
+    return redirect('evoting-voter-login')
 
 def feedback_response(request):
     fresponse=Feedback.objects.all()

@@ -36,7 +36,7 @@ party_options = (
     ('RJD', 'Rashtriya Janata Dal')
 )
 
-region_options = (
+region_options_e = (
  ('0','AndhraPradesh'),
  ('1','Bihar'),
  ('2','karnataka'),
@@ -49,7 +49,18 @@ region_options = (
  ('9','Assam'),
  ('10','All')
 )
-
+region_options = (
+ ('0','AndhraPradesh'),
+ ('1','Bihar'),
+ ('2','karnataka'),
+ ('3','Tamilnadu'),
+ ('4','Kerela'),
+ ('5','UttarPradesh'),
+ ('6','WestBengal'),
+ ('7','MadhyaPradesh'),
+ ('8','Haryana'),
+ ('9','Assam'),
+)
 YEARS = (
     ("2018", "2018"),
     ("2019 ","2019"),
@@ -121,7 +132,7 @@ class Candidate_election(models.Model):
 
 class Election_region(models.Model):
     election=models.ForeignKey(Election,on_delete=models.CASCADE)
-    region=models.CharField(choices=region_options,null=False,max_length=10)
+    region=models.CharField(choices=region_options_e,null=False,max_length=10)
 
     def __str__(self):
         return str(self.region)
