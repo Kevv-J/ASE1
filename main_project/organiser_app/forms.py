@@ -15,7 +15,8 @@ region_options = (
  ('6','WestBengal') ,
  ('7','MadhyaPradesh') ,
  ('8','Haryana') ,
- ('9','Assam')
+ ('9','Assam'),
+ ('10','All')
 
 )
 
@@ -40,7 +41,7 @@ party_options=(
 
 class Candidateform(forms.ModelForm):
     candidate_dob = forms.DateField(widget=forms.SelectDateWidget(years=range(1920, 1994)))
-    
+
     class Meta:
         model = Candidate
         fields = ('candidate_name','candidate_fname','candidate_party','candidate_region','candidate_gender','candidate_email','candidate_dob','candidate_aadhar','profile_pic')

@@ -47,7 +47,7 @@
 
 
       <div class="shadow-lg p-3 mb-5 bg-white rounded" style="margin-top:50px" id="elections">
-         {% if election_instance %}
+
          <input class="search float-right" style="border-radius:20px;padding:5px;margin-bottom:10px;border:2px solid black;outline:none;"placeholder="Enter Election Id" />
          <table class="table table-dark " style="margin: 20px auto;">
             <thead class="thead thead-light " style="text-align: center">
@@ -57,27 +57,27 @@
                <th> Election DoS</th>
                <th> Election DoE</th>
                <th class="status"> Election Status</th>
-
+               <th>Region</th>
                <th> Info </th>
                <th>Update</th>
             </thead>
             <tbody class="list">
-               {% for election in election_instance%}
+               {% for i,j in election_region %}
                <tr style="text-align: center">
-                  <td class="eid">{{ election.election_id}}</td>
-                  <td class="type">{{ election.election_type}}</td>
-                  <td >{{ election.election_year}}</td>
-                  <td>{{ election.date_of_start}}</td>
-                  <td>{{ election.date_of_end}}</td>
-                  <td class="status">{{ election.status}}</td>
-
-                  <td><a href="{% url "organiser_app:election-candidate" election.election_id %}" >Click</a></td>
-                  <td><a href="{% url "organiser_app:election_edit" election.election_id %}" >Click</a></td>
+                  <td class="eid">{{ i.election_id}}</td>
+                  <td class="type">{{ i.election_type}}</td>
+                  <td >{{ i.election_year}}</td>
+                  <td>{{ i.date_of_start}}</td>
+                  <td>{{ i.date_of_end}}</td>
+                  <td class="status">{{ i.status}}</td>
+                    <td> {{j}}</td>
+                  <td><a href="{% url "organiser_app:election-candidate" i.election_id %}" >Click</a></td>
+                  <td><a href="{% url "organiser_app:election_edit" i.election_id %}" >Click</a></td>
                </tr>
                {% endfor %}
             </tbody>
          </table>
-         {% endif %}
+
       </div>
 
 

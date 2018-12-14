@@ -23,7 +23,7 @@
       -moz-box-shadow: 1px 5px 15px 9px rgba(0,0,0,0.75);
       box-shadow: 1px 5px 15px 9px rgba(0,0,0,0.75);
       width:375px;
-      height:700px;
+      height:740px;
       margin-left: -30px;
       margin-top:20px;
       }
@@ -141,6 +141,11 @@
               <tr>
                   <th> Candidate Party</th>
                   <td>{{ object.candidate_party}}</td>
+              </tr>
+
+              <tr>
+                  <th> Election Info</th>
+                  <td><a href="{% url "organiser_app:candidate-election" object.candidate_id %}">Click</a></td>
               </tr>
 
 

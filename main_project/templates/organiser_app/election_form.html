@@ -67,7 +67,7 @@
       <div class="container-fluid h-100 text-dark " style="margin-top:100px">
          <div class="row justify-content-center align-items-center h-100">
             <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-               <form action={% url 'organiser_app:addelection'%} method="post" class="form-container" name="myform" onsubmit="return Validationform()">
+               <form action={% url 'organiser_app:addelection'%} onsubmit="Validationform()" method="post" class="form-container" >
                <div style="margin-left:40px;margin-top:30px;">
                   {% csrf_token %}
                   <div class="form-group row">
@@ -91,7 +91,7 @@
                   </div>
                   <div class="form-group row" style="margin-top:-32px">
                      <div class="col-sm-12">
-                        {{ addelection_form.date_of_start|add_class:"input100"|add_class:"bord"|attr:"name=dateofstart" }}
+                        {{ addelection_form.date_of_start|add_class:"input100"|add_class:"bord"|attr:"id=dateofstart" }}
                      </div>
                   </div>
                   <div class="form-group row"style="margin-top:-10px">
@@ -99,7 +99,7 @@
                   </div >
                   <div class="form-group row" style="margin-top:-32px">
                      <div class="col-sm-12">
-                        {{addelection_form.date_of_end|add_class:"input100"|add_class:"bord"|attr:"name=dateofend" }}
+                        {{addelection_form.date_of_end|add_class:"input100"|add_class:"bord"|attr:"id=dateofend" }}
                      </div>
                   </div>
                   <div class="form-group row" style="margin-top:-10px">
@@ -166,23 +166,7 @@
 
       </script>
 
-      <script type="text/javascript">
-
-        function Validationform(){
-          console.log(dateofstart)
-          dateofstart=document.forms["myform"]["dateofstart"].value;
-          dateofend=document.forms["myform"]["dateofend"].value;
-          if (dateofstart > dateofend) {
-            alert("Name must be filled out");
-            return false;
-          }
-        }
-
-
-
-      </script>
-
-
+    
 
    </body>
 </html>

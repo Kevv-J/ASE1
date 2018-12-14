@@ -46,7 +46,8 @@ region_options = (
  ('6','WestBengal'),
  ('7','MadhyaPradesh'),
  ('8','Haryana'),
- ('9','Assam')
+ ('9','Assam'),
+ ('10','All')
 )
 
 YEARS = (
@@ -121,6 +122,10 @@ class Candidate_election(models.Model):
 class Election_region(models.Model):
     election=models.ForeignKey(Election,on_delete=models.CASCADE)
     region=models.CharField(choices=region_options,null=False,max_length=10)
+
+    def __str__(self):
+        return str(self.region)
+
 
 class Vote_count(models.Model):
     voter=models.ForeignKey(Voter,on_delete=models.CASCADE)

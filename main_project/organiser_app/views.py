@@ -26,7 +26,8 @@ region_options={
  '6':'WestBengal' ,
  '7':'MadhyaPradesh' ,
  '8':'Haryana' ,
- '9':'Assam'
+ '9':'Assam',
+ '10':'All'
 
 }
 
@@ -70,12 +71,6 @@ def candidate_page(request):
 
         if candidate_form.is_valid():
 
-            #if (datetime.date.today() - (candidate_form.candidate_dob)).days < 365*25:
-            #    message = 'Candidate Age is less than"' + str(candidate_form.candidate_dob) + '" years'
-            #    context = {'message': message}
-            #    return render(request, 'organiser_app/addcandidate.html', context=context)
-
-            #else:
             object=candidate_form.save()
             region=region_options[object.candidate_region]
             context={'object':object,'region':region}
@@ -93,10 +88,17 @@ def candidate_page(request):
 def main_page(request):
     return render(request,'organiser_app/index1.html')
 
+#change
+
 @login_required
 def election(request):
+    region=[]
     election_instance=Election.objects.all()
-    context={'election_instance':election_instance}
+    for election in election_instance:
+        region.append(Election_region.objects.get(election=election.election_id))
+    election_region = zip(election_instance, region)
+
+    context={'election_region':election_region}
     return render(request,'organiser_app/election.html',context)
 
 # ------------------------------------Voter Code--------------------------------------------
@@ -149,7 +151,10 @@ def search_voter(request):
 @login_required
 def voter_region_page(request,pk):
     template_name='organiser_app/voters_list.html'
-    voters = Voter.objects.filter(voter_region=pk)
+    if pk is 10:
+        voters=Voter.objects.all()
+    else:
+        voters = Voter.objects.filter(voter_region=pk)
     context = {'voters':voters}
     return render(request,template_name,context)
 
@@ -191,6 +196,7 @@ def search_voter(request):
 
 
 #-------------------------------------------End Voter Code---------------------------------------------
+#change
 
 @login_required
 def addelection(request):
@@ -208,29 +214,27 @@ def addelection(request):
                 candidate_election_instance.save()
 
             if election_instance.election_type == 'P':
-                for i in range(0,10):
-                    election_region_instance=Election_region()
-                    election_region_instance.region=i
-                    election_region_instance.election=election_instance
-                    election_region_instance.save()
+
+                election_region_instance=Election_region()
+                election_region_instance.region="All"
+                election_region_instance.election=election_instance
+                election_region_instance.save()
 
             if election_instance.election_type=='A':
                 election_region_instance=Election_region()
                 region=request.POST['statelist']
+                print(region)
                 election_region_instance.region=region
                 election_region_instance.election=election_instance
                 election_region_instance.save()
 
-            #region=[]
-
-
+            region=[]
             election_instance=Election.objects.all()
-            #for election in election_instance:
-                #region.append(Election_region.objects.get(election=election.election_id))
+            for election in election_instance:
+                region.append(Election_region.objects.get(election=election.election_id))
+            election_region = zip(election_instance, region)
 
-            #election_region = zip(election_instance, region)
-
-            context={'election_instance':election_instance}
+            context={'election_region':election_region}
             return render(request,'organiser_app/election.html',context)
 
         else:
@@ -256,14 +260,25 @@ def candidate_update(request,pk):
     if request.method=="POST":
 
         if form.is_valid():
-            form.save()
+            object=form.save()
+            
+            region=region_options[object.candidate_region]
+            context={'object':object,'region':region}
+            return render(request,'organiser_app/candidate_info.html',context)
+
             #return HttpResponseRedirect(reverse( organiser_app:candidate_edit 'form.candidate_id ))
 
     return render(request,template_name,{'form':form})
+
+#change
 @login_required
 def reg_candidate(request,pk):
     template_name='organiser_app/region_candidate.html'
-    candidates=Candidate.objects.filter(candidate_region=pk)
+    if pk is 10:
+        candidates=Candidate.objects.all()
+
+    else:
+        candidates=Candidate.objects.filter(candidate_region=pk)
 
     context={'candidates':candidates}
     return render(request,template_name,context)
@@ -286,6 +301,7 @@ def election_candidate(request,pk):
     context={'candidates':list_candidate}
     return render(request,template_name,context)
 
+#change
 @login_required
 def candidate_election(request,pk):
     template_name='organiser_app/election.html'
@@ -293,8 +309,17 @@ def candidate_election(request,pk):
     election_instance=[]
     for ele in election_ins:
         election_instance.append(ele.election)
-    context={'election_instance':election_instance}
-    return render(request,template_name,context)
+    region=[]
+    for election in election_instance:
+        region.append(Election_region.objects.get(election=election.election_id))
+    election_region = zip(election_instance, region)
+
+    context={'election_region':election_region}
+    return render(request,'organiser_app/election.html',context)
+
+
+#change
+
 
 @login_required
 def election_update(request,pk):
@@ -305,8 +330,9 @@ def election_update(request,pk):
         if form.is_valid():
             election_instance=form.save()
             id=election_instance.election_id
-            for candi in Candidate_election.objects.filter(election=id):
-                candi.delete()
+
+            Candidate_election.objects.filter(election=id).delete()
+
 
             for candidate in election_instance.candidates.all():
 
@@ -315,15 +341,15 @@ def election_update(request,pk):
                 candidate_election_instance.election = election_instance
                 candidate_election_instance.save()
 
-            for reg in Election_region.objects.filter(election=id):
-                reg.delete()
+            Election_region.objects.filter(election=id).delete()
+
 
             if election_instance.election_type == 'P':
-                for i in range(0,10):
-                    election_region_instance=Election_region()
-                    election_region_instance.region=i
-                    election_region_instance.election=election_instance
-                    election_region_instance.save()
+
+                election_region_instance=Election_region()
+                election_region_instance.region="All"
+                election_region_instance.election=election_instance
+                election_region_instance.save()
 
             if election_instance.election_type=='A':
                 election_region_instance=Election_region()
@@ -332,8 +358,13 @@ def election_update(request,pk):
                 election_region_instance.election=election_instance
                 election_region_instance.save()
 
+            region=[]
             election_instance=Election.objects.all()
-            context={'election_instance':election_instance}
+            for election in election_instance:
+                region.append(Election_region.objects.get(election=election.election_id))
+            print(region)
+            election_region = zip(election_instance, region)
+            context={'election_region':election_region}
             return render(request,'organiser_app/election.html',context)
 
     return render(request,template_name,{'form':form})
