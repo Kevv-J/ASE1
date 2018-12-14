@@ -13,7 +13,8 @@ region_options = (
  ('6', 'WestBengal'),
  ('7', 'MadhyaPradesh'),
  ('8', 'Haryana'),
- ('9', 'Assam')
+ ('9', 'Assam'),
+('10','All')
 
 )
 
