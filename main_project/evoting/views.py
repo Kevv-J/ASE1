@@ -22,6 +22,9 @@ def home(request):
     changer={'P':'Parliamentary','A':'Assembly'}
     for election in elections:
         election.election_type = changer[election.election_type]
+    for election in elections:
+        region = Election_region.objects.get(election=election.election_id).region
+        election.region = region
     context = {'elections': elections, 'username': request.user}
     return render(request, 'voters/home.html', context = context)
 

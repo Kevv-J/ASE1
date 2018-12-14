@@ -43,6 +43,7 @@
                     <th>Election ID</th>
                     <th>Year</th>
                     <th>Type</th>
+                    <th>Region</th>
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Link</th>
@@ -53,6 +54,7 @@
                             <td>{{ election.election_id }}</td>
                             <td>{{ election.election_year }}</td>
                             <td>{{ election.election_type }}</td>
+                            <td>{{ election.region }}</td>
                             <td>{{ election.date_of_start }}</td>
                             <td>{{ election.date_of_end }}</td>
                             <td><a href="{% url 'trail.election' election.election_id %}">Voting Page</a></td>
@@ -69,6 +71,7 @@
                     <th>Election ID</th>
                     <th>Year</th>
                     <th>Type</th>
+                    <th>Region</th>
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Link</th>
@@ -79,6 +82,7 @@
                             <td>{{ election.election_id }}</td>
                             <td>{{ election.election_year }}</td>
                             <td>{{ election.election_type }}</td>
+                            <td>{{ election.region }}</td>
                             <td>{{ election.date_of_start }}</td>
                             <td>{{ election.date_of_end }}</td>
                             <td><a href="{% url 'trail.election' election.election_id %}">Candidate List</a></td>
@@ -95,6 +99,7 @@
                     <th>Election ID</th>
                     <th>Year</th>
                     <th>Type</th>
+                    <th>Region</th>
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Link</th>
@@ -105,6 +110,7 @@
                             <td>{{ election.election_id }}</td>
                             <td>{{ election.election_year }}</td>
                             <td>{{ election.election_type }}</td>
+                            <td>{{ election.region }}</td>
                             <td>{{ election.date_of_start }}</td>
                             <td>{{ election.date_of_end }}</td>
                             <td><a href="{% url 'resultpage' election.election_id %}">Result</a></td>
